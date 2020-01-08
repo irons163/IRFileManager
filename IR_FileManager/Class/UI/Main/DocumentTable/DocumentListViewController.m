@@ -10,7 +10,6 @@
 #import "DataManager.h"
 #import "PlayerViewController.h"
 #import "KxVideoViewController.h"
-#import "OfflineFGalleryViewController.h"
 #import "AZAPreviewController.h"
 #import "AZAPreviewItem.h"
 #import "KGModal.h"
@@ -32,6 +31,7 @@
 #import "UIImageView+WebCache.h"
 #import "Masonry.h"
 #import "FileTypeUtility.h"
+#import <IRGallery/IRGallery.h>
 
 typedef NS_ENUM(NSUInteger, EditMode) {
     NormalMode,
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSUInteger, SortMode) {
 }
 
 //-(void)createGallery{
-//    galleryVC = [[OnlineFGalleryViewController alloc] initWithPhotoSource:self];
+//    galleryVC = [[OnlineIRGalleryViewController alloc] initWithPhotoSource:self];
 //    galleryVC.startingIndex = 0;
 //    galleryVC.useThumbnailView = FALSE;
 //    galleryVC.delegate = self;
@@ -1133,7 +1133,7 @@ static NSString* myFavoritesCellIdentifier = @"MyFavoritesCell";
                 break;
             idx++;
         }
-        OfflineFGalleryViewController *galleryVC = [[OfflineFGalleryViewController alloc] initWithPhotoSource:self];
+        IRGalleryViewController *galleryVC = [[IRGalleryViewController alloc] initWithPhotoSource:self];
         galleryVC.startingIndex = idx;
         galleryVC.useThumbnailView = FALSE;
         galleryVC.delegate = self;
@@ -1233,33 +1233,33 @@ static NSString* myFavoritesCellIdentifier = @"MyFavoritesCell";
     return canPerformAction;
 }
 
-#pragma mark - OfflineFGalleryViewControllerDelegate Methods
+#pragma mark - OfflineIRGalleryViewControllerDelegate Methods
 
-- (int)numberOfPhotosForPhotoGallery:(OfflineFGalleryViewController *)gallery {
+- (int)numberOfPhotosForPhotoGallery:(IRGalleryViewController *)gallery {
     return photos.count;
 }
 
-- (FGalleryPhotoSourceType)photoGallery:(OfflineFGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
-    return FGalleryPhotoSourceTypeLocal;
+- (IRGalleryPhotoSourceType)photoGallery:(IRGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
+    return IRGalleryPhotoSourceTypeLocal;
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
     NSString *filename = [NSString stringWithFormat:@"%@", ((CollectionDataFile*)photos[index]).name];
     return [[filename pathComponents] lastObject];
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController *)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery urlForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
     NSString *filename = [NSString stringWithFormat:@"%@", photos[index]];
     return [[filename pathComponents] lastObject];
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery filePathForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *str = [[paths objectAtIndex:0] stringByAppendingPathComponent:[photos[index] valueForKey:@"name"]];
     return str;
 }
 
-- (bool)photoGallery:(OfflineFGalleryViewController*)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index{
+- (bool)photoGallery:(IRGalleryViewController *)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index{
     CollectionDataFile* file;
     file = ((CollectionDataFile*)photos[index]);
     
@@ -1272,7 +1272,7 @@ static NSString* myFavoritesCellIdentifier = @"MyFavoritesCell";
     return NO;
 }
 
-- (void)photoGallery:(OfflineFGalleryViewController*)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index{
+- (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index{
     CollectionDataFile* file;
     file = ((CollectionDataFile*)photos[index]);
     

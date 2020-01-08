@@ -9,4 +9,5 @@ target 'IR_FileManager' do
   pod 'SDWebImage'
   pod 'QBImagePickerController'
   pod 'Masonry'
+  pod 'IRGallery'
 end

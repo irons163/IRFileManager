@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, EditMode) {
     UIImageView * searchBg;
     UIImageView* searchIcon;
     
-    OfflineFGalleryViewController *galleryVC;
+    IRGalleryViewController *galleryVC;
     dispatch_queue_t queue;
 }
 
@@ -196,7 +196,7 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
     
-    galleryVC = [[OfflineFGalleryViewController alloc] initWithPhotoSource:weakSelf];
+    galleryVC = [[IRGalleryViewController alloc] initWithPhotoSource:weakSelf];
     galleryVC.startingIndex = 0;
     galleryVC.useThumbnailView = FALSE;
     galleryVC.delegate = self;
@@ -527,10 +527,8 @@ static NSString * const reuseIdentifier = @"Cell";
         
         photosGroupByDate = [self groupByDate:photos];
         
-        [self removeSelectedItems];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self removeSelectedItems];
             
             if(editMode != NormalMode){
                 self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
@@ -781,22 +779,33 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - FGalleryViewControllerDelegate Methods
+#pragma mark - IRGalleryViewControllerSourceDelegate Methods
 
-- (int)numberOfPhotosForPhotoGallery:(OfflineFGalleryViewController *)gallery {
+- (void)photoGallery:(IRGalleryViewController *)gallery deleteAtIndex:(NSUInteger)index {
+    CollectionDataFile* file;
+    if(searchActived){
+        file = ((CollectionDataFile*)autocompleteUrls[index]);
+    }else{
+        file = ((CollectionDataFile*)photos[index]);
+    }
+    [self delete:@[file]];
+}
+
+#pragma mark - IRGalleryViewControllerSourceDelegate Methods
+
+- (int)numberOfPhotosForPhotoGallery:(IRGalleryViewController *)gallery {
     if(searchActived){
         return autocompleteUrls.count;
     }else{
         return photos.count;
     }
-//    return photos.count;
 }
 
-- (FGalleryPhotoSourceType)photoGallery:(OfflineFGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
-    return FGalleryPhotoSourceTypeLocal;
+- (IRGalleryPhotoSourceType)photoGallery:(IRGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
+    return IRGalleryPhotoSourceTypeLocal;
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
     CollectionDataFile* file;
     if(searchActived){
         file = ((CollectionDataFile*)autocompleteUrls[index]);
@@ -808,7 +817,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return [[filename pathComponents] lastObject];
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController *)gallery urlForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery urlForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
     CollectionDataFile* file;
     if(searchActived){
         file = ((CollectionDataFile*)autocompleteUrls[index]);
@@ -820,12 +829,12 @@ static NSString * const reuseIdentifier = @"Cell";
     return [[filename pathComponents] lastObject];
 }
 
-- (NSString*)photoGallery:(OfflineFGalleryViewController*)gallery filePathForPhotoSize:(FGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    CollectionDataFile* file;
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery filePathForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
+    CollectionDataFile *file;
     if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
+        file = ((CollectionDataFile *)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile*)photos[index]);
+        file = ((CollectionDataFile *)photos[index]);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -833,7 +842,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return str;
 }
 
-- (bool)photoGallery:(OfflineFGalleryViewController*)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index{
+- (bool)photoGallery:(IRGalleryViewController *)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index {
     CollectionDataFile* file;
     if(searchActived){
         file = ((CollectionDataFile*)autocompleteUrls[index]);
@@ -847,12 +856,12 @@ static NSString * const reuseIdentifier = @"Cell";
     return YES;
 }
 
-- (void)photoGallery:(OfflineFGalleryViewController*)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index{
-    CollectionDataFile* file;
+- (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index {
+    CollectionDataFile *file;
     if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
+        file = ((CollectionDataFile *)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile*)photos[index]);
+        file = ((CollectionDataFile *)photos[index]);
     }
     
     NSString* favoriteTime;
@@ -872,35 +881,14 @@ static NSString * const reuseIdentifier = @"Cell";
     file.addfavoritetime = favoriteTime;
 }
 
-- (void)deleteByFiles:(NSArray*)dfiles {
-    for (NSString *file_ in dfiles) {
-        NSString *file = file_.pathComponents[file_.pathComponents.count - 1];
-        for (CollectionDataFile *item in photos) {
-            if ([file isEqualToString:item.name]) {
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                [fileManager removeItemAtPath:file_ error:nil];
-                [[DataManager sharedInstance].database sqliteDelete:@"Collection" keys:@ {
-                    @"uid" : item.uid,
-                }];
-                break;
-            }
-        }
-    }
-    
-    [self setNormalToobarItem];
-    [self loadData];
-    
-    [[KGModal sharedInstance] hideAnimated:YES];
-}
-
--(void)backBtnDidClick{
+- (void)backBtnDidClick {
     if(textField!=nil){
         editMode = NormalMode;
         [self dismissSearchBar];
     }else if(editMode != NormalMode){
         editMode = NormalMode;
         
-        for(NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems){
+        for(NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems){
             [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
         }
         [self removeSelectedItems];
@@ -912,7 +900,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
--(void)switchDeleteMode{
+- (void)switchDeleteMode {
     if(editMode == NormalMode){
         editMode = DeleteMode;
         
@@ -933,7 +921,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
--(void)switchUploadMode{
+- (void)switchUploadMode {
     if(editMode == NormalMode){
         editMode = UploadMode;
         
@@ -954,7 +942,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
--(void)openSyncPhotosPageFormPhoneAlbum{
+- (void)openSyncPhotosPageFormPhoneAlbum {
     [self checkPermisstion];
     
     QBImagePickerController *imagePickerController = [QBImagePickerController new];
@@ -990,14 +978,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController presentViewController:imagePickerController animated:YES completion:NULL];
 }
 
--(void)changeToNormalMode{
+- (void)changeToNormalMode {
     [self setNormalToobarItem];
     [self setNormalNavigatinItem];
     searchButton.hidden = NO;
     [self cancelClick];
 }
 
-- (void)cancelClick{
+- (void)cancelClick {
     editMode = NormalMode;
     for(NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems){
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];

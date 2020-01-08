@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AutoSyncPhotos.h"
-#import "OfflineFGalleryViewController.h"
+#import <IRGallery/IRGallery.h>
 #import <QBImagePickerController/QBImagePickerController.h>
 
-@interface PhotoCollectionViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, AutoSyncPhotosDelegate, FGalleryViewControllerDelegate, QBImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout>
+@interface PhotoCollectionViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, AutoSyncPhotosDelegate, IRGalleryViewControllerSourceDelegate, IRGalleryViewControllerDelegate, QBImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIImageView *collectionViewBottomLineImageView;

@@ -1,21 +1,20 @@
 //
-//  FGalleryPhoto.m
-//  FGallery
+//  IRGalleryPhoto.m
+//  IRGallery
 //
-//  Created by Grant Davis on 5/20/10.
-//  Copyright 2011 Grant Davis Interactive, LLC. All rights reserved.
+//  Created by Phil on 2019/11/20.
+//  Copyright © 2019 Phil. All rights reserved.
 //
 
-#import "FGalleryPhoto.h"
+#import "IRGalleryPhoto.h"
 #import <ImageIO/ImageIO.h>
 #import <CommonCrypto/CommonDigest.h>
-#import "NYXImagesHelper.h"
 
-#define kNyxDefaultCacheTimeValue 604800.0f // 7 days
-#define kNyxDefaultTimeoutValue 60.0f
+#define IRDefaultCacheTimeValue 604800.0f // 7 days
+#define IRDefaultTimeoutValue 60.0f
 
 
-@interface FGalleryPhoto (Private)
+@interface IRGalleryPhoto (Private)<NSURLConnectionDelegate>
 
 // delegate notifying methods
 - (void)willLoadThumbFromUrl;
@@ -32,247 +31,170 @@
 // cleanup
 - (void)killThumbnailLoadObjects;
 - (void)killFullsizeLoadObjects;
+
 @end
 
-
-//@implementation FGalleryPhoto
-@implementation FGalleryPhoto{
+@implementation IRGalleryPhoto {
     CGImageSourceRef _imageSource;
-    /// Width of the downloaded image
+    // Width of the downloaded image
     int _imageWidth;
-    /// Height of the downloaded image
+    // Height of the downloaded image
     int _imageHeight;
-    /// Expected image size
+    // Expected image size
     long long _expectedSize;
-    /// Connection queue
+    // Connection queue
     dispatch_queue_t _queue;
 }
 
-@synthesize tag;
-@synthesize thumbnail = _thumbnail;
-@synthesize fullsize = _fullsize;
-@synthesize delegate = _delegate;
-@synthesize isFullsizeLoading = _isFullsizeLoading;
-@synthesize hasFullsizeLoaded = _hasFullsizeLoaded;
-@synthesize isThumbLoading = _isThumbLoading;
-@synthesize hasThumbLoaded = _hasThumbLoaded;
-@synthesize caching = _caching;
-@synthesize cacheTime = _cacheTime;
-
-- (id)initWithThumbnailUrl:(NSString*)thumb fullsizeUrl:(NSString*)fullsize delegate:(NSObject<FGalleryPhotoDelegate>*)delegate
-{
-	self = [self init];
-	_useNetwork = YES;
-	_thumbUrl = [thumb retain];
-	_fullsizeUrl = [fullsize retain];
-	_delegate = delegate;
-	return self;
+- (id)initWithThumbnailUrl:(NSString *)thumb fullsizeUrl:(NSString *)fullsize delegate:(NSObject<IRGalleryPhotoDelegate> *)delegate {
+    self = [self init];
+    _useNetwork = YES;
+    _thumbUrl = thumb;
+    _fullsizeUrl = fullsize;
+    _delegate = delegate;
+    return self;
 }
 
-- (id)initWithThumbnailPath:(NSString*)thumb fullsizePath:(NSString*)fullsize delegate:(NSObject<FGalleryPhotoDelegate>*)delegate
-{
-	self = [self init];
-	
-	_useNetwork = NO;
-	_thumbUrl = [thumb retain];
-	_fullsizeUrl = [fullsize retain];
-	_delegate = delegate;
-	return self;
+- (id)initWithThumbnailPath:(NSString *)thumb fullsizePath:(NSString *)fullsize delegate:(NSObject<IRGalleryPhotoDelegate> *)delegate {
+    self = [self init];
+    
+    _useNetwork = NO;
+    _thumbUrl = thumb;
+    _fullsizeUrl = fullsize;
+    _delegate = delegate;
+    return self;
 }
 
--(id)init
-{
-    if ((self = [super init]))
+- (id)init {
+    if (self = [super init])
     {
         [self initializeAttributes];
     }
     return self;
 }
 
-- (void)loadThumbnail
-{
-	if( _isThumbLoading || _hasThumbLoaded ) return;
-	
-	// load from network
-	if( _useNetwork )
-	{
-		// notify delegate
-		[self willLoadThumbFromUrl];
+- (void)loadThumbnail {
+    if( _isThumbLoading || _hasThumbLoaded ) return;
+    
+    // load from network
+    if( _useNetwork ) {
+        // notify delegate
+        [self willLoadThumbFromUrl];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if([_delegate respondsToSelector:@selector(galleryPhotoLoadThumbnailFromLocal:)])
-                _thumbnail = [[_delegate galleryPhotoLoadThumbnailFromLocal:self] retain];
+            if([self->_delegate respondsToSelector:@selector(galleryPhotoLoadThumbnailFromLocal:)])
+                self->_thumbnail = [self->_delegate galleryPhotoLoadThumbnailFromLocal:self];
             
-            if(!_thumbnail)
-                [self loadImageAtURL:[NSURL URLWithString:_thumbUrl] isThumbSize:YES];
+            if(!self->_thumbnail)
+                [self loadImageAtURL:[NSURL URLWithString:self->_thumbUrl] isThumbSize:YES];
             else
                 [self didLoadThumbnail];
         });
 
-	}
-	
-	// load from disk
-	else {
-		
-		// notify delegate
-		[self willLoadThumbFromPath];
-		
-		_isThumbLoading = YES;
-		
-		// spawn a new thread to load from disk
-		[NSThread detachNewThreadSelector:@selector(loadThumbnailInThread) toTarget:self withObject:nil];
-	}
+    } else { // load from disk
+        // notify delegate
+        [self willLoadThumbFromPath];
+        
+        _isThumbLoading = YES;
+        
+        // spawn a new thread to load from disk
+        [NSThread detachNewThreadSelector:@selector(loadThumbnailInThread) toTarget:self withObject:nil];
+    }
 }
 
-
-- (void)loadFullsize
-{
-	if( _isFullsizeLoading || _hasFullsizeLoaded ) return;
-	
-	if( _useNetwork )
-	{
-		// notify delegate
-		[self willLoadFullsizeFromUrl];
+- (void)loadFullsize {
+    if( _isFullsizeLoading || _hasFullsizeLoaded ) return;
+    
+    if( _useNetwork ) {
+        // notify delegate
+        [self willLoadFullsizeFromUrl];
         
         self.enableProgressive = YES;
         
         [self loadImageAtURL:[NSURL URLWithString:_fullsizeUrl] isThumbSize:NO];
-	}
-	else
-	{
-		[self willLoadFullsizeFromPath];
-		
-		_isFullsizeLoading = YES;
-		
-		// spawn a new thread to load from disk
-		[NSThread detachNewThreadSelector:@selector(loadFullsizeInThread) toTarget:self withObject:nil];
-	}
-}
-
-
-- (void)loadFullsizeInThread
-{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	_fullsize = [[UIImage imageWithContentsOfFile:_fullsizeUrl] retain];
-	
-	_hasFullsizeLoaded = YES;
-	_isFullsizeLoading = NO;
-
-	[self performSelectorOnMainThread:@selector(didLoadFullsize) withObject:nil waitUntilDone:YES];
-	
-	[pool release];
-}
-
-
-- (void)loadThumbnailInThread
-{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	_thumbnail = [[UIImage imageWithContentsOfFile:_thumbUrl] retain];
-	
-	_hasThumbLoaded = YES;
-	_isThumbLoading = NO;
-	
-	[self performSelectorOnMainThread:@selector(didLoadThumbnail) withObject:nil waitUntilDone:YES];
-	
-	[pool release];
-}
-
-- (void)unloadFullsize
-{
-    @synchronized (self) {
-    NSLog(@"unloadFullsize");
-	[_fullsizeConnection cancel];
-    NSLog(@"cancel");
-	[self killFullsizeLoadObjects];
-	
-	_isFullsizeLoading = NO;
-	_hasFullsizeLoaded = NO;
-	
-	[_fullsize release];
-	_fullsize = nil;
+    } else {
+        [self willLoadFullsizeFromPath];
+        
+        _isFullsizeLoading = YES;
+        
+        // spawn a new thread to load from disk
+        [NSThread detachNewThreadSelector:@selector(loadFullsizeInThread) toTarget:self withObject:nil];
     }
 }
 
-- (void)unloadThumbnail
-{
+- (void)loadFullsizeInThread {
+    _fullsize = [UIImage imageWithContentsOfFile:_fullsizeUrl];
+    
+    _hasFullsizeLoaded = YES;
+    _isFullsizeLoading = NO;
+
+    [self performSelectorOnMainThread:@selector(didLoadFullsize) withObject:nil waitUntilDone:YES];
+}
+
+- (void)loadThumbnailInThread {
+    _thumbnail = [UIImage imageWithContentsOfFile:_thumbUrl];
+    
+    _hasThumbLoaded = YES;
+    _isThumbLoading = NO;
+    
+    [self performSelectorOnMainThread:@selector(didLoadThumbnail) withObject:nil waitUntilDone:YES];
+}
+
+- (void)unloadFullsize {
     @synchronized (self) {
-	[_thumbConnection cancel];
-	[self killThumbnailLoadObjects];
-	
-	_isThumbLoading = NO;
-	_hasThumbLoaded = NO;
-	
-	[_thumbnail release];
-	_thumbnail = nil;
+        NSLog(@"unloadFullsize");
+        [_fullsizeConnection cancel];
+        NSLog(@"cancel");
+        [self killFullsizeLoadObjects];
+        
+        _isFullsizeLoading = NO;
+        _hasFullsizeLoaded = NO;
+        
+        _fullsize = nil;
     }
 }
 
-
-#pragma mark -
-#pragma mark NSURLConnection Delegate Methods
-
-
-
-
-
-
+- (void)unloadThumbnail {
+    @synchronized (self) {
+        [_thumbConnection cancel];
+        [self killThumbnailLoadObjects];
+        
+        _isThumbLoading = NO;
+        _hasThumbLoaded = NO;
+        
+        _thumbnail = nil;
+    }
+}
 
 #pragma mark - Public
-//-(void)setDelegate:(id<NYXProgressiveImageViewDelegate>)delegate
-//{
-//    if (delegate != _delegate)
-//    {
-//        _delegate = delegate;
-//        _delegateFlags.delegateImageDidLoadWithImage = (unsigned)[delegate respondsToSelector:@selector(imageDidLoadWithImage:)];
-//        _delegateFlags.delegateImageDownloadCompletedWithImage = (unsigned)[delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)];
-//        _delegateFlags.delegateImageDownloadFailedWithData = (unsigned)[delegate respondsToSelector:@selector(imageDownloadFailedWithData:)];
-//    }
-//}
-
--(void)loadImageAtURL:(NSURL*)url isThumbSize:(BOOL)isThumbSize
-{
+- (void)loadImageAtURL:(NSURL *)url isThumbSize:(BOOL)isThumbSize {
     if (isThumbSize ? _isThumbLoading : _isFullsizeLoading)
         return;
     
-//    _url = url;
-    
-    
-    if (_caching)
-    {
+    if (_caching) {
         NSFileManager* fileManager = [[NSFileManager alloc] init];
         
         // check if file exists on cache
-        NSString* cacheDir = [FGalleryPhoto cacheDirectoryAddress];
+        NSString* cacheDir = [IRGalleryPhoto cacheDirectoryAddress];
         NSString* cachedImagePath = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemNameByUrl:url]];
-        if ([fileManager fileExistsAtPath:cachedImagePath])
-        {
+        if ([fileManager fileExistsAtPath:cachedImagePath]) {
             NSDate* mofificationDate = [[fileManager attributesOfItemAtPath:cachedImagePath error:nil] objectForKey:NSFileModificationDate];
             
             // check modification date
-            if (-[mofificationDate timeIntervalSinceNow] > _cacheTime)
-            {
+            if (-[mofificationDate timeIntervalSinceNow] > _cacheTime) {
                 // Removes old cache file...
                 [self resetCacheByUrl:url];
-            }
-            else
-            {
+            } else {
                 // Loads image from cache without networking
                 UIImage* localImage = [[UIImage alloc] initWithContentsOfFile:cachedImagePath];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    //                    self.image = localImage;
-                    
-                    //                    if (_delegateFlags.delegateImageDidLoadWithImage)
-                    //                        [_delegate imageDidLoadWithImage:localImage];
-                    
                     if(isThumbSize){
                         NSLog(@"Thumb load from cache");
-                        _thumbnail = localImage;
+                        self->_thumbnail = localImage;
                         [self didLoadThumbnail];
                     }else{
                         NSLog(@"Full load from cache");
-                        _fullsize = localImage;
+                        self->_fullsize = localImage;
                         [self didLoadFullsize];
                     }
                 });
@@ -283,71 +205,53 @@
     }
     
     dispatch_async(_queue, ^{
-        NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kNyxDefaultTimeoutValue];
-//        NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url];
-        //        _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-        //        [_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        //        _downloading = YES;
-        //        [_connection start];
-        
-        
-        //        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_thumbUrl]];
-        
+        NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:IRDefaultTimeoutValue];
         if(isThumbSize){
-//            _thumbImageSource = CGImageSourceCreateIncremental(NULL);
-            
-            _isThumbLoading = YES;
-            _thumbConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-            [_thumbConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-            _thumbData = [[NSMutableData alloc] init];
-            [_thumbConnection start];
+            self->_isThumbLoading = YES;
+            self->_thumbConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+            [self->_thumbConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+            self->_thumbData = [[NSMutableData alloc] init];
+            [self->_thumbConnection start];
         }else{
-            
-            
-            _isFullsizeLoading = YES;
-            _fullsizeConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-            [_fullsizeConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-            _fullsizeData = [[NSMutableData alloc] init];
-            [_fullsizeConnection start];
+            self->_isFullsizeLoading = YES;
+            self->_fullsizeConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+            [self->_fullsizeConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+            self->_fullsizeData = [[NSMutableData alloc] init];
+            [self->_fullsizeConnection start];
         }
-        
         
         CFRunLoopRun();
     });
 }
 
-+(NSUInteger)getCacheSize
-{
++ (NSUInteger)getCacheSize {
     NSUInteger size = 0;
-    NSDirectoryEnumerator *fileEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:[FGalleryPhoto cacheDirectoryAddress]];
+    NSDirectoryEnumerator *fileEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:[IRGalleryPhoto cacheDirectoryAddress]];
     
     for (NSString *fileName in fileEnumerator) {
-        NSString *filePath = [[FGalleryPhoto cacheDirectoryAddress] stringByAppendingPathComponent:fileName];
+        NSString *filePath = [[IRGalleryPhoto cacheDirectoryAddress] stringByAppendingPathComponent:fileName];
         NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
         size += [attrs fileSize];
     }
     return size;
 }
 
-+(void)resetImageCache
-{
-    [[NSFileManager defaultManager] removeItemAtPath:[FGalleryPhoto cacheDirectoryAddress] error:nil];
++ (void)resetImageCache {
+    [[NSFileManager defaultManager] removeItemAtPath:[IRGalleryPhoto cacheDirectoryAddress] error:nil];
 }
 
 #pragma mark - NSURLConnectionDelegate
--(void)connection:(__unused NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
-{
+- (void)connection:(__unused NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response {
     @synchronized (self) {
-    if( connection == _fullsizeConnection ){
-        _imageSource = CGImageSourceCreateIncremental(NULL);
-        _imageWidth = _imageHeight = -1;
-        _expectedSize = [response expectedContentLength];
-    }
+        if( connection == _fullsizeConnection ){
+            _imageSource = CGImageSourceCreateIncremental(NULL);
+            _imageWidth = _imageHeight = -1;
+            _expectedSize = [response expectedContentLength];
+        }
     }
 }
 
--(void)connection:(__unused NSURLConnection*)connection didReceiveData:(NSData*)data
-{
+-(void)connection:(__unused NSURLConnection*)connection didReceiveData:(NSData*)data {
     @synchronized (self) {
 
     NSLog(@"didReceiveData");
@@ -382,7 +286,7 @@
             CGImageAlphaInfo alpha = CGImageGetAlphaInfo(cgImage);
             BOOL hasAlpha = (alpha == kCGImageAlphaFirst || alpha == kCGImageAlphaLast || alpha == kCGImageAlphaPremultipliedFirst || alpha == kCGImageAlphaPremultipliedLast);
             CGImageAlphaInfo alphaInfo = (hasAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst);
-            CGContextRef bmContext = CGBitmapContextCreate(NULL, (size_t)_imageWidth, (size_t)_imageHeight, 8/*Bits per component*/, (size_t)_imageWidth * 4, NYXGetRGBColorSpace(), kCGBitmapByteOrderDefault | alphaInfo);
+            CGContextRef bmContext = CGBitmapContextCreate(NULL, (size_t)_imageWidth, (size_t)_imageHeight, 8/*Bits per component*/, (size_t)_imageWidth * 4, CGColorSpaceCreateDeviceRGB(), kCGBitmapByteOrderDefault | alphaInfo);
             CGImageRef imgTmp = NULL;
             if (bmContext){
                 CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = _imageWidth, .size.height = partialHeight}, cgImage);
@@ -398,7 +302,6 @@
                 imgTmp = NULL;
                 
                 if( connection == _thumbConnection ){
-                    [_thumbnail release];
                     _thumbnail = img;
                     
                     img = nil;
@@ -406,7 +309,6 @@
                         [self loadingThumbnail];
                     });
                 }else if( connection == _fullsizeConnection ){
-                    [_fullsize release];
                     _fullsize = img;
                     
                     img = nil;
@@ -439,7 +341,7 @@
             {
                 int orientation; // Note: This is an EXIF int for orientation, a number between 1 and 8
                 CFNumberGetValue(val, kCFNumberIntType, &orientation);
-                _imageOrientation = [FGalleryPhoto exifOrientationToiOSOrientation:orientation];
+                _imageOrientation = [IRGalleryPhoto exifOrientationToiOSOrientation:orientation];
                 NSLog(@"UIImageOrientation:%ld", (long)_imageOrientation);
             }
             else{
@@ -476,7 +378,7 @@
                 
                 NSFileManager* fileManager = [[NSFileManager alloc] init];
                 
-                NSString* cacheDir = [FGalleryPhoto cacheDirectoryAddress];
+                NSString* cacheDir = [IRGalleryPhoto cacheDirectoryAddress];
                 if (![fileManager fileExistsAtPath:cacheDir isDirectory:&isDir])
                     [fileManager createDirectoryAtPath:cacheDir withIntermediateDirectories:NO attributes:nil error:nil];
                 
@@ -492,7 +394,6 @@
             }
             
             if( connection == _thumbConnection ){
-                [_thumbnail release];
                 _thumbnail = img;
                 _isThumbLoading = NO;
                 _hasThumbLoaded = YES;
@@ -504,7 +405,6 @@
                     [self didLoadThumbnail];
                 
             }else if( connection == _fullsizeConnection ){
-                [_fullsize release];
                 _fullsize = img;
                 _isFullsizeLoading = NO;
                 _hasFullsizeLoaded = YES;
@@ -543,8 +443,7 @@
     CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
--(void)connection:(__unused NSURLConnection*)connection didFailWithError:(__unused NSError*)error
-{
+- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error {
     NSLog(@"load fail");
     
     if( connection == _thumbConnection ){
@@ -569,27 +468,24 @@
 }
 
 #pragma mark - Private
--(void)initializeAttributes
-{
-    _cacheTime = kNyxDefaultCacheTimeValue;
+- (void)initializeAttributes {
+    _cacheTime = IRDefaultCacheTimeValue;
     _caching = YES;
     _imageOrientation = UIImageOrientationUp;
     _imageSource = NULL;
     
     if(!_queue){
-        _queue = dispatch_queue_create("com.cits.pdlqueue", DISPATCH_QUEUE_SERIAL);
+        _queue = dispatch_queue_create("com.irons.IRGalleryPhoto", DISPATCH_QUEUE_SERIAL);
     }
 }
 
-+(NSString*)cacheDirectoryAddress
-{
++ (NSString *)cacheDirectoryAddress {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectoryPath = [paths objectAtIndex:0];
     return [documentsDirectoryPath stringByAppendingPathComponent:@"NYXProgressiveImageViewCache"];
 }
 
--(NSString*)cachedImageSystemNameByUrl:(NSURL*)_url
-{
+- (NSString *)cachedImageSystemNameByUrl:(NSURL *)_url {
     const char* concat_str = [[_url absoluteString] UTF8String];
     if (!concat_str)
         return @"";
@@ -604,13 +500,11 @@
     return [hash lowercaseString];
 }
 
--(void)resetCacheByUrl:(NSURL*)_url
-{
-    [[[NSFileManager alloc] init] removeItemAtPath:[[FGalleryPhoto cacheDirectoryAddress] stringByAppendingPathComponent:[self cachedImageSystemNameByUrl:_url]] error:nil];
+- (void)resetCacheByUrl:(NSURL *)_url {
+    [[[NSFileManager alloc] init] removeItemAtPath:[[IRGalleryPhoto cacheDirectoryAddress] stringByAppendingPathComponent:[self cachedImageSystemNameByUrl:_url]] error:nil];
 }
 
-+(UIImageOrientation)exifOrientationToiOSOrientation:(int)exifOrientation
-{
++ (UIImageOrientation)exifOrientationToiOSOrientation:(int)exifOrientation {
     UIImageOrientation orientation = UIImageOrientationUp;
     switch (exifOrientation)
     {
@@ -644,133 +538,77 @@
     return orientation;
 }
 
-
-#pragma mark -
 #pragma mark Delegate Notification Methods
-
-
-- (void)willLoadThumbFromUrl
-{
-	if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadThumbnailFromUrl:)])
-		[_delegate galleryPhoto:self willLoadThumbnailFromUrl:_thumbUrl];
+- (void)willLoadThumbFromUrl {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadThumbnailFromUrl:)])
+        [_delegate galleryPhoto:self willLoadThumbnailFromUrl:_thumbUrl];
 }
 
-
-- (void)willLoadFullsizeFromUrl
-{
-	if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadFullsizeFromUrl:)])
-		[_delegate galleryPhoto:self willLoadFullsizeFromUrl:_fullsizeUrl];
+- (void)willLoadFullsizeFromUrl {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadFullsizeFromUrl:)])
+        [_delegate galleryPhoto:self willLoadFullsizeFromUrl:_fullsizeUrl];
 }
 
-
-- (void)willLoadThumbFromPath
-{
-	if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadThumbnailFromPath:)])
-		[_delegate galleryPhoto:self willLoadThumbnailFromPath:_thumbUrl];
+- (void)willLoadThumbFromPath {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadThumbnailFromPath:)])
+        [_delegate galleryPhoto:self willLoadThumbnailFromPath:_thumbUrl];
 }
 
-
-- (void)willLoadFullsizeFromPath
-{
-	if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadFullsizeFromPath:)])
-		[_delegate galleryPhoto:self willLoadFullsizeFromPath:_fullsizeUrl];
+- (void)willLoadFullsizeFromPath {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:willLoadFullsizeFromPath:)])
+        [_delegate galleryPhoto:self willLoadFullsizeFromPath:_fullsizeUrl];
 }
 
-
-- (void)didLoadThumbnail
-{
-//	FLog(@"gallery phooto did load thumbnail!");
-	if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadThumbnail:)])
-		[_delegate galleryPhoto:self didLoadThumbnail:_thumbnail];
+- (void)didLoadThumbnail {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadThumbnail:)])
+        [_delegate galleryPhoto:self didLoadThumbnail:_thumbnail];
 }
 
-
-- (void)didLoadFullsize
-{
-//	FLog(@"gallery phooto did load fullsize!");
-	if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadFullsize:)])
-		[_delegate galleryPhoto:self didLoadFullsize:_fullsize];
+- (void)didLoadFullsize {
+    if([_delegate respondsToSelector:@selector(galleryPhoto:didLoadFullsize:)])
+        [_delegate galleryPhoto:self didLoadFullsize:_fullsize];
 }
 
-- (void)loadingThumbnail
-{
+- (void)loadingThumbnail {
     if([_delegate respondsToSelector:@selector(galleryPhoto:loadingThumbnail:)])
         [_delegate galleryPhoto:self loadingThumbnail:_thumbnail];
 }
 
-- (void)loadingFullsize
-{
+- (void)loadingFullsize {
     if([_delegate respondsToSelector:@selector(galleryPhoto:loadingFullsize:)])
         [_delegate galleryPhoto:self loadingFullsize:_fullsize];
 }
 
-- (void)showThumbnail:(BOOL)show
-{
+- (void)showThumbnail:(BOOL)show {
     if([_delegate respondsToSelector:@selector(galleryPhoto:showThumbnail:)])
         [_delegate galleryPhoto:self showThumbnail:show];
 }
 
-#pragma mark -
 #pragma mark Memory Management
-
-- (void) releaseFullsizeImageSource{
-    if (_imageSource)
-    {
+- (void)releaseFullsizeImageSource {
+    if (_imageSource) {
         CFRelease(_imageSource);
         _imageSource = NULL;
     }
 }
 
-- (void)killThumbnailLoadObjects
-{
-	
-	[_thumbConnection release];
-	[_thumbData release];
-	_thumbConnection = nil;
-	_thumbData = nil;
+- (void)killThumbnailLoadObjects {
+    _thumbConnection = nil;
+    _thumbData = nil;
 }
 
-- (void)killFullsizeLoadObjects
-{
-	
-	[_fullsizeConnection release];
-	[_fullsizeData release];
-	_fullsizeConnection = nil;
-	_fullsizeData = nil;
+- (void)killFullsizeLoadObjects {
+    _fullsizeConnection = nil;
+    _fullsizeData = nil;
     [self releaseFullsizeImageSource];
 }
 
-
-
-- (void)dealloc
-{
-//	NSLog(@"FGalleryPhoto dealloc");
-	
-//	[_delegate release];
-	_delegate = nil;
-	
-	[_fullsizeConnection cancel];
-	[_thumbConnection cancel];
-	[self killFullsizeLoadObjects];
-	[self killThumbnailLoadObjects];
-	
-	[_thumbUrl release];
-	_thumbUrl = nil;
-	
-	[_fullsizeUrl release];
-	_fullsizeUrl = nil;
-	
-	[_thumbnail release];
-	_thumbnail = nil;
-	
-	[_fullsize release];
-	_fullsize = nil;
-	
-    NYX_DISPATCH_RELEASE(_queue);
-    _queue = NULL;
-
-	[super dealloc];
+- (void)dealloc {
+    [_fullsizeConnection cancel];
+    [_thumbConnection cancel];
+    [self killFullsizeLoadObjects];
+    [self killThumbnailLoadObjects];
 }
 
-
 @end
+

@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "DocumentTableViewCell.h"
-#import "OfflineFGalleryViewController.h"
+#import <IRGallery/IRGallery.h>
 #import "CustomCollectionView.h"
 #import "PlayerViewController.h"
 
-@interface DocumentListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, FGalleryViewControllerDelegate,UITextFieldDelegate, PlayerViewCallBackDelegate,
+@interface DocumentListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, IRGalleryViewControllerDelegate,UITextFieldDelegate, PlayerViewCallBackDelegate,
     UICollectionViewDelegate, UICollectionViewDataSource>{
 }
 
