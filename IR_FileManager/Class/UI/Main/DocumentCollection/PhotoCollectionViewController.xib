@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoCollectionViewController">
+            <connections>
+                <outlet property="bgImageView" destination="7DD-DG-bqp" id="ioW-T7-H4Z"/>
+                <outlet property="collectionView" destination="yxM-qW-SGt" id="Mtr-Re-o3L"/>
+                <outlet property="collectionViewBottomLineImageView" destination="h93-xN-ZHY" id="puY-W4-Hvi"/>
+                <outlet property="loadingView" destination="kep-bF-VSp" id="EIr-6e-uYD"/>
+                <outlet property="syncAlbumBtn" destination="vCq-8z-KnZ" id="Me7-f8-AQa"/>
+                <outlet property="view" destination="vGD-6Z-f6r" id="P3G-Rr-Gj7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="vGD-6Z-f6r">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7DD-DG-bqp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-qW-SGt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="1oN-yI-O5i">
+                        <size key="itemSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="80" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="8XL-iU-p5J"/>
+                        <outlet property="delegate" destination="-1" id="XRp-8M-LTK"/>
+                    </connections>
+                </collectionView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h93-xN-ZHY">
+                    <rect key="frame" x="0.0" y="526" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="t5Z-HQ-kih"/>
+                    </constraints>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kep-bF-VSp">
+                    <rect key="frame" x="141.5" y="275.5" width="37" height="37"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCq-8z-KnZ">
+                    <rect key="frame" x="148" y="533" width="166" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="166" id="7Uv-Qm-QPn"/>
+                        <constraint firstAttribute="height" constant="29" id="hWQ-is-2Ux"/>
+                    </constraints>
+                    <state key="normal" title="Sync photos in phone" backgroundImage="btn_sync-01.png">
+                        <color key="titleColor" red="0.0" green="0.70588235294117641" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="syncAlbumClick:" destination="-1" eventType="touchUpInside" id="hMe-FY-Iww"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yxM-qW-SGt" firstAttribute="trailing" secondItem="aVQ-Va-9MS" secondAttribute="trailing" id="707-MQ-XwJ"/>
+                <constraint firstItem="7DD-DG-bqp" firstAttribute="trailing" secondItem="aVQ-Va-9MS" secondAttribute="trailing" id="8OK-CG-uUo"/>
+                <constraint firstItem="7DD-DG-bqp" firstAttribute="top" secondItem="vGD-6Z-f6r" secondAttribute="top" id="BGj-Tr-ih6"/>
+                <constraint firstItem="h93-xN-ZHY" firstAttribute="top" secondItem="7DD-DG-bqp" secondAttribute="bottom" constant="2" id="GbG-lt-heX"/>
+                <constraint firstItem="yxM-qW-SGt" firstAttribute="top" secondItem="vGD-6Z-f6r" secondAttribute="top" id="KrW-fq-bDv"/>
+                <constraint firstItem="h93-xN-ZHY" firstAttribute="top" secondItem="yxM-qW-SGt" secondAttribute="bottom" constant="2" id="Lcn-hC-Bqu"/>
+                <constraint firstItem="h93-xN-ZHY" firstAttribute="leading" secondItem="vGD-6Z-f6r" secondAttribute="leading" id="NEB-f8-wsl"/>
+                <constraint firstItem="aVQ-Va-9MS" firstAttribute="bottom" secondItem="vCq-8z-KnZ" secondAttribute="bottom" constant="6" id="NSt-3r-cDO"/>
+                <constraint firstItem="kep-bF-VSp" firstAttribute="centerX" secondItem="aVQ-Va-9MS" secondAttribute="centerX" id="Quc-uV-MA1"/>
+                <constraint firstItem="kep-bF-VSp" firstAttribute="centerY" secondItem="aVQ-Va-9MS" secondAttribute="centerY" id="RZF-gI-z9j"/>
+                <constraint firstItem="yxM-qW-SGt" firstAttribute="leading" secondItem="aVQ-Va-9MS" secondAttribute="leading" id="f5t-Qp-v1C"/>
+                <constraint firstAttribute="trailing" secondItem="vCq-8z-KnZ" secondAttribute="trailing" constant="6" id="fLO-TO-Wdh"/>
+                <constraint firstItem="vCq-8z-KnZ" firstAttribute="top" secondItem="h93-xN-ZHY" secondAttribute="bottom" constant="6" id="h74-Um-cKT"/>
+                <constraint firstItem="7DD-DG-bqp" firstAttribute="leading" secondItem="aVQ-Va-9MS" secondAttribute="leading" id="swg-ls-tuj"/>
+                <constraint firstAttribute="trailing" secondItem="h93-xN-ZHY" secondAttribute="trailing" id="tLd-LO-GLz"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="aVQ-Va-9MS"/>
+            <point key="canvasLocation" x="33" y="103"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_sync-01.png" width="430" height="72"/>
+    </resources>
+</document>

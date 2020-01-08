@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiskCell" id="KGk-i7-Jjw" customClass="DiskTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_multidisk.png" translatesAutoresizingMaskIntoConstraints="NO" id="X3V-ic-A7J">
+                        <rect key="frame" x="12" y="7" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="lQX-CQ-Mga"/>
+                            <constraint firstAttribute="width" constant="40" id="syg-Z0-pUk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jth-Ej-a7H">
+                        <rect key="frame" x="79" y="16" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibtn_star.png" highlightedImage="btn_star.png" translatesAutoresizingMaskIntoConstraints="NO" id="m2J-Qm-W53">
+                        <rect key="frame" x="288" y="15" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="ABN-M6-mkX"/>
+                            <constraint firstAttribute="height" constant="22" id="fZN-l1-iyr"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3no-yR-taF">
+                        <rect key="frame" x="0.0" y="54" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Mq4-cr-MOP"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="X3V-ic-A7J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="2rA-YC-tNy"/>
+                    <constraint firstAttribute="trailing" secondItem="m2J-Qm-W53" secondAttribute="trailing" constant="10" id="8KM-RB-9C9"/>
+                    <constraint firstAttribute="trailing" secondItem="3no-yR-taF" secondAttribute="trailing" id="Alz-5N-X6w"/>
+                    <constraint firstItem="m2J-Qm-W53" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="FOW-DA-RP5"/>
+                    <constraint firstAttribute="bottom" secondItem="3no-yR-taF" secondAttribute="bottom" id="GO6-iu-ios"/>
+                    <constraint firstItem="jth-Ej-a7H" firstAttribute="leading" secondItem="X3V-ic-A7J" secondAttribute="trailing" constant="27" id="Omd-ij-sYZ"/>
+                    <constraint firstItem="3no-yR-taF" firstAttribute="top" secondItem="m2J-Qm-W53" secondAttribute="bottom" constant="17" id="Q4F-gL-hBb"/>
+                    <constraint firstItem="jth-Ej-a7H" firstAttribute="centerY" secondItem="X3V-ic-A7J" secondAttribute="centerY" id="TlG-0e-WLi"/>
+                    <constraint firstItem="3no-yR-taF" firstAttribute="top" secondItem="X3V-ic-A7J" secondAttribute="bottom" constant="7" id="Uaq-ki-Y4O"/>
+                    <constraint firstItem="X3V-ic-A7J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="qS2-oa-pXA"/>
+                    <constraint firstItem="3no-yR-taF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="r8s-r4-lcS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkedIcon" destination="m2J-Qm-W53" id="qfW-Mu-hal"/>
+                <outlet property="diskImageView" destination="X3V-ic-A7J" id="5K4-1m-gAd"/>
+                <outlet property="partitionLabel" destination="jth-Ej-a7H" id="2Zd-fv-CJI"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="99.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_multidisk.png" width="64" height="64"/>
+        <image name="btn_star.png" width="20" height="20"/>
+        <image name="ibtn_star.png" width="20" height="20"/>
+    </resources>
+</document>

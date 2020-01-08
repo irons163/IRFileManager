@@ -1,0 +1,229 @@
+/* 
+  Localizable.strings
+  EnShare
+
+  Created by ke on 7/23/13.
+  Copyright (c) 2013 Senao. All rights reserved.
+*/
+
+"OK"      = "OK";
+"FAILED"  = "FAILED";
+"SUCCESS" = "Success";
+"FAIL"    = "Fail";
+
+"LOGIN_ALERT_USERNAME"   = "Please enter your login information.";
+"LOGIN_ALERT_UID_EMPTY"  = "Please enter the UID.";
+"LOGIN_ALERT_HOST_EMPTY" = "Please enter the Host name/IP.";
+"LOGIN_ALERT_INTERNET"   = "Internet Connection Failed. Please check Internet settings.";
+"LOGIN_ALERT_FAILED"     = "Login failed. Please confirm your login information is correct.";
+"LOGIN_ALERT_CONNECTING" = "The device is not connecting to the router. Please check the connection setting.";
+"LOGIN_ALERT_DDNS"       = "The host is invalid, please check your device's connection.";
+"LOGIN_ALERT_FIRMWARE"   = "A new router firmware is availale to download. Please update it via GUI for getting better performance.";
+"LOGIN_ALERT_QR"         = "Can not recognize QR Code. Please try again.";
+
+"OLD_FW_UPDATE_TITLE"    = "New Firmware Available";
+"OLD_FW_UPDATE_MESSAGE"  = "Please login into router’s Web Management Page for the latest firmware (%@) update.";
+
+"INFORMATION_HELP" = "information_help_en.html";
+"INFORMATION_ABOUT" = "information_about_en.html";
+
+"ABOUT_GENERAL" = "about_general_en.html";
+"ABOUT_FAQ" = "about_faq_en.html";
+
+"ABOUT_EULA" = "about_eula_en.html";
+
+"Music" = "Music";
+"Video" = "Video";
+"Photo" = "Photo";
+"Document" = "Document";
+
+"SEARCH_ALERT" = "File not found. Please try again.";
+"SHARE_ALERT" = "No other APPs";
+"COLLECTION" = "COLLECTION";
+
+"RENAME_ALERT_EMPTY" = "File name cannot be empty.";
+"RENAME_ALERT_NOCHANGE" = "File name without modification.";
+"RENAME_ALERT_NOEXT" = "Please input file extension.";
+"RENAME_ALERT_NONAME" = "Please input file name.";
+"RENAME_ALERT_SAMENAME" = "File name cannot duplicate.";
+"RENAME_ALERT_SUCCESS" = "File name saved successfully.";
+"RENAME_ALERT_ERROR" = "Invalid file name, please input correct file name.";
+"RENAME_ALERT_LENGTH" = "Names must be less than 128 characters.";
+
+"DELETE_FOLDER" = "The folder will be deleted.";
+"DELETE_FILE" = "The file will be deleted.";
+"DELETE_PHOTO" = "The photo will be deleted.";
+"DELETE_ALERT" = "File deleted successfully";
+"DELETING" = "Deleting files … ";
+
+"USB" = "No USB storage is connected.";
+"RemoteAccess Title" = "EnShare Storage is Turned off\nfor Remote Network.";
+"RemoteAccess" = "You can enable the function in device GUI.\nGo to Network Settings->\nCloud Services'EnShare'->\nEnable EnShare Remote Access";
+
+"UPLOAD_ALERT" = "Each file is not allowed to be larger than 1.5GB.";
+"DOWNLOAD_ALERT" = "Download failed. Please retry.";
+
+"CAMERA_ROLL" = "Camera Roll";
+"All_Photos" = "All Photos";
+
+"LOADING" = "Loading...";
+"Select an Album" = "Select an Album";
+"Select Photo" = "Select Photo";
+"Select Photo(s)" = "Select Photo(s)";
+"Done" = "Done";
+"Delete" = "Delete";
+
+"ADDFOLDER_SUCCESS" = "Folder has added successfully.";
+"MOVE_SUCCESS" = "Move successfully.";
+"MOVE_SAME" = "The destination folder is the same as the source folder.";
+
+"PLEASEKEY" = "Please enter the encryption key.";
+
+"SSID_EMPTY_ALERT" = "Please enter a SSID";
+"SSID_LENGTH_ALERT" = "The SSID length should be 1 ~ 32";
+"SSID_ERROR_ALERT" = "The SSID can’t contains < > / \ | : “ * ?";
+"KEY_EMPTY_ALERT" = "Please enter a encryption key";
+"KEY_8To63_ALERT"  = "The Key length should be 8 ~ 63";
+"KEY_ASCII_ALERT" = "The key must be 0~9,a~z,a~z";
+"KEY_HEX_ALERT" = "The Key must be 0~9,a~f,A~F";
+"KEY_LENGTH_ALERT" = "The Key length should be 5,10,13 or 26";
+"KEY_ERROR_ALERT" = "The Encryption key can’t contains < > / \ | : “ * ?";
+
+"REBOOT" = "Rebooting";
+
+"FREQUENCY" = "Frequency";
+"Device Status" = "Device Status";
+"Wireless Settings" = "Wireless Settings";
+"Client Manager" = "Client Manager";
+"Advanced Settings" = "Advanced Settings";
+"Public IP Address" = "Public IP Address";
+"Local IP Address" = "Local IP Address";
+"Firmware Version" = "Firmware Version";
+"Wireless SSID" = "Wireless SSID";
+"Encryption Type" = "Encryption Type";
+"Storage Space" = "Storage Space";
+"Collection Storage:" = "Collection Storage:";
+"Mounted Storage:" = "Mounted Storage:";
+"No mounted device" = "No mounted device";
+"Encryption Key" = "Encryption Key";
+
+"illeagal %@ ASCII key value" = "illeagal %@ ASCII key value";
+"illeagal %@ HEX key value" = "illeagal %@ HEX key value";
+"illeagal %@ key length" = "illeagal %@ key length";
+
+"available" = " Available,";
+"used2" = "% Used";
+"used" = "Used";
+
+"Connected Device(s)" = "Connected Device(s)";
+"Blocked Device(s)" = "Blocked Device(s)";
+"Blocked_Limit" = "There is a maximum number of 8 devices you can block.\nPlease manage the blocked device list to continue.";
+
+"Wait_Wifi" = "Please enable Wi-Fi for Album Sync";
+"NO_Internet" = "The Internet connection is unstable, please try again later.";
+"NO_Internet_Upload" = "The Internet connection is unstable,please try again later.";
+"NO_Space" = "File upload failed.Insufficient storage space available.";
+"NOT_ROUTER" = "Not connected to correct storage device.";
+"NOT_PHOTO" = "Needs photo permission.";
+"Camera_Upload" = "Automatic Album Backup";
+"PHOTO_Upload" = "Photo Upload";
+"VIDEO_Upload" = "Video Upload";
+"Folder_Name" = "Folder Name";
+"WiFi_Only" = "Wi-Fi Only";
+"AUTO_UPLOAD_ALERT_FOLDER" = "Create Folder fails, the file already exists";
+"AUTO_UPLOAD_ALERT_EMPTY" = "Folder name cannot be empty.";
+"AUTO_UPLOAD_ALERT_ERROR" = "Invalid folder name, please input correct folder name.";
+"AUTO_UPLOAD_FINISH" = "Upload success.";
+"AUTO_UPLOAD_DO" = "Upload photo album, please wait.";
+"AUTO_UPLOAD_DO_EDIT" = "Unable to change folder name  while album uploading is in process.";
+"UPLOAD_DO" = "File Upload is doing now.";
+"LEFT_DO" = "%d pcs remaining";
+"LEFT_DO1" = "%d pc remaining";
+"Operation_Failed" = "The operation failed.";
+
+"Router_Management" = "Router Management";
+"Backup_Configuration" = "Configuration Backup";
+"Others" = "Others";
+"Administrative" = "Administrator Only";
+
+"rbtn_active" = "rbtn_active.png";
+"Configuration Backup" = "Configuration Backup";
+"Clean_Cache" = "Clean Cache";
+"QR_BUTTON" = "Encryption Key QRCode";
+"%@ Configuration Backup - %@" = "%@ Configuration Backup - %@";
+"Router Model: %@<br>Firmware Version: %@<br>" = "Router Model: %@<br>Firmware Version: %@<br>";
+"BACKUP_ALERT" = "Invalid Email Settings";
+
+"c_btn_edit" = "edit.png";
+"rbtn_savenreboot" = "rbtn_savenreboot.png";
+"rbtn_cancel" = "rbtn_cancel.png";
+"btn_block" = "btn_block.png";
+"ibtn_block" = "c_ibtn_block.png";
+"btn_unblock" = "btn_unblock.png";
+"ibtn_unblock" = "ibtn_unblock.png";
+"btn_back" = "btn_back.png";
+"ibtn_back" = "ibtn_back.png";
+
+"PROCESS" = "Processing...";
+"QR_FAIL" = "Encryption Key Fetch Fail.";
+"QR_MAIL" = "The QRCode of Encryption Key is share from EnShare";
+
+"ABOUT_MAIL" = "Dear EnGenius member:<br><br>I have few <u><b>questions/suggestions</b></u> about the EnShare APP:<br><br><font color='#646464'>(Please enter your questions/suggestions here.)</font><br><br><br>Here comes my <u><b>device info</b></u>:<br><br>Router Model: %@<br>Router firmware version: %@<br>EnShare APP version: %@<br>Model: %@<br>iOS Version: %@<br><br>Best regard,<br>EnShare APP user";
+
+"UPGRADE_OS" = "Not supported on current iOS version";
+
+//Firmware Alert
+"FIRMWARE_ALERT_DIALOG_TITLE"="New Firmware Update";
+"FIRMWARE_ALERT_DIALOG_INFO"="Latest firmware (%@) available. Would you like to upgrade now?\n\nNote: Please refer to “Router” tab to disable this alert.";
+"FIRMWARE_ALERT_SWITCH_TITLE"="New Firmware Alert";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_TITLE"="Turn off this notification?";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_INFO"="We strongly recommend receiving this message for important alerts.";
+
+//Firmware Detail Page
+"NEW_VERSION_TITLE"="New Version";
+"RELEASE_DATE_TITLE"="Release Date";
+"CHANGE_LOG"="Change Log";
+"NOTE_MESSAGE"="Note: It may take about 5 minutes to complete the upgrading process.";
+"UPGRADING_TITLE"="Firmware Upgrading";
+"UPGRADE_FINISH_TITLE"="Upgrade Completed";
+"UPGRADING_WARNING"="WARNING:\n\nPlease do not power off your devices until installation has completed.";
+
+//button text(general button)
+"ButtonTextOk"="OK";
+"ButtonTextCancel"="Cancel";
+"ButtonTextBack"="Back";
+"ButtonTextDone"="Done";
+
+"accessDeviceFailMsg"="Cannot access to device, Please check Network status";
+"accessDeviceFaileTitle"="Network Error";
+
+"Oops"="Oops";
+"Oops!"="Oops!";
+
+//Image
+"IMAGE_CAMERA_CANCEL"="btn_cancel.png";
+"IMAGE_CAMERA_CANCEL_HIGHTLIGHT"="ibtn_cancel.png";
+"IMAGE_CAMERA_ALBUM"="btn_readfmalbum.png";
+"IMAGE_CAMERA_ALBUM_HIGHTLIGHT"="ibtn_readfmalbum.png";
+
+//language
+"CHANGE_LANGUAGE"="Language";
+
+//CustomDataPicker
+"LANGUAGE_AUTO"="Auto";
+"LANGUAGE_EN"="English";
+"LANGUAGE_TC"="繁體中文";
+"LANGUAGE_SC"="简体中文";
+
+//language change alert
+"ShowChangeToAutoLanguageChangelertMessageTitle"="Would you like to change language to Auto?";
+"ShowChangeToEnglishLanguageChangelertMessageTitle"="Would you like to change language to English?";
+"ShowChangeToTCLanguageChangelertMessageTitle"="Would you like to change language to Traditional Chinese?";
+"ShowChangeToSCLanguageChangelertMessageTitle"="Would you like to change language to Simplified Chinese?";
+"LanguageChangedAlertTitle"="You must exit and restart EnShare for new setting.";
+
+"SHARE_FOR_FILE"="Share file";
+"SHARE_FOR_LINK"="Share file link";
+"SHARE_ERROR_NOT_SUPPORT"="Link sharing is not supported on current network connection.";
+"SHARE_ERROR_TOO_LONG"="It cannot generate share link because the filename length is too long.";
+

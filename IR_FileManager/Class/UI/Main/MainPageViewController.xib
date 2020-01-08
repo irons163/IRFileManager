@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainPageViewController">
+            <connections>
+                <outlet property="albumTitleLabel" destination="AFW-1V-ES4" id="sos-zW-zSI"/>
+                <outlet property="allButton" destination="A6M-hK-wRa" id="Tlx-z9-9Hc"/>
+                <outlet property="allTitleLabel" destination="9pH-X8-JnM" id="da7-Fb-gMk"/>
+                <outlet property="documentTitleLabel" destination="bYd-2V-AOt" id="UZ3-YL-cvw"/>
+                <outlet property="messageCenterButton" destination="jeJ-ZC-DfZ" id="wl7-dM-bsP"/>
+                <outlet property="musicTitleLabel" destination="UFZ-Wj-jNd" id="Ogb-Iu-woH"/>
+                <outlet property="passcodeLockButton" destination="bSD-8E-MFa" id="gjw-4C-cB1"/>
+                <outlet property="videoTitleLabel" destination="6dI-ED-VJq" id="1bk-I5-V8v"/>
+                <outlet property="view" destination="Oqj-zx-b4Z" id="6PY-Q6-AbK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Oqj-zx-b4Z">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_storage_home_1080" translatesAutoresizingMaskIntoConstraints="NO" id="5wP-fR-bKZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fq1-jn-28e">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                    <color key="backgroundColor" red="0.10588235294117647" green="0.64313725490196072" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0oH-kS-JFl"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4Wn-pi-t2g">
+                    <rect key="frame" x="11.5" y="20" width="352" height="463"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e7p-l5-BYl">
+                            <rect key="frame" x="21.5" y="0.0" width="309" height="144.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmG-1m-piA">
+                                    <rect key="frame" x="0.0" y="0.0" width="144.5" height="144.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" secondItem="ZmG-1m-piA" secondAttribute="width" multiplier="1:1" id="AVq-yc-tUa"/>
+                                    </constraints>
+                                    <state key="normal" image="btn_storage_doc">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoDocumentPageClick:" destination="-1" eventType="touchUpInside" id="z6q-Ed-I2R"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upV-2Y-9NY">
+                                    <rect key="frame" x="164.5" y="0.0" width="144.5" height="144.5"/>
+                                    <state key="normal" image="btn_storage_video">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoVideoPageClick:" destination="-1" eventType="touchUpInside" id="iej-4u-7Mf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="upV-2Y-9NY" firstAttribute="width" secondItem="ZmG-1m-piA" secondAttribute="width" id="8Uz-yH-o4R"/>
+                                <constraint firstItem="upV-2Y-9NY" firstAttribute="height" secondItem="ZmG-1m-piA" secondAttribute="height" id="gSv-BT-yhX"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0ju-8A-F0O">
+                            <rect key="frame" x="21.5" y="159.5" width="309" height="144.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPl-Cs-YEP">
+                                    <rect key="frame" x="0.0" y="0.0" width="144.5" height="144.5"/>
+                                    <state key="normal" image="btn_storage_photo">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoAlbumPageClick:" destination="-1" eventType="touchUpInside" id="RAa-S4-Fom"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTn-q8-IA2">
+                                    <rect key="frame" x="164.5" y="0.0" width="144.5" height="144.5"/>
+                                    <state key="normal" image="btn_storage_music">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoMusicPageClick:" destination="-1" eventType="touchUpInside" id="2zH-D3-JE1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="aTn-q8-IA2" firstAttribute="width" secondItem="EPl-Cs-YEP" secondAttribute="width" id="wQT-Ru-8BF"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4cm-Ed-z0b">
+                            <rect key="frame" x="0.0" y="319" width="352" height="144"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6M-hK-wRa">
+                                    <rect key="frame" x="0.0" y="0.0" width="352" height="144"/>
+                                    <state key="normal" image="btn_storage_all">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoAllPageClick:" destination="-1" eventType="touchUpInside" id="g3q-cH-fSz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="A6M-hK-wRa" firstAttribute="height" secondItem="EPl-Cs-YEP" secondAttribute="height" id="Xiu-3R-4WJ"/>
+                        <constraint firstItem="EPl-Cs-YEP" firstAttribute="width" secondItem="ZmG-1m-piA" secondAttribute="width" id="Xom-tS-Pd1"/>
+                        <constraint firstItem="EPl-Cs-YEP" firstAttribute="height" secondItem="ZmG-1m-piA" secondAttribute="height" id="qqY-uS-c1T"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-2V-AOt">
+                    <rect key="frame" x="70" y="92" width="71" height="72.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dI-ED-VJq">
+                    <rect key="frame" x="250" y="92" width="39.5" height="72.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFW-1V-ES4">
+                    <rect key="frame" x="83.5" y="251.5" width="44" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFZ-Wj-jNd">
+                    <rect key="frame" x="249" y="251.5" width="41" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pH-X8-JnM">
+                    <rect key="frame" x="179" y="411" width="17" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeJ-ZC-DfZ">
+                    <rect key="frame" x="16" y="-4" width="122" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="122" id="AcP-V6-rG7"/>
+                        <constraint firstAttribute="height" constant="51" id="SC1-IT-H6B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Message">
+                        <color key="titleColor" red="0.10588235294117647" green="0.64313725490196072" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="notificationClick:" destination="-1" eventType="touchUpInside" id="atV-sJ-dmw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSD-8E-MFa" customClass="CustomIconButton">
+                    <rect key="frame" x="10" y="569" width="209" height="100"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Passcode Lock" image="ic_unlock">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" image="ic_lock"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="iconContentMode">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageViewContentMode">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="iconSizePersent">
+                            <size key="value" width="0.5" height="0.34999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeLockClick:" destination="-1" eventType="touchUpInside" id="m4c-gm-ZRR"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4Wn-pi-t2g" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="topMargin" priority="750" constant="20" id="2v9-ek-gsj"/>
+                <constraint firstItem="5wP-fR-bKZ" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="top" id="34H-oI-lPV"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="centerX" secondItem="A6M-hK-wRa" secondAttribute="centerX" id="4Yc-ce-U71"/>
+                <constraint firstItem="AFW-1V-ES4" firstAttribute="top" secondItem="EPl-Cs-YEP" secondAttribute="centerY" id="A2p-eo-8uZ"/>
+                <constraint firstAttribute="trailing" secondItem="4Wn-pi-t2g" secondAttribute="trailing" constant="11.5" id="Bk7-H2-vOp"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="centerX" secondItem="aTn-q8-IA2" secondAttribute="centerX" id="F1W-EL-uEh"/>
+                <constraint firstItem="ZmG-1m-piA" firstAttribute="width" relation="lessThanOrEqual" secondItem="Oqj-zx-b4Z" secondAttribute="width" multiplier="0.385" id="ICV-Gg-57t"/>
+                <constraint firstItem="ZmG-1m-piA" firstAttribute="bottom" secondItem="bYd-2V-AOt" secondAttribute="bottom" id="IeM-8O-hV8"/>
+                <constraint firstItem="bYd-2V-AOt" firstAttribute="top" secondItem="ZmG-1m-piA" secondAttribute="centerY" id="Juj-bp-Yny"/>
+                <constraint firstAttribute="trailing" secondItem="5wP-fR-bKZ" secondAttribute="trailing" id="Jx4-Bd-4G2"/>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="bottom" secondItem="upV-2Y-9NY" secondAttribute="bottom" id="MHY-xy-0YU"/>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="centerX" secondItem="upV-2Y-9NY" secondAttribute="centerX" id="PIl-mL-mLe"/>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="top" secondItem="upV-2Y-9NY" secondAttribute="centerY" id="UZi-Is-p8a"/>
+                <constraint firstItem="jeJ-ZC-DfZ" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" constant="16" id="Vym-Ru-ZQ7"/>
+                <constraint firstItem="AFW-1V-ES4" firstAttribute="centerX" secondItem="EPl-Cs-YEP" secondAttribute="centerX" id="aWb-jI-AA9"/>
+                <constraint firstItem="jeJ-ZC-DfZ" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="top" constant="-4" id="bIp-ix-7Uz"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="bottom" secondItem="A6M-hK-wRa" secondAttribute="bottom" id="dLV-Fc-tPz"/>
+                <constraint firstAttribute="bottom" secondItem="5wP-fR-bKZ" secondAttribute="bottom" id="gLp-9E-qzU"/>
+                <constraint firstItem="bSD-8E-MFa" firstAttribute="bottom" secondItem="tIK-rL-vBH" secondAttribute="bottom" constant="2" id="gtn-Uf-Pyh"/>
+                <constraint firstItem="bSD-8E-MFa" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" constant="10" id="guW-Vd-vZM"/>
+                <constraint firstItem="EPl-Cs-YEP" firstAttribute="bottom" secondItem="AFW-1V-ES4" secondAttribute="bottom" id="hHC-Op-2PP"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="bottom" secondItem="aTn-q8-IA2" secondAttribute="bottom" id="kHx-km-MlY"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="top" secondItem="A6M-hK-wRa" secondAttribute="centerY" id="lYY-mD-eEc"/>
+                <constraint firstItem="Fq1-jn-28e" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="top" id="nAf-sv-k1l"/>
+                <constraint firstItem="bYd-2V-AOt" firstAttribute="centerX" secondItem="ZmG-1m-piA" secondAttribute="centerX" id="nPE-xr-qS4"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="top" secondItem="aTn-q8-IA2" secondAttribute="centerY" id="r9R-G7-3xf"/>
+                <constraint firstItem="Fq1-jn-28e" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" id="vAm-Td-qpW"/>
+                <constraint firstItem="5wP-fR-bKZ" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" id="wIo-Bz-HfC"/>
+                <constraint firstItem="4Wn-pi-t2g" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" constant="11.5" id="xIK-Je-Bst"/>
+                <constraint firstAttribute="trailing" secondItem="Fq1-jn-28e" secondAttribute="trailing" id="xnC-2T-IF2"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="tIK-rL-vBH"/>
+            <point key="canvasLocation" x="30" y="71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_storage_home_1080" width="1080" height="1776"/>
+        <image name="btn_storage_all" width="1600" height="1600"/>
+        <image name="btn_storage_doc" width="1600" height="1600"/>
+        <image name="btn_storage_music" width="1600" height="1601"/>
+        <image name="btn_storage_photo" width="1600" height="1600"/>
+        <image name="btn_storage_video" width="1596" height="1596"/>
+        <image name="ic_lock" width="56" height="50"/>
+        <image name="ic_unlock" width="56" height="50"/>
+    </resources>
+</document>

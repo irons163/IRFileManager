@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WirelessSettingViewController">
+            <connections>
+                <outlet property="hintTitleLabel" destination="uag-9D-PPW" id="lnh-YH-vjp"/>
+                <outlet property="loadingView" destination="zJQ-j1-JRz" id="fYF-OD-2BD"/>
+                <outlet property="mainView" destination="EIR-gP-LXR" id="3Ev-Qg-fzo"/>
+                <outlet property="tableView" destination="gGd-jE-UNx" id="17f-ZW-dlC"/>
+                <outlet property="titleBackgroundView" destination="90Z-Yh-9Lg" id="OJa-fP-Tlb"/>
+                <outlet property="titleLabel" destination="Rql-J8-OPS" id="h2S-4A-F0Q"/>
+                <outlet property="view" destination="n1c-9d-t7U" id="s26-LD-j7V"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="n1c-9d-t7U">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHf-ko-N80">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90Z-Yh-9Lg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="router_cut-38.png" translatesAutoresizingMaskIntoConstraints="NO" id="JFv-Lh-PH2">
+                            <rect key="frame" x="147.66666666666666" y="21" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="HeL-jC-w68"/>
+                                <constraint firstAttribute="width" constant="80" id="prK-U1-8NY"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wi-Fi Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rql-J8-OPS">
+                            <rect key="frame" x="0.0" y="116" width="375" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="JFv-Lh-PH2" firstAttribute="centerX" secondItem="90Z-Yh-9Lg" secondAttribute="centerX" id="2FF-Ub-bG0"/>
+                        <constraint firstItem="Rql-J8-OPS" firstAttribute="leading" secondItem="90Z-Yh-9Lg" secondAttribute="leading" id="ACs-Hv-PKS"/>
+                        <constraint firstAttribute="bottom" secondItem="Rql-J8-OPS" secondAttribute="bottom" constant="15" id="KAj-um-PjY"/>
+                        <constraint firstItem="Rql-J8-OPS" firstAttribute="top" secondItem="JFv-Lh-PH2" secondAttribute="bottom" constant="15" id="p5Z-TQ-q02"/>
+                        <constraint firstAttribute="trailing" secondItem="Rql-J8-OPS" secondAttribute="trailing" id="rTf-uN-ISp"/>
+                    </constraints>
+                </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="zJQ-j1-JRz">
+                    <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
+                    <color key="color" red="0.25340190530000001" green="0.71093404289999995" blue="0.070270404219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIR-gP-LXR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Wi-Fi Account / Password." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uag-9D-PPW">
+                            <rect key="frame" x="15" y="160" width="237" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="BXf-oP-bt6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gGd-jE-UNx">
+                            <rect key="frame" x="0.0" y="194" width="375" height="584"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="IR4-3O-oeM"/>
+                                <outlet property="delegate" destination="-1" id="2Ny-93-hv6"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="uag-9D-PPW" firstAttribute="leading" secondItem="EIR-gP-LXR" secondAttribute="leading" constant="15" id="7vW-YE-oo4"/>
+                        <constraint firstItem="gGd-jE-UNx" firstAttribute="leading" secondItem="EIR-gP-LXR" secondAttribute="leading" id="LbB-E5-H7O"/>
+                        <constraint firstAttribute="trailing" secondItem="gGd-jE-UNx" secondAttribute="trailing" id="ZgQ-zO-VbF"/>
+                        <constraint firstItem="gGd-jE-UNx" firstAttribute="top" secondItem="uag-9D-PPW" secondAttribute="bottom" constant="1" id="z0e-CO-8hB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="EIR-gP-LXR" firstAttribute="leading" secondItem="n1c-9d-t7U" secondAttribute="leading" id="75W-nd-Eyq"/>
+                <constraint firstAttribute="trailing" secondItem="90Z-Yh-9Lg" secondAttribute="trailing" id="LN4-d8-u8e"/>
+                <constraint firstItem="90Z-Yh-9Lg" firstAttribute="bottom" secondItem="n1c-9d-t7U" secondAttribute="topMargin" constant="111" id="LSL-CW-Hmz"/>
+                <constraint firstItem="90Z-Yh-9Lg" firstAttribute="top" secondItem="n1c-9d-t7U" secondAttribute="top" id="PEp-KM-YJ0"/>
+                <constraint firstItem="zHf-ko-N80" firstAttribute="top" secondItem="n1c-9d-t7U" secondAttribute="top" id="Sb4-C7-L6e"/>
+                <constraint firstItem="zJQ-j1-JRz" firstAttribute="centerY" secondItem="n1c-9d-t7U" secondAttribute="centerY" id="VUk-aR-OLm"/>
+                <constraint firstItem="zJQ-j1-JRz" firstAttribute="centerX" secondItem="n1c-9d-t7U" secondAttribute="centerX" id="VYz-H6-7MN"/>
+                <constraint firstItem="EIR-gP-LXR" firstAttribute="top" secondItem="n1c-9d-t7U" secondAttribute="top" id="d3E-aP-J3C"/>
+                <constraint firstItem="uag-9D-PPW" firstAttribute="top" secondItem="90Z-Yh-9Lg" secondAttribute="bottom" constant="5" id="dOT-31-PS8"/>
+                <constraint firstItem="90Z-Yh-9Lg" firstAttribute="leading" secondItem="n1c-9d-t7U" secondAttribute="leading" id="fQA-n9-Dth"/>
+                <constraint firstAttribute="bottomMargin" secondItem="gGd-jE-UNx" secondAttribute="bottom" id="kFd-qu-NtD"/>
+                <constraint firstAttribute="bottom" secondItem="zHf-ko-N80" secondAttribute="bottom" id="mfi-rh-jDG"/>
+                <constraint firstAttribute="trailing" secondItem="EIR-gP-LXR" secondAttribute="trailing" id="o7n-Yg-NIe"/>
+                <constraint firstItem="zHf-ko-N80" firstAttribute="leading" secondItem="n1c-9d-t7U" secondAttribute="leading" id="sz5-Y9-zvW"/>
+                <constraint firstAttribute="bottom" secondItem="EIR-gP-LXR" secondAttribute="bottom" id="tA1-CP-aaN"/>
+                <constraint firstAttribute="trailing" secondItem="zHf-ko-N80" secondAttribute="trailing" id="zTN-Xb-7n5"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="router_cut-38.png" width="255" height="255"/>
+    </resources>
+</document>

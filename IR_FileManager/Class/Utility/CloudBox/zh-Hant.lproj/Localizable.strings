@@ -1,0 +1,343 @@
+/* 
+  Localizable.strings
+  EnShare
+
+  Created by ke on 7/23/13.
+  Copyright (c) 2013 Senao. All rights reserved.
+*/
+
+"OK"      = "OK";
+"FAILED"  = "失敗";
+"SUCCESS" = "成功";
+"FAIL"    = "失敗";
+
+"LOGIN_ALERT_USERNAME"   = "請輸入您的登入資訊";
+"LOGIN_ALERT_UID_EMPTY"  = "UID 不得為空白";
+"LOGIN_ALERT_HOST_EMPTY" = "域名/IP address 不得為空白";
+"LOGIN_ALERT_INTERNET"   = "網路連線失敗。請檢查網路設定。";
+"LOGIN_ALERT_FAILED"     = "登入失敗。請確認您的登入資訊正確無誤。";
+"LOGIN_ALERT_CONNECTING" = "路由器連線失敗。請檢查連線設定";
+"LOGIN_ALERT_DDNS"       = "主機名稱錯誤，請輸入EnGenius所提供正確的主機名稱。";
+"LOGIN_ALERT_FIRMWARE"   = "我們建議您更新家庭雲路由器的韌體以獲得最佳使用體驗";
+"LOGIN_ALERT_QR"         = "無法辨識QR code. 請重新掃描";
+
+"OLD_FW_UPDATE_TITLE"    = "已有新的韌體";
+"OLD_FW_UPDATE_MESSAGE"  = "請登入路由器的網路管理頁面取得最新韌體 (%@) 更新。";
+
+"INFORMATION_HELP" = "information_help_tw.html";
+"INFORMATION_ABOUT" = "information_about_tw.html";
+
+"ABOUT_GENERAL" = "about_general_tw.html";
+"ABOUT_FAQ" = "about_faq_tw.html";
+
+"ABOUT_EULA" = "about_eula_tw.html";
+
+"GENERAL" = "使用說明";
+"LEGAL_INFO" = "服務條款";
+"FAQ" = "FAQs";
+
+
+"LOGIN_ALERT_UID_DDNS" = "UID/DDNS錯誤，請輸入正確的UID或是EnGenius所提供正確的主機名稱。";
+"LOGIN_ALERT_UID_DDNS_EMPTY" = "UID/DDNS 不得為空白";
+
+//Security
+"PasscodeLock" = "密碼鎖";
+"ChangePasscode" = "修改密碼";
+"EnterPinString" = "輸入密碼";
+"CreatePinString" = "設定密碼";
+"EnterOnceAgainString" = "確認密碼";
+"PinsDontMatchTryOnceAgainString" = "您的密碼不符合，請再試一次";
+"CreatePinMsgString" = "請在下方輸入一個密碼";
+"ConfirmPinMsgString" = "請再一次輸入密碼";
+"EnterPinMsgString" = "請在下方輸入密碼";
+"EnterOldPinMsgString" = "請在下方輸入舊密碼";
+"PasscodeHintString" = "一旦忘記密碼，您必須解除再重安裝EnFile程式才能正常使用。請注意此行為會導致EnFile中的檔案被刪除。";
+
+//Introduction
+"INTRODUCTION_P1_TITLE1" = "1. 簡單檔案分類：區分五大類";
+"INTRODUCTION_P1_TITLE2" = "2. 手機下載檔案，方便進行管理";
+"INTRODUCTION_P2_TITLE1" = "1. 三種分類排序，更快找到自己需要的檔案。";
+"INTRODUCTION_P2_TITLE2" = "2. 建立自己的最愛清單，隨時瀏覽。";
+"INTRODUCTION_P3_TITLE" = "1. 私人影音，多重備份。";
+"INTRODUCTION_P3_INFO" = "手機相簿內影音檔案輕鬆備份到EnFile。(如果有EnGenius路由器產品，可同時備份到路由器附設行動硬碟與EnFile，保障資料安全)";
+"INTRODUCTION_P4_TITLE" = "1. 遠程瀏覽路由器附設行動硬碟中的檔案";
+"INTRODUCTION_P4_INFO" = "透過使用者帳號/密碼/UID登入後，可隨時隨地遠端存取連接路由器的行動硬碟，進行檔案瀏覽與影音分享。";
+"INTRODUCTION_P5_TITLE" = "1. 透過EnFile打開任何檔案，可自動匯入EnFile的分類目錄。";
+"INTRODUCTION_P6_TITLE1" = "1. 透過EnFile可隨時上傳檔案到路由器附加硬碟，或把檔案下載到手機上。";
+"SKIP"="略過";
+
+//Mesh
+"MESH_ROUTER_SELECT_MESSAGE" = "請選擇路由器所附設的行動硬碟。";
+
+"Musics List" = "音樂";
+"Videos List" = "影音";
+"Photos List" = "相簿";
+"Documents List" = "文件";
+"Files List" = "所有檔案";
+
+"Music" = "音樂";
+"Video" = "影音";
+"Photo" = "相簿";
+"Document" = "文件";
+"All" = "所有檔案";
+
+"MY_FAVORITES_TITLE" = "我的最愛";
+
+"SORT_BY_FILENAME_TITLE" = "排序方式";
+"SORT_BY_FILE_SIZE_TITLE" = "排序方式";
+"SORT_BY_DATE_TITLE" = "排序方式";
+
+"SORT_BY_FILENAME_TYPE" = "依檔案名稱";
+"SORT_BY_FILE_SIZE_TYPE" = "依檔案大小";
+"SORT_BY_DATE_TYPE" = "依建立時間";
+
+"NSPhotoLibraryUsageDescription" = "瀏覽相簿";
+"NSFaceIDUsageDescription" = "密碼鎖";
+
+"SYNC_ALBUM_BUTTON_TITLE" = "同步手機照片";
+
+"RESET_SETTINGS" = "回復成原廠設定";
+"INTERNET_IP" = "網際網路 IP :";
+"INTRANET_IP" = "區域網路 IP :";
+"STORAGE" = "儲存空間 :";
+"SOFTWARE_UPDATE" = "韌體更新 :";
+"UPDATE" = "更新韌體";
+"Connected" = "未封鎖";
+"Blocked" = "已封鎖";
+"Connect" = "解除";
+"Disconnect" = "封鎖";
+"Connected Device(s)" = "裝置清單";
+"Blocked Device(s)" = "已封鎖裝置";
+"Blocked_Limit" = "已達封鎖裝置的最大限制(8台), 請解除封鎖部分裝置以繼續.";
+
+"STATUS" = "連線狀態 : ";
+"Cancel" = "取消";
+"Edit" = "編輯";
+"Share" = "分享";
+"Close" = "關閉";
+"Active" = "執行";
+"SELECTED" = "已選取";
+"SAVE" = "儲存";
+"SYNCING" = "同步中...";
+"UPLOADING" = "上傳中...";
+"DOWNLOADING" = "下載中...";
+
+"WIRELESS_SETTINGS_TITLE" = "無線網路設定";
+
+"NOTIFICATION_CENTER_TITLE" = "資訊";
+"NOTIFICATION_CONTENT_TITLE" = "訊息內容";
+
+"EnFile_TITLE" = "EnFile 手機版";
+"PERSONAL_CLOUD_STORAGE_TITLE" = "EnFile 個人儲存雲";
+"PERSONAL_STORAGE_TITLE" = "我的個人雲";
+"ABOUT_TITLE" = "關於";
+"SETTINGS_TITLE" = "設定";
+"ROUTER_TITLE" = "EnGenius 路由器";
+
+"OFFLINE_SEARCH_HINT" = "檔名, 日期(如：2000-08-31)";
+"ONLINE_SEARCH_HINT" = "檔名";
+"OFFLINE_PHOTO_SEARCH_HINT" = "日期";
+
+"REBOOT" = "重新啟動中";
+
+"FREQUENCY" = "無線網路";
+"Device Status" = "裝置狀態";
+"Wireless Settings" = "無線網路設定(WiFi 帳號/密碼)";
+"Client Manager" = "連線用戶管理";
+"Advanced Settings" = "進階設定";
+"Public IP Address" = "網際網路 IP";
+"Local IP Address" = "區域網路 IP";
+"Firmware Version" = "韌體版本";
+"Wireless SSID" = "無線網路名稱";
+"Encryption Type" = "無線加密模式";
+"Storage Space" = "儲存空間";
+"Collection Storage:" = "收藏區使用容量:";
+"Mounted Storage:" = "連接裝置可用容量:";
+"No mounted device" = "未連結任何設備";
+"Encryption Key" = "加密金鑰";
+
+"USERS_MANAGER_HINT_TITLE" = "變更無線網路帳號密碼";
+
+
+
+"SEARCH_ALERT" = "無任何相關檔案";
+"SHARE_ALERT" = "沒有第三方的應用程式";
+"COLLECTION" = "收藏區";
+
+"RENAME_ALERT_EMPTY" = "檔名不能為空白";
+"RENAME_ALERT_NOCHANGE" = "檔名沒有更改";
+"RENAME_ALERT_NOEXT" = "請輸入副檔名";
+"RENAME_ALERT_NONAME" = "請輸入檔名";
+"RENAME_ALERT_SAMENAME" = "檔名已經存在";
+"RENAME_ALERT_SUCCESS" = "更改成功";
+"RENAME_ALERT_ERROR" = "無效的檔案名稱";
+"RENAME_ALERT_LENGTH" = "長度不能超過128個字";
+
+"DELETE_FOLDER" = "資料夾將會被刪除";
+"DELETE_FILE"   = "該文件將被刪除";
+"DELETE_PHOTO"   = "圖片將會被刪除";
+"DELETE_ALERT" = "檔案刪除成功";
+"DELETING" = "檔案刪除中...";
+
+"USB" = "未偵測到USB儲存設備";
+"RemoteAccess Title" = "EnFile遠端存取目前為關閉狀態";
+"RemoteAccess" = "請在裝置用戶介面中,至網路設定->\n雲端服務'EnFile'->開啟遠端存取功能.\n";
+"GenerateProcessingTitle" = "EnFile 儲存裝置";
+"GenerateProcessing" = "檔案正在建立中...";
+
+"UPLOAD_ALERT" = "每一上傳檔案不得大於1.5GB";
+"DOWNLOAD_ALERT" = "下載失敗。請重試。";
+
+"CAMERA_ROLL" = "相機膠卷";
+"All_Photos" = "所有照片";
+
+"LOADING" = "讀取中...";
+"Select an Album" = "請選擇相簿";
+"Select Photo" = "請選取相片";
+"Select Photo(s)" = "請選取相片";
+"Done" = "完成";
+"Delete" = "刪除";
+
+"ADDFOLDER_SUCCESS" = "資料夾新增成功";
+"MOVE_SUCCESS" = "移動完成";
+"MOVE_SAME" = "目的資料夾與所在資料夾一樣";
+
+"PLEASEKEY" = "請輸入金鑰";
+
+"SSID_EMPTY_ALERT" = "SSID不得空白";
+"SSID_LENGTH_ALERT" = "SSID長度需為1到32字元";
+"SSID_ERROR_ALERT" = "SSID不允許包含 < > / \ | : “ * ?";
+"KEY_EMPTY_ALERT" = "金鑰不得空白";
+"KEY_8To63_ALERT"  = "金鑰長度需為8到63字元";
+"KEY_ASCII_ALERT" = "金鑰文字需為0~9,a~z,a~z";
+"KEY_HEX_ALERT" = "金鑰文字需為0~9,a~f,A~F";
+"KEY_LENGTH_ALERT" = "金鑰長度需為5, 10,13或26字元";
+"KEY_ERROR_ALERT" = "金鑰不允許包含 < > / \ | : “ * ?";
+
+
+"illeagal %@ ASCII key value" = "%@ ASCII密碼規則錯誤";
+"illeagal %@ HEX key value" = "%@ HEX密碼規則錯誤";
+"illeagal %@ key length" = "%@ 密碼長度錯誤";
+
+"available" = ", 連接裝置使用容量:";
+"used2" = "%";
+"used" = "";
+
+"Wait_Wifi" = "請開啟Wi-Fi以啟動自動上傳";
+"NO_Internet" = "連線不穩定導致相簿上傳暫停，請稍後再試";
+"NO_Internet_Upload" = "連線不穩定導致上傳暫停，請稍後再試";
+"NO_Space" = "上傳檔案失敗, 儲存空間不足";
+"NOT_ROUTER" = "未連接到正確的儲存設備";
+"NOT_PHOTO" = "需要開啟相簿權限";
+"Camera_Upload" = "相簿同步";
+"PHOTO_Upload" = "照片上傳";
+"VIDEO_Upload" = "影片上傳";
+"Folder_Name" = "資料夾名稱";
+"WiFi_Only" = "只使用Wi-Fi上傳";
+"AUTO_UPLOAD_ALERT_FOLDER" = "資料夾創建失敗, 已有同名檔案";
+"AUTO_UPLOAD_ALERT_EMPTY" = "資料夾名稱不能為空白";
+"AUTO_UPLOAD_ALERT_ERROR" = "無效的資料夾名稱";
+"AUTO_UPLOAD_FINISH" = "上傳完畢";
+"AUTO_UPLOAD_DO" = "相簿上傳中 請稍等";
+"AUTO_UPLOAD_DO_EDIT" = "相簿上傳中，無法更改資料夾名稱，請稍後再試";
+"UPLOAD_DO" = "檔案上傳正在執行";
+"LEFT_DO" = "剩餘 %d 張";
+"LEFT_DO1" = "剩餘 %d 張";
+"Operation_Failed" = "操作失敗";
+
+"Router_Management" = "路由器管理";
+"Backup_Configuration" = "備份寄送";
+"Others" = "其他";
+"Administrative" = "只允許管理者登入";
+
+"rbtn_active" = "rbtn_active_148x60.png";
+"Configuration Backup" = "備份寄送";
+"Clean_Cache" = "清除快取";
+"QR_BUTTON" = "金鑰 QRCode";
+"%@ Configuration Backup - %@" = "%@ 設定檔備份 - %@";
+"Router Model: %@<br>Firmware Version: %@<br>" = "路由器型號: %@<br>路由器韌體版本: %@<br>";
+"BACKUP_ALERT" = "此裝置無設定郵件或無效的設定";
+
+"c_btn_edit" = "c_btn_edit.png";
+"rbtn_savenreboot" = "c_rbtn_savenreboot.png";
+"rbtn_cancel" = "c_rbtn_cancel.png";
+"btn_block" = "c_btn_block.png";
+"ibtn_block" = "c_ibtn_block.png";
+"btn_unblock" = "c_btn_unblock.png";
+"ibtn_unblock" = "c_ibtn_unblock.png";
+"btn_back" = "c_btn_back.png";
+"ibtn_back" = "c_ibtn_back.png";
+"Photo_Permission" = "Photo-Permission_CN.png";
+
+"PROCESS" = "處理中...";
+"QR_FAIL" = "金鑰獲取失敗";
+"QR_MAIL" = "從EnFile分享的金鑰QRCode";
+
+"ABOUT_MAIL" = "To EnGenius 開發團隊：<br><br>如下為本人使用EnFile APP過程，所遇到的幾點疑問與建議，特提供開發團隊參考。<br><b><u>疑問與建議：</b></u><br><br><font color='#646464'>(煩請盡可能詳述所面臨的使用狀況，或針對特別功能提供建議。)</font><br><br><br><u><b>使用設備資訊：</b></u><br><br>路由器型號：%@<br>路由器韌體版本：%@<br>EnFile APP版本：%@<br>使用裝置機款：%@<br>iOS系統版本：%@<br><br>Best regard,<br>EnFile APP使用者";
+
+"UPGRADE_OS" = "Not supported on current iOS version";
+
+//Disk
+"DiskSelectionTitle" = "磁碟選擇";
+
+//Mesh Router
+"MeshRouterSelectionTitle" = "Mesh路由器選擇";
+"MeshRouterSettingHintTitle" = "請使用 EnMesh 登入管理";
+
+//Firmware Alert
+"FIRMWARE_ALERT_DIALOG_TITLE"="新的韌體更新";
+"FIRMWARE_ALERT_DIALOG_INFO"="已有最新韌體 (%@)。是否要立即升級？\n\n附註：請參閱「設備設定」標籤\n以停用此提醒。";
+"FIRMWARE_ALERT_SWITCH_TITLE"="新韌體提醒";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_TITLE"="關閉此通知？";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_INFO"="強烈建議您接收此重要提醒訊息。";
+
+//Firmware Detail Page
+"NEW_VERSION_TITLE"="新版本";
+"RELEASE_DATE_TITLE"="發佈日期";
+"CHANGE_LOG"="變更紀錄";
+"NOTE_MESSAGE"="附註：可能需要 5 分鐘的時間\n才能完成升級程序。";
+"UPGRADING_TITLE"="韌體升級中。";
+"UPGRADE_FINISH_TITLE"="升級完畢。";
+"UPGRADING_WARNING"="警告：\n\n安裝完畢前，請勿將裝置關機。";
+
+//button text(general button)
+"ButtonTextOk"="確定";
+"ButtonTextCancel"="取消";
+"ButtonTextBack"="返回";
+"ButtonTextDone"="完成";
+
+"accessDeviceFailMsg"="無法存取裝置，請檢查網路狀態";
+"accessDeviceFaileTitle"="網路錯誤";
+
+"Oops"="抱歉";
+"Oops!"="抱歉!";
+
+//Image
+"IMAGE_CAMERA_CANCEL"="c_btn_cancel.png";
+"IMAGE_CAMERA_CANCEL_HIGHTLIGHT"="c_ibtn_cancel.png";
+"IMAGE_CAMERA_ALBUM"="c_btn_readfmalbum.png";
+"IMAGE_CAMERA_ALBUM_HIGHTLIGHT"="c_ibtn_readfmalbum.png";
+
+//language
+"CHANGE_LANGUAGE"="語言切換";
+
+//CustomDataPicker
+"LANGUAGE_AUTO"="自動";
+"LANGUAGE_EN"="English";
+"LANGUAGE_TC"="繁體中文";
+"LANGUAGE_SC"="简体中文";
+
+//language change alert
+"ShowChangeToAutoLanguageChangelertMessageTitle"="你要將語言更改為自動嗎？";
+"ShowChangeToEnglishLanguageChangelertMessageTitle"="你要將語言更改為英文嗎？";
+"ShowChangeToTCLanguageChangelertMessageTitle"="你要將語言更改為繁體中文嗎？";
+"ShowChangeToSCLanguageChangelertMessageTitle"="你要將語言更改為簡體中文嗎？";
+"LanguageChangedAlertTitle"="你必須關閉並重新啟動EnFile，使變更生效。";
+
+"SHARE_FOR_FILE"="分享檔案至";
+"SHARE_FOR_LINK"="分享連結至";
+"SHARE_ERROR_NOT_SUPPORT"="目前網路設定無法支援分享連結功能。";
+"SHARE_ERROR_TOO_LONG"="因檔案名稱太長，無法產生分享連結。";
+
+//Link From EnMesh
+"EnMeshLinkAlert"="確定要登入至%@?";

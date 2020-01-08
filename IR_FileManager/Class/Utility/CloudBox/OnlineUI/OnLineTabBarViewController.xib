@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnLineTabBarViewController">
+            <connections>
+                <outlet property="delegate" destination="V7N-eU-EM4" id="TrY-l6-lDq"/>
+                <outlet property="gotoSettingPageTabBarItem" destination="YkB-nv-Pf2" id="CEc-14-v2Y"/>
+                <outlet property="tabbar" destination="V7N-eU-EM4" id="ZvG-r8-XZk"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="2OC-1M-5KC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7N-eU-EM4">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Setting" image="router_cut-13.png" selectedImage="router_cut-15.png" id="YkB-nv-Pf2">
+                            <inset key="imageInsets" minX="7" minY="10" maxX="7" maxY="5"/>
+                        </tabBarItem>
+                    </items>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <point key="canvasLocation" x="227" y="64"/>
+        </view>
+        <tabBarItem title="Personal Storage" image="router_cut-14.png" selectedImage="router_cut-16.png" id="a3S-o1-eJz">
+            <inset key="imageInsets" minX="8" minY="9" maxX="8" maxY="6"/>
+        </tabBarItem>
+        <tabBarItem title="About" image="router_cut-17.png" selectedImage="router_cut-18.png" id="Xzr-Ge-v3z">
+            <inset key="imageInsets" minX="6" minY="10" maxX="5" maxY="4"/>
+        </tabBarItem>
+        <tabBar contentMode="scaleToFill" id="tRC-MM-zPf">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <items/>
+            <point key="canvasLocation" x="227" y="436"/>
+        </tabBar>
+    </objects>
+    <resources>
+        <image name="router_cut-13.png" width="72" height="73"/>
+        <image name="router_cut-14.png" width="88" height="72"/>
+        <image name="router_cut-15.png" width="72" height="72"/>
+        <image name="router_cut-16.png" width="88" height="72"/>
+        <image name="router_cut-17.png" width="58" height="72"/>
+        <image name="router_cut-18.png" width="58" height="72"/>
+    </resources>
+</document>

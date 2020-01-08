@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainPageViewController_online">
+            <connections>
+                <outlet property="albumTitleLabel" destination="AFW-1V-ES4" id="sos-zW-zSI"/>
+                <outlet property="allButton" destination="A6M-hK-wRa" id="qK6-Y0-igz"/>
+                <outlet property="allTitleLabel" destination="9pH-X8-JnM" id="da7-Fb-gMk"/>
+                <outlet property="bgImageView" destination="5wP-fR-bKZ" id="B3a-Y9-ZBV"/>
+                <outlet property="currentMeshRouterLabel" destination="zXf-Ie-3h0" id="R8N-xs-fjx"/>
+                <outlet property="documentTitleLabel" destination="bYd-2V-AOt" id="UZ3-YL-cvw"/>
+                <outlet property="musicTitleLabel" destination="UFZ-Wj-jNd" id="Ogb-Iu-woH"/>
+                <outlet property="videoTitleLabel" destination="6dI-ED-VJq" id="1bk-I5-V8v"/>
+                <outlet property="view" destination="Oqj-zx-b4Z" id="6PY-Q6-AbK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Oqj-zx-b4Z">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="router_cut-43.png" translatesAutoresizingMaskIntoConstraints="NO" id="5wP-fR-bKZ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ivm-Ru-ngu">
+                    <rect key="frame" x="11.5" y="40" width="297" height="399"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hq2-V5-b7u">
+                            <rect key="frame" x="15.5" y="0.0" width="266" height="123"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmG-1m-piA">
+                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ZmG-1m-piA" secondAttribute="height" multiplier="1:1" id="XH6-Sd-KOY"/>
+                                    </constraints>
+                                    <state key="normal" image="router_cut-01.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoDocumentPageClick:" destination="-1" eventType="touchUpInside" id="z6q-Ed-I2R"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upV-2Y-9NY">
+                                    <rect key="frame" x="143" y="0.0" width="123" height="123"/>
+                                    <state key="normal" image="router_cut-02.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoVideoPageClick:" destination="-1" eventType="touchUpInside" id="iej-4u-7Mf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="upV-2Y-9NY" firstAttribute="width" secondItem="ZmG-1m-piA" secondAttribute="width" id="QbE-xm-Vd8"/>
+                                <constraint firstItem="upV-2Y-9NY" firstAttribute="height" secondItem="ZmG-1m-piA" secondAttribute="height" id="rho-7T-t3N"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K2H-ea-Ode">
+                            <rect key="frame" x="15.5" y="138" width="266" height="123"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPl-Cs-YEP">
+                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                    <state key="normal" image="router_cut-03.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoAlbumPageClick:" destination="-1" eventType="touchUpInside" id="RAa-S4-Fom"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTn-q8-IA2">
+                                    <rect key="frame" x="143" y="0.0" width="123" height="123"/>
+                                    <state key="normal" image="router_cut-04.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoMusicPageClick:" destination="-1" eventType="touchUpInside" id="2zH-D3-JE1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="aTn-q8-IA2" firstAttribute="height" secondItem="EPl-Cs-YEP" secondAttribute="height" id="XjZ-Cj-UIs"/>
+                                <constraint firstItem="aTn-q8-IA2" firstAttribute="width" secondItem="EPl-Cs-YEP" secondAttribute="width" id="ZjL-rL-x4R"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l3v-92-01u">
+                            <rect key="frame" x="0.0" y="276" width="297" height="123"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6M-hK-wRa">
+                                    <rect key="frame" x="0.0" y="0.0" width="297" height="123"/>
+                                    <state key="normal" image="router_cut-05.png">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotoAllPageClick:" destination="-1" eventType="touchUpInside" id="g3q-cH-fSz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="EPl-Cs-YEP" firstAttribute="height" secondItem="ZmG-1m-piA" secondAttribute="height" id="FeQ-su-dkR"/>
+                        <constraint firstItem="EPl-Cs-YEP" firstAttribute="width" secondItem="ZmG-1m-piA" secondAttribute="width" id="Iah-33-NxY"/>
+                        <constraint firstItem="A6M-hK-wRa" firstAttribute="height" secondItem="EPl-Cs-YEP" secondAttribute="height" id="Ui2-Ga-Vnx"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-2V-AOt">
+                    <rect key="frame" x="53" y="101" width="71" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dI-ED-VJq">
+                    <rect key="frame" x="212" y="101" width="39.5" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFW-1V-ES4">
+                    <rect key="frame" x="67" y="239" width="44" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFZ-Wj-jNd">
+                    <rect key="frame" x="211" y="239" width="41" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pH-X8-JnM">
+                    <rect key="frame" x="152" y="378" width="17" height="61"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXf-Ie-3h0">
+                    <rect key="frame" x="10" y="555" width="300" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="bottom" secondItem="upV-2Y-9NY" secondAttribute="bottom" id="25c-NT-45O"/>
+                <constraint firstItem="zXf-Ie-3h0" firstAttribute="leading" secondItem="6Zt-HD-FlJ" secondAttribute="leading" constant="10" id="7Fd-8O-o0U"/>
+                <constraint firstItem="bYd-2V-AOt" firstAttribute="bottom" secondItem="ZmG-1m-piA" secondAttribute="bottom" id="8Ha-yO-be9"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="top" secondItem="A6M-hK-wRa" secondAttribute="centerY" id="Dn4-GY-ayy"/>
+                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ivm-Ru-ngu" secondAttribute="bottom" constant="20" id="G73-Fd-8SY"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="centerX" secondItem="A6M-hK-wRa" secondAttribute="centerX" id="GsV-g1-nin"/>
+                <constraint firstItem="AFW-1V-ES4" firstAttribute="bottom" secondItem="EPl-Cs-YEP" secondAttribute="bottom" id="I1q-lG-QGJ"/>
+                <constraint firstAttribute="trailing" secondItem="5wP-fR-bKZ" secondAttribute="trailing" id="INm-5p-IPL"/>
+                <constraint firstAttribute="bottomMargin" secondItem="zXf-Ie-3h0" secondAttribute="bottom" constant="13" id="JOy-3L-o7l"/>
+                <constraint firstAttribute="trailing" secondItem="ivm-Ru-ngu" secondAttribute="trailing" constant="11.5" id="NKY-Ng-9Xz"/>
+                <constraint firstItem="AFW-1V-ES4" firstAttribute="centerX" secondItem="EPl-Cs-YEP" secondAttribute="centerX" id="ONT-Wf-OVz"/>
+                <constraint firstItem="6Zt-HD-FlJ" firstAttribute="trailing" secondItem="zXf-Ie-3h0" secondAttribute="trailing" constant="10" id="R4o-cf-Qs6"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="centerX" secondItem="aTn-q8-IA2" secondAttribute="centerX" id="VFk-AG-9hI"/>
+                <constraint firstItem="5wP-fR-bKZ" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="top" id="VYA-At-zHV"/>
+                <constraint firstItem="AFW-1V-ES4" firstAttribute="top" secondItem="EPl-Cs-YEP" secondAttribute="centerY" id="Wja-62-mOZ"/>
+                <constraint firstAttribute="bottom" secondItem="5wP-fR-bKZ" secondAttribute="bottom" id="XZP-9h-dEu"/>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="top" secondItem="upV-2Y-9NY" secondAttribute="centerY" id="aRl-OE-Pwg"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="top" secondItem="aTn-q8-IA2" secondAttribute="centerY" id="fDp-j0-ClI"/>
+                <constraint firstItem="ZmG-1m-piA" firstAttribute="width" relation="lessThanOrEqual" secondItem="Oqj-zx-b4Z" secondAttribute="width" multiplier="0.385" id="lh3-DW-SU8"/>
+                <constraint firstItem="UFZ-Wj-jNd" firstAttribute="bottom" secondItem="aTn-q8-IA2" secondAttribute="bottom" id="mFY-u1-71W"/>
+                <constraint firstItem="bYd-2V-AOt" firstAttribute="centerX" secondItem="ZmG-1m-piA" secondAttribute="centerX" id="oGi-Bg-Vp2"/>
+                <constraint firstItem="bYd-2V-AOt" firstAttribute="top" secondItem="ZmG-1m-piA" secondAttribute="centerY" id="oVd-Ay-mrO"/>
+                <constraint firstItem="5wP-fR-bKZ" firstAttribute="leading" secondItem="Oqj-zx-b4Z" secondAttribute="leading" id="pe4-Tu-eDf"/>
+                <constraint firstItem="ivm-Ru-ngu" firstAttribute="leading" secondItem="6Zt-HD-FlJ" secondAttribute="leading" constant="11.5" id="scF-Yo-eQP"/>
+                <constraint firstItem="9pH-X8-JnM" firstAttribute="bottom" secondItem="A6M-hK-wRa" secondAttribute="bottom" id="tCC-x3-D8C"/>
+                <constraint firstItem="6dI-ED-VJq" firstAttribute="centerX" secondItem="upV-2Y-9NY" secondAttribute="centerX" id="wUg-Dj-u4a"/>
+                <constraint firstItem="ivm-Ru-ngu" firstAttribute="top" secondItem="Oqj-zx-b4Z" secondAttribute="topMargin" priority="750" constant="20" id="xAP-en-zPW"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="6Zt-HD-FlJ"/>
+            <point key="canvasLocation" x="30" y="71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="router_cut-01.png" width="384" height="384"/>
+        <image name="router_cut-02.png" width="384" height="384"/>
+        <image name="router_cut-03.png" width="384" height="384"/>
+        <image name="router_cut-04.png" width="384" height="384"/>
+        <image name="router_cut-05.png" width="384" height="384"/>
+        <image name="router_cut-43.png" width="1080" height="1776"/>
+    </resources>
+</document>

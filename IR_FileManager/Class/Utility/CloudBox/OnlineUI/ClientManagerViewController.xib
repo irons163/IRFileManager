@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientManagerViewController">
+            <connections>
+                <outlet property="loadingView" destination="P1N-Yv-0Fx" id="iJS-0y-2Wy"/>
+                <outlet property="mainView" destination="HDt-TF-BjN" id="hO4-Zf-Kx5"/>
+                <outlet property="tableView" destination="oHO-s5-NY8" id="3Zh-Bl-rV9"/>
+                <outlet property="titleBackgroundView" destination="ST9-je-tqb" id="n1U-If-Ihh"/>
+                <outlet property="titleLabel" destination="yfQ-g6-W3F" id="Vco-uP-EUw"/>
+                <outlet property="view" destination="KGf-GN-CBl" id="9nV-1l-Lvj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KGf-GN-CBl">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ST9-je-tqb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="router_cut-40.png" translatesAutoresizingMaskIntoConstraints="NO" id="M95-2c-kdZ">
+                            <rect key="frame" x="147.66666666666666" y="21" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="oYm-Ou-b2g"/>
+                                <constraint firstAttribute="height" constant="80" id="rm1-cK-Tpf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users Management" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfQ-g6-W3F">
+                            <rect key="frame" x="0.0" y="116" width="375" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="yfQ-g6-W3F" secondAttribute="bottom" constant="15" id="FNz-a2-Yaa"/>
+                        <constraint firstItem="M95-2c-kdZ" firstAttribute="centerX" secondItem="ST9-je-tqb" secondAttribute="centerX" id="UiJ-q8-CNq"/>
+                        <constraint firstAttribute="trailing" secondItem="yfQ-g6-W3F" secondAttribute="trailing" id="fJk-eo-LVd"/>
+                        <constraint firstItem="yfQ-g6-W3F" firstAttribute="top" secondItem="M95-2c-kdZ" secondAttribute="bottom" constant="15" id="ofs-cP-MQh"/>
+                        <constraint firstItem="yfQ-g6-W3F" firstAttribute="leading" secondItem="ST9-je-tqb" secondAttribute="leading" id="tkl-m9-TE0"/>
+                    </constraints>
+                </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="P1N-Yv-0Fx">
+                    <rect key="frame" x="150" y="274" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.25340190530000001" green="0.71093404289999995" blue="0.070270404219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDt-TF-BjN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oHO-s5-NY8">
+                            <rect key="frame" x="0.0" y="157" width="375" height="621"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="3JM-GL-wx7"/>
+                                <outlet property="delegate" destination="-1" id="Nqb-OL-cTo"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="oHO-s5-NY8" firstAttribute="leading" secondItem="HDt-TF-BjN" secondAttribute="leading" id="dLw-S3-mJn"/>
+                        <constraint firstAttribute="trailing" secondItem="oHO-s5-NY8" secondAttribute="trailing" id="pkf-OO-6D3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ST9-je-tqb" firstAttribute="leading" secondItem="KGf-GN-CBl" secondAttribute="leading" id="090-uM-Lms"/>
+                <constraint firstItem="oHO-s5-NY8" firstAttribute="top" secondItem="ST9-je-tqb" secondAttribute="bottom" constant="2" id="2Jm-Cr-dvr"/>
+                <constraint firstAttribute="trailing" secondItem="HDt-TF-BjN" secondAttribute="trailing" id="LlZ-Zm-aU6"/>
+                <constraint firstItem="ST9-je-tqb" firstAttribute="top" secondItem="KGf-GN-CBl" secondAttribute="top" id="Uen-lQ-zq3"/>
+                <constraint firstAttribute="bottomMargin" secondItem="oHO-s5-NY8" secondAttribute="bottom" id="d9o-zc-0d6"/>
+                <constraint firstItem="ST9-je-tqb" firstAttribute="bottom" secondItem="KGf-GN-CBl" secondAttribute="topMargin" constant="111" id="fid-MH-jyP"/>
+                <constraint firstItem="HDt-TF-BjN" firstAttribute="top" secondItem="KGf-GN-CBl" secondAttribute="top" id="p2G-SQ-ChP"/>
+                <constraint firstItem="HDt-TF-BjN" firstAttribute="leading" secondItem="KGf-GN-CBl" secondAttribute="leading" id="ue8-ee-gWh"/>
+                <constraint firstAttribute="bottom" secondItem="HDt-TF-BjN" secondAttribute="bottom" id="y0y-Kf-bI9"/>
+                <constraint firstAttribute="trailing" secondItem="ST9-je-tqb" secondAttribute="trailing" id="zOU-1j-J6Z"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="router_cut-40.png" width="254" height="254"/>
+    </resources>
+</document>

@@ -1,0 +1,16 @@
+//
+// Prefix header for all source files of the 'kxmovie' target in the 'kxmovie' project
+//
+
+#ifdef __OPTIMIZE__
+#define NSLog(...)
+#endif
+
+#ifdef __OBJC__
+#    import <Foundation/Foundation.h>
+#    import <UIKit/UIKit.h>
+#    import "KxLogger.h"
+#endif
+
+
+

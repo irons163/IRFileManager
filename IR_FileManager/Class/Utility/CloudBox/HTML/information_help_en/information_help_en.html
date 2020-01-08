@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>help</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			background-color:#e8ebe6;
+		}
+		.p_pad {
+			padding-top: 10px;
+		}
+		table {
+			border-top: solid black 1px;
+			padding: 1px;
+			border-spacing: 1px;
+		}
+		.li_none {
+			list-style-type: none;
+		}
+	</style>
+	<script>
+		var lan=["<b>Get help using the EnShare - EnGenius Cloud service.</b>",
+				"Please identify the way you connected to EnShare.",
+				"<b><u>Local Login</u>:</b> Logged in from your local network when your device is directly connected to your EnGenius Cloud router.",
+				"<b><u>Remote Login</u>:</b> Logged in remotely when you were away from the local network. DDNS domain name or Static IP required.",
+				"Also, limited EnShare features are available without logging into EnShare.",
+				"<b><u>Offline Access</u>:</b>Access favorite multimedia or documents in Collection offline usage.",
+				"If you encounter any connectivity issue, please check the <strong><u>Troubleshooting</u></strong> section.",
+				"<strong>Local Login</strong>",
+				"Enter <i>Username</i> and <i>Password</i> of the connected router ",
+				"Check ", //9
+				" for quicker logins next time without having to enter your username and password.",
+				" to activate EnShare within a local network.",
+				"<strong>Remote Login</strong>",
+				"Besides <i>Username</i> and <i>Password</i> DDNS domain name or Static IP <i>(Host / IP)</i> is required for remote login.   ",
+				" to access the stored content remotely.",
+				"<b><u>DDNS domain name</u>:</b>",
+				"Each <strong>EnGenius</strong> Cloud Router is distributed with a unique website domain account (DDNS Domain). We encourage you (as the administrator) to customize your own domain name that's easier to remember.",
+				"The default account is labeled on the bottom of the router. To customize it, please rename it via the device Wizard/GUI.",
+				"<b><u>Static IP</u>:</b>",
+				"The IP address is assigned to you by your ISP (Internet Service Provider), please contact your ISP to obtain a static IP address.",
+				"",
+				"<b>Offline Access</b>",
+				"Click the icon located on the top left end without entering any login value.", //22
+				"<b>Troubleshooting</b>",
+				"<b>Internet Connection Failed.</b>",
+				"Examine the Internet connection status and ensure your mobile device is connected.", //25 
+				"<b>Router Connectivity Failed.</b>",
+				"The router you are connecting to does not support <strong>EnShare</strong> service.",
+				"Please ensure that you are connecting to a <b>EnGenius</b> Cloud supporting Router first.",
+				"--> <b>Connect through Local Login</b> (Connecting to your EnGenius Cloud Router via Wi-Fi)",
+				"Check the Wi-Fi setting of your mobile device and confirm the WiFi name <b>(SSID)</b> and corresponding password entered is correct.",
+				"--> <b>Connect through Remote Login</b> (Connecting to EnGenius Cloud Router remotely)",
+				"Please check your entered <b>Host / IP (Domain Name or Static IP address)</b> is correct.",
+				"Also, please ensure that your EnGenius Cloud Router is connected to the Internet.",
+				"<b>Login Failed.</b>",
+				"lease reconfirm that the username, password, and the <b>Host / IP</b> entered is correct.",
+				"The login information that was entered and checked 'Remember Me' could be incorrect. Please re-enter your username and password.", //36
+				"Check "
+		];
+		
+		function dwText(idx) {
+			document.write(lan[idx]);
+		}
+		function dwPic(idx, extend ,height, width) {
+			extend = extend || ".png";
+			height = height || "";
+			width = width || "";
+			if(height) {
+				height = "height:"+height+"px;";
+			}
+			if(width) {
+				width = "width:"+width+"px;";
+			}
+			var zero=((idx/10) >= 1)?"0":"00";
+			document.write('<img style="'+height+width+'" src="information_help_en'+zero+idx+extend+'"/>');
+		}
+	</script>
+</head>
+<body>
+<p><script>dwText(0)</script></p>
+<p class="p_pad"><script>dwText(1)</script></p>
+<p><ul>
+	<li><script>dwText(2)</script></li>
+	<li><script>dwText(3)</script></li>
+</ul>
+	</p>
+<p class="p_pad"><script>dwText(4)</script></p>
+<p><ul><li>
+	<script>dwText(5)</script></li></ul></p>
+<p class="p_pad">
+	<script>dwText(6)</script></p>
+<p class="p_pad">
+	<script>dwText(7)</script></p>
+<table>
+	<tr>
+		<td>
+			<script>dwPic(3, '', '175', '252')</script></td>
+		<td>
+	</tr><tr><td>
+			<ul>
+				<li>
+					<script>dwText(8)</script></li>
+				<li>
+					<script>dwText(37);dwPic(1);dwText(10)</script></li>
+				<li>
+					<script>dwText(9);dwPic(2, '', '30', '73');dwText(11)</script></li>
+			</ul></td>
+	</tr>
+</table>
+<p class="p_pad">
+	<script>dwText(12)</script></p>
+<table>
+	<tr>
+		<td>
+			<script>dwPic(4, '', '105', '252')</script></td>
+	</tr><tr>
+		<td>
+			<ul>
+				<li>
+					<script>dwText(13)</script></li>
+				<li>
+					<script>dwText(9);dwPic(5, '', '30', '116');dwText(14)</script></li>
+			</ul></td>
+	</tr>
+</table>
+<p class="p_pad">
+	<script>dwText(15)</script>
+	<br/><script>dwText(16)</script>
+	<br/>
+	<script>dwText(17)</script>
+</p>
+<p class="p_pad">
+	<script>dwText(18)</script>
+	<br/><script>dwText(19)</script>
+	<br/>
+	<script>dwText(20)</script>
+</p>
+<p class="p_pad">
+	<script>dwText(21)</script></p>
+<table>
+	<tr>
+		<td>
+			<script>dwPic(6, '.png')</script></td>
+		<td>
+			<ul>
+				<li>
+					<script>dwText(22)</script></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+<p class="p_pad">
+	<script>dwText(23)</script></p>
+<table>
+	<tr>
+		<td><script>dwPic(7)</script></td>
+	</tr><tr>
+		<td>
+			<ul>
+				<li>
+					<script>dwText(24)</script></li>
+				<li class="li_none"><script>dwText(25)</script></li>
+			</ul>
+			
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td><script>dwPic(8)</script></td>
+	</tr><tr>
+		<td>
+			<ul>
+				<li>
+					<script>dwText(26)</script></li>
+				<li class="li_none"><script>dwText(27)</script></li>
+				<li class="li_none">&nbsp;</li>
+				<li class="li_none"><script>dwText(28)</script></li>
+				<li class="li_none">&nbsp;</li>
+				<li class="li_none">
+					<ul>
+						<li class="li_none"><script>dwText(29)</script></li>
+						<li class="li_none"><script>dwText(30)</script></li>
+						<li class="li_none"><script>dwText(31)</script></li>
+						<li class="li_none"><script>dwText(32)</script></li>
+						<li class="li_none"><script>dwText(33)</script></li>
+					</ul>
+				</li>
+			</ul>
+			
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td><script>dwPic(9)</script></td>
+	</tr><tr>
+		<td>
+			<ul>
+				<li><script>dwText(34)</script></li>
+				<li class="li_none"><script>dwText(35)</script></li>
+				<li class="li_none"><script>dwText(36)</script></li>
+			</ul>
+			
+		</td>
+	</tr>
+</table>
+</body>
+</html>

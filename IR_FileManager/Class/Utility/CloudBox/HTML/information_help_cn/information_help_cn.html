@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html><head><title>help</title>
+
+
+
+	
+	<style>
+		body {
+			font-family: sans-serif;
+			background-color:#e8ebe6;
+		}
+		.p_pad {
+			padding-top: 10px;
+		}
+		table {
+			border-top: solid black 1px;
+			padding: 1px;
+			border-spacing: 1px;
+		}
+		.li_none {
+			list-style-type: none;
+		}
+	</style>
+	<script>
+		var lan=["<b>ã&#8364;&#338;EnShare<sup>TM</sup> - EnGenius é&#8250;²ç«¯æ&#339;&#141;å&#8249;&#8482;ã&#8364;&#141; ä½¿ç&#8221;¨æ&#338;&#8225;å&#141;&#8212;</b>",
+				"è«&#8249;ç¢ºå®&#353;æ&#8218;¨é&#8364;£ç·&#353;<b>EnGenius</b>é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ï¼&#338;ä½¿ç&#8221;¨<b>EnShare</b>ç&#353;&#8222;æ&#8211;¹å¼&#143;ï¼&#353;",
+				"<b><u>æ&#339;¬å&#339;°ç«¯ç&#8482;»å&#8230;¥</u>:</b> å¦&#8218;æ&#382;&#339;æ&#8218;¨ç&#353;&#8222;è¨­å&#8218;&#8482;ç&#8250;´æ&#381;¥é&#8364;£ç·&#353;å&#710;°æ&#8218;¨ç&#353;&#8222;<b>EnGenius</b> é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ï¼&#338;å&#141;³ç&#8218;ºé&#8364;&#143;é&#129;&#381;æ&#339;¬å&#339;°ç«¯ç¶²è·¯é&#8364;£ç·&#353;æ&#8211;¹å¼&#143;é&#8364;£ç·&#353;ï¼&#8250;è«&#8249;å&#143;&#402;é&#8211;±ä¸&#8249;æ&#8211;¹<strong>æ&#339;¬å&#339;°ç«¯ç&#8482;»å&#8230;¥</strong>èªªæ&#732;&#381;ã&#8364;&#8218;",
+				"<b><u>é&#129; ç«¯ç&#8482;»å&#8230;¥</u>:</b> ç&#8226;¶æ&#8218;¨é&#129; é&#8250;¢æ&#339;¬å&#339;°ç«¯ç¶²è·¯ï¼&#338;å&#8240;&#8225;é&#339;&#8364;é&#8364;&#143;é&#129;&#381;é&#129; ç«¯æ&#8211;¹å¼&#143;é&#8364;£ç·&#353;ï¼&#8250;é&#8364;&#143;é&#129;&#381;æ­¤æ&#8211;¹å¼&#143;é&#8364;£ç·&#353;é&#339;&#8364;è¦&#129;<strong>DDNS</strong>ç¶²å&#376;&#376;å&#144;&#141;ç¨±æ&#710;&#8211;æ&#732;¯é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ç&#353;&#8222;<strong>IP</strong>ä½&#141;å&#157;&#8364;è³&#8225;è¨&#352;ï¼&#338;è«&#8249;å&#143;&#402;é&#8211;±ä¸&#8249;æ&#8211;¹<strong>é&#129; ç«¯ç&#8482;»å&#8230;¥</strong>èªªæ&#732;&#381;ã&#8364;&#8218;",
+				"æ­¤å¤&#8211;ï¼&#338;é&#8225;&#157;å°&#141;é&#402;¨å&#710;&#8224;<strong>EnShare</strong>å&#352;&#376;è&#402;½ï¼&#338;ä¹&#376;æ&#143;&#144;ä¾&#8250;é&#8250;¢ç·&#353;ä½¿ç&#8221;¨æ©&#376;å&#710;¶ã&#8364;&#8218;",
+				"<b><u>é&#8250;¢ç·&#353;è®&#8364;å&#143;&#8211;</u>:</b> ä½¿ç&#8221;¨è&#8364;&#8230;ç&#8222;¡é&#339;&#8364;ç&#8482;»å&#8230;¥è·¯ç&#8221;±å&#8482;¨ï¼&#338;å&#339;¨é&#8250;¢ç·&#353;ç&#8249;&#8364;æ&#8230;&#8249;ï¼&#338;å&#141;³å&#143;¯ä»¥ç&#8364;&#143;è¦½ï¼&#8218;æ&#8221;¶è&#8212;&#143;å&#141;&#8364;ï¼&#8218;ä¹&#8249;æ&#8211;&#8225;ä»¶è&#710;&#8225;å¤&#353;åª&#8217;é«&#8221;æª&#8221;æ¡&#710;ã&#8364;&#8218;",
+				"å¦&#8218;æ&#382;&#339;æ&#8218;¨é&#129;&#8225;å&#710;°ä»»ä½&#8226;é&#8364;£ç·&#353;å&#8226;&#143;é¡&#338;ï¼&#338;æ&#8226;¬è«&#8249;æ&#376;¥é&#8211;±<strong>æ&#8226;&#8230;é&#353;&#339;æ&#381;&#8217;é&#8482;¤</strong>ç« ç¯&#8364;ã&#8364;&#8218;",
+				"<strong>æ&#339;¬å&#339;°ç«¯ç&#8482;»å&#8230;¥</strong>",
+				"è¼¸å&#8230;¥é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ä¹&#8249; ä½¿ç&#8221;¨è&#8364;&#8230;å&#144;&#141;ç¨± è&#710;&#8225; å¯&#8224;ç¢¼",
+				"é»&#382;æ&#8220;&#352;", //9
+				"<i>è¨&#732;æ&#8224;¶å¸³è&#8482;&#376;å¯&#8224;ç¢¼</i> ä»¥ä¾¿ä¸&#8249;æ¬¡ç&#8482;»å&#8230;¥æ&#8482;&#8218;ä¸&#141;é&#339;&#8364;å&#8224;&#141;é&#8225;&#141;è¤&#8225;è¼¸å&#8230;¥ä½¿ç&#8221;¨è&#8364;&#8230;å&#144;&#141;ç¨±è&#710;&#8225;å¯&#8224;ç¢¼è³&#8225;è¨&#352;",
+				"ä»¥ç&#8482;»å&#8230;¥é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨",
+				"<strong>é&#129; ç«¯ç&#8482;»å&#8230;¥</strong>",
+				"é&#8482;¤äº&#8224;<i>ä½¿ç&#8221;¨è&#8364;&#8230;å&#144;&#141;ç¨±</i> è&#710;&#8225; <i>å¯&#8224;ç¢¼</i>ä¹&#8249;å¤&#8211;ï¼&#338;<strong>DDNS</strong>ç¶²å&#376;&#376;å&#144;&#141;ç¨±æ&#710;&#8211;æ&#732;¯é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ç&#353;&#8222;<strong>IP</strong>ä½&#141;å&#157;&#8364;è³&#8225;è¨&#352;æ&#732;¯å¿&#8230;é &#710;ç&#353;&#8222;",
+				"é&#8364;²è¡&#338;é&#129; ç«¯ç&#8482;»å&#8230;¥",
+				"<b><u>DDNS ç¶²å&#376;&#376;å&#144;&#141;ç¨±:</u></b>",
+				"æ¯&#143;å&#143;°<strong>EnGenius</strong> é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ç&#353;&#8224;é&#8230;&#141;æ&#339;&#8240;ç&#141;¨ç«&#8249;ç&#353;&#8222;ç¶²å&#376;&#376;ä½&#141;å&#157;&#8364;å&#144;&#141;ç¨± (<strong>DDNS</strong> ç¶²å&#376;&#376;å&#144;&#141;ç¨±)ï¼&#338;æ­¤ç¶²å&#376;&#376;å&#144;&#141;ç¨±ç&#8218;ºç&#8221;¢å&#8220;&#129;å&#8225;ºå» é &#144;è¨­æ&#143;&#144;ä¾&#8250;ï¼&#338;æ&#8218;¨å&#143;¯å&#339;¨è·¯ç&#8221;±å&#8482;¨åº&#8226;é&#402;¨ç&#353;&#8222;æ¨&#8482;ç±¤æ&#8240;¾å&#710;°é &#144;è¨­ä¹&#8249;<strong>DDNS</strong>ç¶²å&#376;&#376;å&#144;&#141;ç¨±ã&#8364;&#8218;",
+				"å»ºè­°æ&#8218;¨å&#143;¯ä»¥é&#8364;&#143;é&#129;&#381;è·¯ç&#8221;±å&#8482;¨ç&#353;&#8222;å¿«é&#8364;&#376;å®&#8240;è£&#157;æ­¥é©&#376;æ&#710;&#8211;æ&#732;¯ç¶²é &#129;è¨­å®&#353;é &#129;é&#157;¢æ&#8250;´æ&#8221;¹è¨­å®&#353;ï¼&#338;ä¿®æ&#8221;¹ç&#8218;ºå&#8364;&#8249;äººå°&#710;å±¬ç&#353;&#8222;ç¶²å&#376;&#376;å&#144;&#141;ç¨±ï¼&#338;æ&#8211;¹ä¾¿è¨&#732;æ&#8224;¶è&#710;&#8225;å&#710;&#8224;äº«è¦ªå&#143;&#8249;ä½¿ç&#8221;¨ã&#8364;&#8218;",
+				"<b><u>é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨ç&#353;&#8222;IPä½&#141;å&#157;&#8364;:</u></b>",
+				"è&#8249;¥æ¬²é&#8364;&#143;é&#129;&#381;æ­¤é&#8364;£ç·&#353;æ&#8211;¹å¼&#143;ï¼&#338;è«&#8249;è¼¸å&#8230;¥ç¶²è·¯æ&#339;&#141;å&#8249;&#8482;æ&#143;&#144;ä¾&#8250;è&#8364;&#8230; <b>(ISP)</b> æ&#8240;&#8364;æ&#143;&#144;ä¾&#8250;ç&#353;&#8222;å&#8250;ºå®&#353;<b>IP</b>ä½&#141;å&#157;&#8364;ã&#8364;&#8218;",
+				"è«&#8249;è&#129;¯çµ¡æ&#8218;¨ç&#353;&#8222;ç¶²è·¯æ&#339;&#141;å&#8249;&#8482;æ&#143;&#144;ä¾&#8250;å&#8226;&#8224;ä»¥å&#143;&#8211;å¾&#8212;å&#8250;ºå®&#353;<b>IP</b>ä½&#141;å&#157;&#8364;è³&#8225;è¨&#352;ã&#8364;&#8218;",
+				"<b>é&#8250;¢ç·&#353;è®&#8364;å&#143;&#8211;</b>",
+				"é»&#382;é&#129;¸å·¦ä¸&#352;è§&#8217;ä¹&#8249;é&#8250;¢ç·&#353;è®&#8364;å&#143;&#8211;æ&#338;&#8240;é&#710;&#8226;ä»¥é&#8364;²è¡&#338;é&#8250;¢ç·&#353;è®&#8364;å&#143;&#8211;å&#352;&#376;è&#402;½ï¼&#338;ä¸&#141;é&#339;&#8364;è¼¸å&#8230;¥ä»»ä½&#8226;ç&#8482;»å&#8230;¥è³&#8225;è¨&#352;ã&#8364;&#8218;", //22
+				"<b>æ&#8226;&#8230;é&#353;&#339;æ&#381;&#8217;é&#8482;¤</b>",
+				"<b>ç¶²è·¯é&#8364;£ç·&#353;å¤±æ&#8226;&#8212;</b>",
+				"è«&#8249;æª¢æ&#376;¥ç¶²è·¯é&#8364;£ç·&#353;ç&#8249;&#8364;æ&#8230;&#8249;ä¸¦ä¸&#8221;ç¢ºèª&#141;è¡&#338;å&#8249;&#8226;è£&#157;ç½®å·²ç¶&#8220;é&#8364;£ç·&#353;å&#710;°ç¶²é&#353;&#8250;ç¶²è·¯ã&#8364;&#8218;", //25 
+				"<b>è·¯ç&#8221;±å&#8482;¨é&#8364;£ç·&#353;å¤±æ&#8226;&#8212;</b>",
+				"ç&#8222;¡æ³&#8226;ç&#8482;»å&#8230;¥å&#143;¯è&#402;½æ&#732;¯å&#8250; ç&#8218;ºæ&#8218;¨é&#8364;£ç·&#353;ç&#353;&#8222;è¨­å&#8218;&#8482;ä¸¦ä¸&#141;æ&#732;¯<b>EnGenius</b>é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨è¨­å&#8218;&#8482;ï¼&#338;æ&#8240;&#8364;ä»¥ä¸¦ä¸&#141;æ&#8221;¯æ&#143;´<b>EnShare</b>æ&#339;&#141;å&#8249;&#8482;ã&#8364;&#8218;",
+				"è«&#8249;ç¢ºèª&#141;æ&#8218;¨æ&#8240;&#8364;é&#8364;£ç·&#353;ç&#353;&#8222;è¨­å&#8218;&#8482;æ&#8221;¯æ&#143;´<b>EnGenius</b>é&#8250;²ç«¯æ&#339;&#141;å&#8249;&#8482;ï¼&#338;å¦&#8218;æ&#382;&#339;æ­¤è­¦èª&#382;ä»&#141;ç&#8222;¶é¡¯ç¤ºï¼&#338;è«&#8249;å&#143;&#402;ç&#8230;§ä»¥ä¸&#8249;èªªæ&#732;&#381;æ&#381;&#8217;é&#8482;¤å&#8226;&#143;é¡&#338;ï¼&#353;",
+				"--> <b>é&#8364;&#143;é&#129;&#381;æ&#339;¬å&#339;°ç«¯é&#8364;£ç·&#353;ç&#8482;»å&#8230;¥æ&#8211;¹å¼&#143;</b> (é&#8364;&#143;é&#129;&#381;<b>Wi-Fi</b>é&#8364;£ç·&#353;å&#710;°æ&#8218;¨ç&#353;&#8222;é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨)",
+				"è«&#8249;æª¢æ&#376;¥è¡&#338;å&#8249;&#8226;è£&#157;ç½®ä¹&#8249;Wi-Fiè¨­å®&#353;ä¸¦ç¢ºèª&#141;ç&#8222;¡ç·&#353;ç¶²è·¯å&#144;&#141;ç¨±<b>(SSID)</b>è&#710;&#8225;é&#8364;£ç·&#353;å¯&#8224;ç¢¼è³&#8225;è¨&#352;æ­£ç¢ºç&#8222;¡èª¤ã&#8364;&#8218;",
+				"--> <b>é&#8364;&#143;é&#129;&#381;é&#129; ç«¯ç&#8482;»å&#8230;¥é&#8364;£ç·&#353;æ&#8211;¹å¼&#143;</b> (é&#8364;&#143;é&#129;&#381;ç¶²é&#353;&#8250;ç¶²è·¯é&#8364;£ç·&#353;å&#710;°æ&#8218;¨ç&#353;&#8222;é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨)",
+				"è«&#8249;æª¢æ&#376;¥æ&#8218;¨è¼¸å&#8230;¥ä¹&#8249;ç¶²å&#376;&#376;å&#144;&#141;ç¨±è&#710;&#8225;<b>IP</b>ä½&#141;å&#157;&#8364;è³&#8225;è¨&#352;æ­£ç¢ºç&#8222;¡èª¤ã&#8364;&#8218;",
+				"ä¸¦ä¸&#8221;è«&#8249;ç¢ºèª&#141;æ&#8218;¨ç&#353;&#8222;é&#8250;²ç«¯è·¯ç&#8221;±å&#8482;¨å·²æ­£ç¢ºé&#8364;£ç·&#353;å&#710;°ç¶²é&#353;&#8250;ç¶²è·¯ã&#8364;&#8218;",
+				"<b>ç&#8482;»å&#8230;¥å¤±æ&#8226;&#8212;</b>",
+				"è«&#8249;å&#8224;&#141;æ¬¡ç¢ºèª&#141;è¼¸å&#8230;¥ä¹&#8249;ç&#8482;»å&#8230;¥å¸³è&#8482;&#376;ã&#8364;&#129;å¯&#8224;ç¢¼è&#710;&#8225;ç¶²å&#376;&#376;å&#144;&#141;ç¨±/<b>IP</b>ä½&#141;å&#157;&#8364;æ­£ç¢ºã&#8364;&#8218;",
+				"å·²ç¶&#8220;è¼¸å&#8230;¥é&#129;&#381;ä¸¦é»&#382;é&#129;¸â&#8364;&#157;è¨&#732;æ&#8224;¶å¸³è&#8482;&#376;å¯&#8224;ç¢¼â&#8364;&#157;ä¹&#8249;å¸³è&#8482;&#376;è³&#8225;è¨&#352;å&#143;¯è&#402;½æ&#732;¯é&#338;¯èª¤ç&#353;&#8222;å¸³è&#8482;&#376;è³&#8225;è¨&#352;ï¼&#338;è«&#8249;å&#732;&#8212;è©¦é&#8225;&#141;æ&#8211;°è¼¸å&#8230;¥å¸³è&#8482;&#376;å¯&#8224;ç¢¼ä¹&#8249;è³&#8225;è¨&#352;ã&#8364;&#8218;", //36
+				"é»&#382;æ&#8220;&#352;"
+		];
+		
+		function dwText(idx) {
+			document.write(lan[idx]);
+		}
+		function dwPic(idx, extend ,height, width) {
+			extend = extend || ".png";
+			height = height || "";
+			width = width || "";
+			if(height) {
+				height = "height:"+height+"px;";
+			}
+			if(width) {
+				width = "width:"+width+"px;";
+			}
+			var zero=((idx/10) >= 1)?"0":"00";
+			document.write('<img style="'+height+width+'" src="information_help_tw'+zero+idx+extend+'"/>');
+		}
+	</script></head><body>
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#20351;&#29992;</span></b><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">EnShare - EnGenius</span></b><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#20113;&#26381;&#21153;&#33719;&#21462;&#24110;&#21161;&#12290;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<p class="MsoNormal" style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#35831;&#30830;&#23450;&#36830;&#25509;&#21040;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">EnShare</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#30340;&#26041;&#24335;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<ul type="disc">
+<li class="MsoNormal" style="color: black;"><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun;">&#26412;&#22320;&#30331;&#24405;&#65306;</span></u></b><span style="font-size: 13.5pt; font-family: SimSun;">&#24403;&#35774;&#22791;&#30452;&#25509;&#36830;&#25509;&#21040;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnGenius</span><span style="font-size: 13.5pt; font-family: SimSun;">&#20113;&#36335;&#30001;&#22120;&#26102;&#36890;&#36807;&#26412;&#22320;&#32593;&#32476;&#30331;&#24405;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun;">&#36828;&#31243;&#30331;&#24405;&#65306;</span></u></b><span style="font-size: 13.5pt; font-family: SimSun;">&#24403;&#36828;&#31163;&#26412;&#22320;&#32593;&#32476;&#26102;&#36828;&#31243;&#30331;&#24405;&#12290;&#38656;&#35201;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">DDNS</span><span style="font-size: 13.5pt; font-family: SimSun;">&#22495;&#21517;&#25110;&#38745;&#24577;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"> IP</span><span style="font-size: 13.5pt; font-family: SimSun;">&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li>
+</ul>
+
+
+<p class="MsoNormal" style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#27492;&#22806;&#65292;&#33509;&#26410;&#30331;&#24405;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">EnShare</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#65292;&#21017;&#21482;&#33021;&#20351;&#29992;&#26377;&#38480;&#30340;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">EnShare</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#21151;&#33021;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<ul type="disc">
+<li class="MsoNormal" style="color: black;"><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun;">&#31163;&#32447;&#35775;&#38382;&#65306;</span></u></b><span style="font-size: 13.5pt; font-family: SimSun;">&#31163;&#32447;&#29366;&#24577;&#19979;&#35775;&#38382;&#25910;&#34255;&#30340;&#22810;&#23186;&#20307;&#25991;&#20214;&#25110;&#25991;&#26723;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li>
+</ul>
+
+
+<p class="MsoNormal" style=""><span style="font-family: SimSun;">&#22914;&#26524;&#36935;&#21040;&#20219;&#20309;&#36830;&#25509;&#38382;&#39064;&#65292;&#35831;</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#26597;&#30475;<b style=""><u>&#25925;&#38556;&#25490;&#38500;</u></b>&#19968;&#33410;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#26412;&#22320;&#30331;&#24405;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal" style="text-align: center;" align="center"><img src="information_help_cn003.png" v:shapes="_x0000_i1027" width="80%"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+  <td style="border: medium none ; padding: 0.75pt;"><br>
+</td>
+ </tr>
+ <tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><span style="font-family: SimSun; color: windowtext;">&#36755;&#20837;&#25152;&#36830;&#25509;&#36335;&#30001;&#22120;&#30340;</span><i style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#29992;&#25143;&#21517;</span></i><span style="font-size: 13.5pt; font-family: SimSun;">&#21644;<i style="">&#23494;&#30721;</i>&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#36873;&#20013;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"></span><img src="information_help_cn001.png" alt="&#25551;&#36848;: E:\information_help_en\information_help_en001.png" v:shapes="&#22294;&#29255;_x0020_8" height="40" width="40"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"></span><span style="font-size: 13.5pt; font-family: SimSun;">&#65292;&#19979;&#27425;&#26080;&#38656;&#36755;&#20837;&#29992;&#25143;&#21517;&#21644;&#23494;&#30721;&#21363;&#21487;&#24555;&#36895;&#30331;&#24405;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-family: SimSun; color: windowtext;">&#36873;&#20013;</span><span style="color: windowtext;" lang="EN-US"></span><img src="information_help_cn002.png" v:shapes="Picture_x0020_1" width="30%"><span style="color: windowtext;" lang="EN-US"></span><span style="font-family: SimSun; color: windowtext;">&#65292;&#22312;&#26412;&#22320;&#32593;&#32476;&#20869;&#28608;&#27963;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnShare</span><span style="font-size: 13.5pt; font-family: SimSun;">&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul>
+  </td>
+  <td style="border: medium none ; padding: 0.75pt;"><br>
+</td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p>&nbsp;</o:p></span></b></p>
+
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#36828;&#31243;&#30331;&#24405;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="EN-US"></span><img src="information_help_cn004.png" v:shapes="_x0000_i1028" width="80%"><span style="" lang="EN-US"></span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#38500;&#20102;<i style="">&#29992;&#25143;&#21517;</i>&#21644;<i style="">&#23494;&#30721;</i>&#20197;&#22806;&#65292;&#36828;&#31243;&#30331;&#24405;&#36824;&#38656;&#35201;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">DDNS</span><span style="font-size: 13.5pt; font-family: SimSun;">&#22495;&#21517;&#25110;&#38745;&#24577;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">IP</span><i style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#65288;&#20027;&#26426;</span></i><i style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">/IP</span></i><i style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#65289;</span></i><span style="font-size: 13.5pt; font-family: SimSun;">&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#36873;&#20013;</span><img src="information_help_cn005.png" v:shapes="_x0000_i1029" width="30%"><span style="font-family: SimSun; color: windowtext;">&#65292;&#20197;&#36828;&#31243;&#35775;&#38382;&#23384;&#20648;&#30340;&#20869;&#23481;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal" style=""><b style=""><u><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">DDNS</span></u></b><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#22495;&#21517;</span></u></b><span style="font-family: SimSun;">&#65306;</span><span style="font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><br>
+</span><span style="font-family: SimSun;">&#27599;&#20010;</span><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">EnGenius</span></b><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#20113;&#36335;&#30001;&#22120;&#22343;&#20998;&#37197;&#20102;&#19968;&#20010;&#29420;&#19968;&#26080;&#20108;&#30340;&#32593;&#31449;&#22495;&#21517;&#36134;&#25143;&#65288;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">DDNS</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#22495;&#21517;&#65289;&#12290;&#25105;&#20204;&#24314;&#35758;&#24744;&#65288;&#20316;&#20026;&#31649;&#29702;&#21592;&#65289;&#33258;&#23450;&#20041;&#35774;&#32622;&#23481;&#26131;&#35760;&#20303;&#30340;&#22495;&#21517;&#12290;</span><span style="font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><br>
+</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#40664;&#35748;&#36134;&#25143;&#26631;&#35782;&#22312;&#36335;&#30001;&#22120;&#24213;&#37096;&#12290;&#33509;&#35201;&#33258;&#23450;&#20041;&#35774;&#32622;&#65292;&#35831;&#36890;&#36807;&#35774;&#22791;&#21521;&#23548;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">/GUI</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#37325;&#26032;&#21629;&#21517;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<p class="MsoNormal" style=""><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#38745;&#24577;</span></u></b><b style=""><u><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">IP</span></u></b><b style=""><u><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#65306;</span></u></b><span style="font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><br>
+</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">IP</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#22320;&#22336;&#30001;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">ISP</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#65288;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">Internet</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#26381;&#21153;&#20379;&#24212;&#21830;&#65289;&#20026;&#24744;&#20998;&#37197;&#65292;&#35831;&#32852;&#31995;&#24744;&#30340;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">ISP</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#33719;&#21462;&#38745;&#24577;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US">IP</span><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#22320;&#22336;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#31163;&#32447;&#35775;&#38382;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal" style=""><img src="information_help_cn006.png" alt="&#25551;&#36848;: E:\information_help_en\information_help_en006.png" v:shapes="&#22294;&#29255;_x0020_4" width="100%"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#28857;&#20987;&#24038;&#19978;&#35282;&#30340;&#22270;&#26631;&#65292;&#26080;&#38656;&#36755;&#20837;&#20219;&#20309;&#30331;&#24405;&#20540;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal" style=""><b style=""><span style="font-size: 13.5pt; font-family: SimSun; color: black;">&#25925;&#38556;&#25490;&#38500;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal" style=""><img src="information_help_cn007.png" v:shapes="_x0000_i1031" width="60%"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">Internet </span></b><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#36830;&#25509;&#22833;&#36133;&#12290;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#26816;&#26597;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">Internet</span><span style="font-size: 13.5pt; font-family: SimSun;">&#36830;&#25509;&#29366;&#24577;&#24182;&#30830;&#20445;&#24744;&#30340;&#31227;&#21160;&#35774;&#22791;&#24050;&#36830;&#25509;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal" style=""><span style="font-family: &quot;Arial&quot;,sans-serif; display: none;" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal" style=""><img src="information_help_cn008.png" v:shapes="_x0000_i1032" width="60%"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#36335;&#30001;&#22120;&#36830;&#25509;&#22833;&#36133;&#12290;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-family: SimSun; color: windowtext;">&#27491;&#22312;&#36830;&#25509;&#30340;&#36335;&#30001;&#22120;&#19981;&#25903;&#25345;</span><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnShare</span></b><span style="font-family: SimSun; color: windowtext;">&#26381;&#21153;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p>&nbsp;</o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-family: SimSun; color: windowtext;">&#35831;&#39318;&#20808;&#30830;&#20445;&#36830;&#25509;&#21040;&#25903;&#25345;</span><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnGenius</span></b><span style="font-family: SimSun; color: windowtext;">&#20113;&#30340;&#36335;&#30001;&#22120;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p>&nbsp;</o:p></span></li></ul>
+  
+  <ul type="disc"><ul type="circle"><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">--&gt;</span><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#36890;&#36807;&#26412;&#22320;&#30331;&#24405;&#36830;&#25509;</span></b><span style="font-size: 13.5pt; font-family: SimSun;">&#65288;&#36890;&#36807;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">Wi-Fi</span><span style="font-size: 13.5pt; font-family: SimSun;">&#36830;&#25509;&#21040;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnGenius</span><span style="font-size: 13.5pt; font-family: SimSun;">&#20113;&#36335;&#30001;&#22120;&#65289;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-family: SimSun; color: windowtext;">&#26816;&#26597;</span><span style="font-size: 13.5pt; font-family: SimSun;">&#31227;&#21160;&#35774;&#22791;&#30340;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">Wi-Fi</span><span style="font-size: 13.5pt; font-family: SimSun;">&#35774;&#32622;&#24182;&#30830;&#35748;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">WiFi</span><span style="font-size: 13.5pt; font-family: SimSun;">&#21517;&#31216;<b style="">&#65288;</b></span><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">SSID</span></b><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#65289;</span></b><span style="font-size: 13.5pt; font-family: SimSun;">&#21644;&#36755;&#20837;&#30340;&#30456;&#24212;&#23494;&#30721;&#27491;&#30830;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">--&gt;</span><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#36890;&#36807;&#36828;&#31243;&#30331;&#24405;&#36830;&#25509;</span></b><span style="font-size: 13.5pt; font-family: SimSun;">&#65288;&#36828;&#31243;&#36830;&#25509;&#21040;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnGenius</span><span style="font-size: 13.5pt; font-family: SimSun;">&#20113;&#36335;&#30001;&#22120;&#65289;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun; color: windowtext;">&#35831;&#30830;&#35748;&#25152;&#36755;&#20837;&#30340;</span><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#20027;&#26426;</span></b><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">/IP</span></b><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#65288;&#22495;&#21517;&#25110;&#38745;&#24577;</span></b><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">IP</span></b><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#22320;&#22336;&#65289;</span></b><span style="font-size: 13.5pt; font-family: SimSun;">&#27491;&#30830;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#27492;&#22806;&#65292;&#36824;&#35831;&#30830;&#20445;&#24744;&#30340;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">EnGenius</span><span style="font-size: 13.5pt; font-family: SimSun;">&#20113;&#36335;&#30001;&#22120;&#24050;&#36830;&#25509;&#21040;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">Internet</span><span style="font-size: 13.5pt; font-family: SimSun;">&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul></ul>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal" style=""><span style="font-family: &quot;Arial&quot;,sans-serif; display: none;" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+
+<table class="MsoNormalTable" style="border-style: solid none none; border-color: black -moz-use-text-color -moz-use-text-color; border-width: 1pt medium medium;" border="1" cellpadding="0">
+
+ <tbody><tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <p class="MsoNormal"><img src="information_help_cn009.png" v:shapes="_x0000_i1033" width="60%"><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif; color: black;" lang="EN-US"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="">
+  <td style="border: medium none ; padding: 0.75pt;">
+  <ul type="disc"><li class="MsoNormal" style="color: black;"><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#30331;&#24405;&#22833;&#36133;&#12290;</span></b><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun; color: windowtext;">&#35831;&#37325;&#26032;&#30830;&#35748;&#25152;&#36755;&#20837;&#30340;&#29992;&#25143;&#21517;&#12289;&#23494;&#30721;&#21644;</span><b style=""><span style="font-size: 13.5pt; font-family: SimSun;">&#20027;&#26426;</span></b><b style=""><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US">/IP</span></b><span style="font-size: 13.5pt; font-family: SimSun;">&#27491;&#30830;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="color: black;"><span style="font-size: 13.5pt; font-family: SimSun;">&#8220;&#19978;&#27425;&#30331;&#24405;&#8221;&#26102;&#20445;&#23384;&#30340;&#30331;&#24405;&#20449;&#24687;&#21487;&#33021;&#19981;&#27491;&#30830;&#12290;&#35831;&#37325;&#26032;&#36755;&#20837;&#29992;&#25143;&#21517;&#21644;&#23494;&#30721;&#12290;</span><span style="font-size: 13.5pt; font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p></o:p></span></li></ul>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal"><span style="font-family: &quot;Arial&quot;,sans-serif;" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+
+<p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+
+</body></html>

@@ -1,0 +1,227 @@
+/*
+ Localizable.strings
+ EnShare
+ 
+ Created by ke on 7/23/13.
+ Copyright (c) 2013 Senao. All rights reserved.
+ */
+
+"OK"      = "确定";
+"FAILED"  = "失败";
+"SUCCESS" = "成功";
+"FAIL"    = "失败";
+
+"LOGIN_ALERT_USERNAME"   = "请输入您的登录信息。";
+"LOGIN_ALERT_UID_EMPTY"  = "请输入 UID。";
+"LOGIN_ALERT_HOST_EMPTY" = "请输入主机名/IP。";
+"LOGIN_ALERT_INTERNET"   = "Internet连接失败。请检查Internet设置或点击“帮助”了解更多信息。";
+"LOGIN_ALERT_FAILED"     = "登录失败。请确认您的登录信息正确。或点击“帮助”了解更多信息。";
+"LOGIN_ALERT_CONNECTING" = "设备未连接到路由器。请检查连接设置或点击“帮助”了解更多信息。";
+"LOGIN_ALERT_DDNS"       = "主机无效，请输入 EnGenius DDNS 提供的域名。";
+"LOGIN_ALERT_FIRMWARE"   = "新路由器固件已可下载。请通过图形用户界面更新以获得最佳性能。";
+"LOGIN_ALERT_QR"         = "无法识别 QR 代码。请重试。";
+
+"OLD_FW_UPDATE_TITLE"    = "新固件可用";
+"OLD_FW_UPDATE_MESSAGE"  = "请登录路由器的网页管理页面，获取最新的固件（%@）更新。";
+
+"INFORMATION_HELP" = "information_help_cn.html";
+"INFORMATION_ABOUT" = "information_about_cn.html";
+
+"ABOUT_GENERAL" = "about_general_cn.html";
+"ABOUT_FAQ" = "about_faq_cn.html";
+
+"ABOUT_EULA" = "about_eula_cn.html";
+
+"Music" = "音乐";
+"Video" = "视频";
+"Photo" = "图片";
+"Document" = "文档";
+
+"SEARCH_ALERT" = "未找到文件。请重试。";
+"SHARE_ALERT" = "无其他应用程序";
+"COLLECTION" = "收藏";
+
+"RENAME_ALERT_EMPTY" = "文件名不能为空。";
+"RENAME_ALERT_NOCHANGE" = "文件名未修改。";
+"RENAME_ALERT_NOEXT" = "请输入文件扩展名。";
+"RENAME_ALERT_NONAME" = "请输入文件名。";
+"RENAME_ALERT_SAMENAME" = "文件名不能重复。";
+"RENAME_ALERT_SUCCESS" = "文件名保存成功。";
+"RENAME_ALERT_ERROR" = "无效的文件名，请输入正确的文件名。";
+"RENAME_ALERT_LENGTH" = "名称必须小于 128 个字符。";
+
+"DELETE_FOLDER" = "将删除文件夹。";
+"DELETE_FILE" = "将删除文件。";
+"DELETE_PHOTO" = "将删除图片。";
+"DELETE_ALERT" = "文件删除成功";
+"DELETING" = "正在删除文件…";
+
+"USB" = "未连接 USB 存储。";
+"RemoteAccess Title" = "EnShare 远程存储已关闭\n。";
+"RemoteAccess" = "您可以在设备的图形用户界面中启用此功能。\n跳转到网络设置 ->\n云服务'EnShare'->->\n启用 EnShare 远程访问";
+
+"UPLOAD_ALERT" = "每个文件不得超过 1.5 GB。";
+"DOWNLOAD_ALERT" = "下载失败。请重试。";
+
+"CAMERA_ROLL" = "相机胶卷";
+
+"LOADING" = "正在加载…";
+"Select an Album" = "选择一个相册";
+"Select Photo" = "选择照片";
+"Select Photo(s)" = "选择照片";
+"Done" = "完成";
+"Delete" = "删除";
+
+"ADDFOLDER_SUCCESS" = "文件夹已添加成功。";
+"MOVE_SUCCESS" = "移动成功。";
+"MOVE_SAME" = "目标文件夹与源文件夹相同。";
+
+"PLEASEKEY" = "请输入密钥。";
+
+"SSID_EMPTY_ALERT" = "请输入 SSID";
+"SSID_LENGTH_ALERT" = "SSID 长度应为 1 ~ 32 个字符";
+"SSID_ERROR_ALERT" = "SSID 不允许包含 < > / \ | : “ * ?";
+"KEY_EMPTY_ALERT" = "请输入密钥";
+"KEY_8To63_ALERT"  = "密钥长度应为 8 ~ 63 个字符";
+"KEY_ASCII_ALERT" = "密钥必须为 0~9、a~z、A~Z";
+"KEY_HEX_ALERT" = "密钥必须为 0~9、a~f、A~F";
+"KEY_LENGTH_ALERT" = "密钥长度应为 5、10、13 或 26";
+"KEY_ERROR_ALERT" = "密钥不允许包含  < > / \ | : “ * ?";
+
+"REBOOT" = "正在重启";
+
+"FREQUENCY" = "频率";
+"Device Status" = "设备状态";
+"Wireless Settings" = "无线设置";
+"Client Manager" = "客户端管理器";
+"Advanced Settings" = "高级设置";
+"Public IP Address" = "公共 IP 地址";
+"Local IP Address" = "本地 IP 地址";
+"Firmware Version" = "固件版本";
+"Wireless SSID" = "无线 SSID";
+"Encryption Type" = "加密类型";
+"Storage Space" = "存储空间";
+"Collection Storage:" = "收藏所用容量：";
+"Mounted Storage:" = "连接设备可用容量：";
+"No mounted device" = "未连接任何设备";
+"Encryption Key" = "密钥";
+
+"illeagal %@ ASCII key value" = "非法的 %@ ASCII 密钥值";
+"illeagal %@ HEX key value" = "非法的 %@ HEX 密钥值";
+"illeagal %@ key length" = "非法的 %@ 密钥长度";
+
+"available" = ",可用";
+"used2" = "% 已用";
+"used" = "";
+
+"Connected Device(s)" = "已连接设备";
+"Blocked Device(s)" = "已拦截设备";
+"Blocked_Limit" = "您可以最多拦截 8 个设备。\n请管理拦截设备列表以继续。";
+
+"Wait_Wifi" = "请启用 Wi-Fi 以实现相册同步";
+"NO_Internet" = "Internet连接不稳定，请稍后重试。";
+"NO_Internet_Upload" = "Internet连接不稳定，请稍后重试。";
+"NO_Space" = "文件上传失败。可用存储空间不足。";
+"NOT_ROUTER" = "未连接到正确的存储设备。";
+"NOT_PHOTO" = "需要照片权限。";
+"Camera_Upload" = "相册自动备份";
+"PHOTO_Upload" = "照片上传";
+"VIDEO_Upload" = "视频上传";
+"Folder_Name" = "文件夹名称";
+"WiFi_Only" = "仅使用 Wi-Fi";
+"AUTO_UPLOAD_ALERT_FOLDER" = "创建文件夹失败，文件已存在";
+"AUTO_UPLOAD_ALERT_EMPTY" = "文件夹名称不能为空。";
+"AUTO_UPLOAD_ALERT_ERROR" = "无效的文件夹名称，请输入正确的文件夹名称。";
+"AUTO_UPLOAD_FINISH" = "上传成功。";
+"AUTO_UPLOAD_DO" = "上传相册，请稍等。";
+"AUTO_UPLOAD_DO_EDIT" = "正在上传相册，无法更改文件夹名称。";
+"UPLOAD_DO" = "正在上传文件。";
+"LEFT_DO" = "剩余 %d 张";
+"LEFT_DO1" = "剩余 %d 张";
+"Operation_Failed" = "操作失败。";
+
+"Router_Management" = "路由器管理";
+"Backup_Configuration" = "配置备份";
+"Others" = "其他";
+"Administrative" = "Administrator Only";
+
+"rbtn_active" = "sc_rbtn_active.png";
+"Configuration Backup" = "配置备份";
+"Clean_Cache" = "清空缓存";
+"QR_BUTTON" = "密钥 QR 代码";
+"%@ Configuration Backup - %@" = "%@ 配置备份 - %@";
+"Router Model: %@<br>Firmware Version: %@<br>" = "路由器型号： %@<br>固件版本： %@<br>";
+"BACKUP_ALERT" = "无效的电子邮件设置";
+
+"c_btn_edit" = "sc_edit.png";
+"rbtn_savenreboot" = "sc_rbtn_savenreboot.png";
+"rbtn_cancel" = "sc_storage_cancel.png";
+"btn_block" = "sc_btn_block.png";
+"ibtn_block" = "sc_ibtn_block.png";
+"btn_unblock" = "sc_btn_unblock.png";
+"ibtn_unblock" = "sc_ibtn_unblock.png";
+"btn_back" = "sc_btn_back.png";
+"ibtn_back" = "sc_ibtn_back.png";
+
+"PROCESS" = "处理中…";
+"QR_FAIL" = "密钥获取失败。";
+"QR_MAIL" = "密钥的 QR 代码通过 EnShare 分享";
+
+"ABOUT_MAIL" = "致 EnGenius 成员：<br><br>以下是本人在使用 EnShare应用程序 过程中所遇到的几点问题/建议。<br><b><u>问题/建议：</b></u><br><br><font color='#646464'>（请在此输入您的问题/建议。）</font><br><br><br><u><b>以下为设备信息：</b></u><br><br>路由器型号：%@<br>路由器固件版本：%@<br>EnShare应用程序版本：%@<br>型号：%@<br>iOS 版本：%@<br><br>谨致问候<br>EnShare应用程序用户";
+
+"UPGRADE_OS" = "Not supported on current iOS version";
+
+//Firmware Alert
+"FIRMWARE_ALERT_DIALOG_TITLE"="新固件更新";
+"FIRMWARE_ALERT_DIALOG_INFO"="新固件（%@）可用。是否立即更新？\n\n注意：请参照“路由器管理”选项卡，\n禁用此警告。";
+"FIRMWARE_ALERT_SWITCH_TITLE"="新固件警告";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_TITLE"="是否关闭此通知？";
+"FIRMWARE_ALERT_NOTIFICATION_DIALOG_INFO"="强烈建议接收此重要警告消息。";
+
+//Firmware Detail Page
+"NEW_VERSION_TITLE"="新版本";
+"RELEASE_DATE_TITLE"="发布日期";
+"CHANGE_LOG"="更改日志";
+"NOTE_MESSAGE"="注意：大约需要 5 分钟完成更新过程。";
+"UPGRADING_TITLE"="固件更新中";
+"UPGRADE_FINISH_TITLE"="更新完成";
+"UPGRADING_WARNING"="警告：\n\n请不要在安装完成前关闭设备。";
+
+//button text(general button)
+"ButtonTextOk"="确定";
+"ButtonTextCancel"="取消";
+"ButtonTextBack"="返回";
+"ButtonTextDone"="完成";
+
+"accessDeviceFailMsg"="无法访问设备，请检查网络状态";
+"accessDeviceFaileTitle"="网络错误";
+
+"Oops"="哎呀";
+"Oops!"="哎呀！";
+
+//Image
+"IMAGE_CAMERA_CANCEL"="sc_btn_cancel.png";
+"IMAGE_CAMERA_CANCEL_HIGHTLIGHT"="sc_ibtn_cancel.png";
+"IMAGE_CAMERA_ALBUM"="sc_btn_readfmalbum.png";
+"IMAGE_CAMERA_ALBUM_HIGHTLIGHT"="sc_ibtn_readfmalbum.png";
+
+//language
+"CHANGE_LANGUAGE"="語言";
+
+//CustomDataPicker
+"LANGUAGE_AUTO"="自动";
+"LANGUAGE_EN"="English";
+"LANGUAGE_TC"="繁體中文";
+"LANGUAGE_SC"="简体中文";
+
+//language change alert
+"ShowChangeToAutoLanguageChangelertMessageTitle"="你要将语言更改为自动吗？";
+"ShowChangeToEnglishLanguageChangelertMessageTitle"="你要将语言更改为英文吗？";
+"ShowChangeToTCLanguageChangelertMessageTitle"="你要将语言更改为繁体中文吗？";
+"ShowChangeToSCLanguageChangelertMessageTitle"="你要将语言更改为简体中文吗？";
+"LanguageChangedAlertTitle"="你必须关闭并重新启动EnShare，使变更生效。";
+
+"SHARE_FOR_FILE"="分享档案至";
+"SHARE_FOR_LINK"="分享链路至";
+"SHARE_ERROR_NOT_SUPPORT"="目前网路设定无法支援分享链路功能。";
+"SHARE_ERROR_TOO_LONG"="因文件名称太长，无法产生分享链路。";
