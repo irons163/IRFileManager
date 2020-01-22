@@ -99,7 +99,6 @@ typedef NS_ENUM(NSUInteger, StaticIPInfoType){
 +(WEPInvalidType)checkWEPKeyValid:(NSString*)key;
 //Check subnet mask valid
 +(BOOL)checkSubnetMaskValid:(NSString*)subnetMask;
-+(BOOL)checkEnGeniusSubnetMaskValid:(NSString *)subnetMask;
 //Check Port valid
 +(BOOL)checkPortValid:(NSInteger)port MinValue:(NSInteger)minValue MaxValue:(NSInteger)maxValue;
 //Check IPAddress valid

@@ -1,6 +1,5 @@
 //
 //  PhotoCollectionViewController.m
-//  EnSmart
 //
 //  Created by Phil on 2015/8/26.
 //  Copyright (c) 2015年 Phil. All rights reserved.
@@ -11,23 +10,21 @@
 //#import "AZAPreviewItem.h"
 #import "KGModal.h"
 #import "IR_Tools.h"
-#import "SuccessView.h"
-#import "DataManager.h"
 #import "PhotoCollectionReusableView.h"
-#import "CollectionDataFile.h"
 #import "PhotoCollectionViewCell.h"
 #import "CommonTools.h"
 #import "ColorDefine.h"
 #import "UIColor+Helper.h"
 #import "StorageDeleteView.h"
-#import "StorageSelectWarningView.h"
 #import "LoadingView.h"
-#import "StaticLanguage.h"
+//#import "StaticLanguage.h"
 //#import "UploadingViewController.h"
 //#import "RouterGlobal.h"
 #import "AppDelegate.h"
 //#import "DialogPermissionView.h"
 #import "UIImageView+WebCache.h"
+#import "FileTypeUtility.h"
+#import "DBManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 typedef NS_ENUM(NSUInteger, EditMode) {
@@ -52,7 +49,7 @@ typedef NS_ENUM(NSUInteger, EditMode) {
     
     int editMode;
     UIView* tooBar;
-    UIBarButtonItem *leftItem, *rightItem, *dismissSearchBarRightItem, *leftButtonForCancelDeleteMode, *rightButtonForDoDelete, *leftButtonForCancelUploadMode, *rightButtonForDoUpload;
+    UIBarButtonItem *leftItem, *rightItem, *dismissSearchBarRightItem, *leftButtonForCancelDeleteMode, *rightButtonForDoDelete, *leftButtonForCancelUploadMode;
     UIButton* uploadButton;
     UIButton* deleteButton;
     UIButton* searchButton;
@@ -143,7 +140,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appDelegate.importFile) {
-        CollectionDataFile *file = appDelegate.importFile;
+        File *file = appDelegate.importFile;
         appDelegate.importFile = nil;
         
         photos = [NSMutableArray array];
@@ -239,10 +236,10 @@ static NSString * const reuseIdentifier = @"Cell";
     leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftview];
     
     downloadButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    UIImage* image = [UIImage imageNamed:@"nav_mobile import to enfile_icon"];
+    UIImage* image = [UIImage imageNamed:@"btn_nav_import"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 30)];
     [downloadButton setImage:image forState:UIControlStateNormal];
-    image = [UIImage imageNamed:@"nav_mobile import to enfile_icon"];
+    image = [UIImage imageNamed:@"btn_nav_import"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 30)];
     [downloadButton setImage:image forState:UIControlStateHighlighted];
     [downloadButton addTarget:self action:@selector(openSyncPhotosPageFormPhoneAlbum) forControlEvents:UIControlEventTouchUpInside];
@@ -272,16 +269,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [cancelUploadModeButton setTitle:_(@"Cancel") forState:UIControlStateNormal];
     [cancelUploadModeButton addTarget:self action:@selector(switchUploadMode) forControlEvents:UIControlEventTouchUpInside];
     leftButtonForCancelUploadMode = [[UIBarButtonItem alloc] initWithCustomView:cancelUploadModeButton];
-    
-    UIButton* doUploadButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 50)];
-    image = [UIImage imageNamed:@"btn_upload_cloud"];
-    image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(29.4, 25)];
-    [doUploadButton setImage:image forState:UIControlStateNormal];
-    image = [UIImage imageNamed:@"btn_upload_cloud"];
-    image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(29.4, 25)];
-    [doUploadButton setImage:image forState:UIControlStateHighlighted];
-    [doUploadButton addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
-    rightButtonForDoUpload = [[UIBarButtonItem alloc] initWithCustomView:doUploadButton];
 }
 
 -(void)setNormalNavigatinItem{
@@ -315,7 +302,7 @@ static NSString * const reuseIdentifier = @"Cell";
     UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     [negativeSpacerRight setWidth:-10];
     //    self.navigationItem.rightBarButtonItem = rightButtonForDoDelete;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight,rightButtonForDoUpload,nil];
+//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight,rightButtonForDoUpload,nil];
     
     [self.navigationController.navigationBar setNeedsLayout];
 }
@@ -500,25 +487,19 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)showWarnning:(NSString*)info{
-    SuccessView *successView;;
-    VIEW(successView, SuccessView);
-    successView.infoLabel.text = NSLocalizedString(info, nil);
-    [[KGModal sharedInstance] setShowCloseButton:FALSE];
-    [[KGModal sharedInstance] showWithContentView:successView andAnimated:YES];
+
 }
 
 -(void)loadData{
     [self startAnimating];
     
     dispatch_async(queue, ^{
-//        self.navigationItem.userInteractionEnabled = YES;
-        
-        photos = [NSMutableArray array];
-        NSArray* readFromDB = [[DataManager sharedInstance].database sqliteRead:[NSString stringWithFormat:@"SELECT * FROM Collection WHERE type = '%@' AND isfolder = '%@'; ", @"PICTURE", @"0"]];
+        NSArray* readFromDB = nil;
+        readFromDB = [File MR_findAll];
+
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        for(NSDictionary* dic in readFromDB){
-            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:dic[@"filename"]];
-            CollectionDataFile* file = [[CollectionDataFile alloc] initWithDatabaseNSDictionary:dic fileSize:[IR_Tools getFileSize:filePath] fileCreatedDate:[IR_Tools getFileCreationTimeFromPath:filePath]];
+        
+        for(File *file in readFromDB){
             [photos addObject:file];
         }
         
@@ -602,7 +583,7 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.checkboxImageView.hidden = NO;
     }
     
-    CollectionDataFile *item;
+    File *item;
     int position = 0;
     for(int section = 0; section < indexPath.section; section++){
         position += [self.collectionView numberOfItemsInSection:section];
@@ -630,15 +611,15 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)_cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)_cell;
-    CollectionDataFile* file;
+    File* file;
     
     NSDictionary* dic = [photosGroupByDate objectAtIndex:indexPath.section];
     NSMutableArray* photosByTheSameDate = [dic valueForKey:[[dic allKeys] firstObject]];
     
     if(searchActived){
-        file = ((CollectionDataFile*)[photosByTheSameDate objectAtIndex:indexPath.row]);
+        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
     }else{
-        file = ((CollectionDataFile*)[photosByTheSameDate objectAtIndex:indexPath.row]);
+        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -699,7 +680,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    CollectionDataFile *item;
+    File *item;
     
     int position = 0;
     for(int section = 0; section < indexPath.section; section++){
@@ -733,7 +714,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         rowNumber += indexPath.row;
         
-        CollectionDataFile* item = ((CollectionDataFile*)[photos objectAtIndex:rowNumber]);
+        File* item = ((File*)[photos objectAtIndex:rowNumber]);
         [selectedPhotos removeObject:item];
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
         [self checkSelectAllItemButtonStatus];
@@ -757,15 +738,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
     position += indexPath.row;
     
-    CollectionDataFile* file;
+    File* file;
     
     NSDictionary* dic = [photosGroupByDate objectAtIndex:indexPath.section];
     NSMutableArray* photosByTheSameDate = [dic valueForKey:[[dic allKeys] firstObject]];
     
     if(searchActived){
-        file = ((CollectionDataFile*)[photosByTheSameDate objectAtIndex:indexPath.row]);
+        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
     }else{
-        file = ((CollectionDataFile*)[photosByTheSameDate objectAtIndex:indexPath.row]);
+        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -782,11 +763,11 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - IRGalleryViewControllerSourceDelegate Methods
 
 - (void)photoGallery:(IRGalleryViewController *)gallery deleteAtIndex:(NSUInteger)index {
-    CollectionDataFile* file;
+    File* file;
     if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
+        file = ((File*)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile*)photos[index]);
+        file = ((File*)photos[index]);
     }
     [self delete:@[file]];
 }
@@ -806,11 +787,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (NSString*)photoGallery:(IRGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
-    CollectionDataFile* file;
+    File* file;
     if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
+        file = ((File*)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile*)photos[index]);
+        file = ((File*)photos[index]);
     }
     
     NSString *filename = [NSString stringWithFormat:@"%@", file.name];
@@ -818,11 +799,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (NSString*)photoGallery:(IRGalleryViewController *)gallery urlForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    CollectionDataFile* file;
+    File* file;
     if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
+        file = ((File*)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile*)photos[index]);
+        file = ((File*)photos[index]);
     }
     
     NSString *filename = [NSString stringWithFormat:@"%@", file];
@@ -830,11 +811,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (NSString*)photoGallery:(IRGalleryViewController *)gallery filePathForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    CollectionDataFile *file;
+    File *file;
     if(searchActived){
-        file = ((CollectionDataFile *)autocompleteUrls[index]);
+        file = ((File *)autocompleteUrls[index]);
     }else{
-        file = ((CollectionDataFile *)photos[index]);
+        file = ((File *)photos[index]);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -843,42 +824,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (bool)photoGallery:(IRGalleryViewController *)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index {
-    CollectionDataFile* file;
-    if(searchActived){
-        file = ((CollectionDataFile*)autocompleteUrls[index]);
-    }else{
-        file = ((CollectionDataFile*)photos[index]);
-    }
-    
-    if([file.addfavoritetime intValue]==0)
-        return NO;
-    
-    return YES;
+    return NO;
 }
 
 - (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index {
-    CollectionDataFile *file;
-    if(searchActived){
-        file = ((CollectionDataFile *)autocompleteUrls[index]);
-    }else{
-        file = ((CollectionDataFile *)photos[index]);
-    }
     
-    NSString* favoriteTime;
-    if (isAddToFavortieList == TRUE) {
-        favoriteTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
-    } else {
-        favoriteTime = @"0";
-    }
-    
-    [[DataManager sharedInstance].database sqliteUpdate:@"Collection" keys:@ {
-        @"filename" : [file.name stringByReplacingOccurrencesOfString:@"'" withString:@"''"],
-        @"isfolder" : @"0",
-    } params:@ {
-        @"addfavoritetime" : favoriteTime,
-    }];
-    
-    file.addfavoritetime = favoriteTime;
 }
 
 - (void)backBtnDidClick {
@@ -1005,7 +955,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *info;
     NSMutableArray *dfiles = [NSMutableArray array];
 
-    for (CollectionDataFile* file in selectedPhotos){
+    for (File* file in selectedPhotos){
         [dfiles addObject:file];
         info = NSLocalizedString(@"DELETE_FILE", nil);
     }
@@ -1017,33 +967,14 @@ static NSString * const reuseIdentifier = @"Cell";
     sview.infoLabel.text = info;
     [[KGModal sharedInstance] setShowCloseButton:FALSE];
     [[KGModal sharedInstance] showWithContentView:sview andAnimated:YES];
-#ifdef enshare
-    [SenaoGA setEvent:nil Action:@"CollectionPage_Edit-Delete" Label:nil Value:nil];
-#endif
 }
 
 - (void)delete:(NSArray*)dfiles {
-    for (CollectionDataFile *file in dfiles) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *file1 = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:file1 error:nil];
-        
-        [[DataManager sharedInstance].database sqliteDelete:@"Collection" keys:@ {
-            @"uid" : file.uid,
-        }];
-    }
     
-    [self loadData];
-    [self showWarnning:_(@"DELETE_ALERT")];
-    [self changeToNormalMode];
 }
 
 - (void)showWarningView{
-    StorageSelectWarningView *sview = nil;
-    VIEW(sview, StorageSelectWarningView);
-    [[KGModal sharedInstance] setShowCloseButton:FALSE];
-    [[KGModal sharedInstance] showWithContentView:sview andAnimated:YES];
+    
 }
 
 - (void)selectAllItem:(BOOL)selectAll {
@@ -1084,14 +1015,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.loadingView startAnimating];
     [self.view setUserInteractionEnabled:NO];
     self.loadingView.hidden = NO;
-    rightButtonForDoUpload.enabled = NO;
 }
 
 -(void)stopAnimating{
     [self.loadingView stopAnimating];
     [self.view setUserInteractionEnabled:YES];
     self.loadingView.hidden = YES;
-    rightButtonForDoUpload.enabled = YES;
 }
 
 #pragma mark UITextFieldDelegate methods
@@ -1124,11 +1053,11 @@ static NSString * const reuseIdentifier = @"Cell";
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
     
     if(!searchActived){
-        for(CollectionDataFile* f in photos) {
+        for(File* f in photos) {
             [autocompleteUrls addObject:f];
         }
     }else{
-        for(CollectionDataFile* f in photos) {
+        for(File* f in photos) {
             NSString *curStringForFileName = [IR_Tools formatDate_yyyyMMdd:f.createTime];
             NSRange substringRangeForFileName = [curStringForFileName rangeOfString:substring options:NSCaseInsensitiveSearch];
             if (substringRangeForFileName.length > 0) {
@@ -1149,7 +1078,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString* previousDateString;
     
     a = [NSMutableArray array];
-    for(CollectionDataFile* file in itmes){
+    for(File* file in itmes){
         BOOL hasNewDateGroup = NO;
         NSString* dateString = [self getDateStringShowInPhotoAlbum:file.createTime];
         if(previousDateString==nil){
@@ -1207,8 +1136,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)doSyncPhotos{
-    [AutoSyncPhotos sharedInstance].delegate = self;
-    [[AutoSyncPhotos sharedInstance] doSync];
+    
 }
 
 -(void)checkPermisstion{
@@ -1278,13 +1206,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark - showPermisstionAlert
 - (void)showPermisstionAlert{
-    SuccessView *dialog;;
-    VIEW(dialog, SuccessView);
-    dialog.infoLabel.text = _(@"NOT_PHOTO");
-//    dialog.imageView.image = [UIImage imageNamed:_(@"Photo_Permission")];
-//    dialog.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [[KGModal sharedInstance] setShowCloseButton:NO];
-    [[KGModal sharedInstance] showWithContentView:dialog andAnimated:YES];
+  
 }
 
 #pragma mark - QBImagePickerControllerDelegate
@@ -1309,23 +1231,24 @@ static NSString * const reuseIdentifier = @"Cell";
                                         NSString *ext = path.pathExtension;
                                         if(ext){
                                             fileName = [NSString stringWithFormat:@"%@.%@", assetID, ext];
+                                            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                                            
+                                            fileName = [[DBManager sharedInstance] getNewFileNameIfExistsByFileName:fileName];
                                             
                                             NSString *resourceDocPath = [[NSString alloc] initWithString:[[NSTemporaryDirectory() stringByDeletingLastPathComponent]stringByAppendingPathComponent:@"Documents"]];
                                             
                                             NSString *filePath = [resourceDocPath stringByAppendingPathComponent:fileName];
                                             
                                             [imageData writeToFile:filePath atomically:YES];
+
+                                            NSString *fileTypeString = [FileTypeUtility getFileType:[fileName pathExtension]];
+                                            File *file = [File MR_createEntity];
+                                            file.name = fileName;
+                                            file.type = fileTypeString;
+                                            file.size = [[FileTypeUtility getFileSize:filePath] longLongValue];
+                                            file.createTime = [FileTypeUtility getFileCreationTimeFromPath:filePath];
                                             
-                                            //存入到資料庫
-                                            NSString *uid = [NSString stringWithFormat:@"%d%d", (int)[[NSDate date] timeIntervalSince1970], arc4random() % 99999];
-                                            [[DataManager sharedInstance].database    sqliteInsert:@"Collection" keys:@ {
-                                                @"uid" : uid,
-                                                @"type" : [[DataManager sharedInstance] getType:[fileName pathExtension]],
-                                                @"filename" : [fileName stringByReplacingOccurrencesOfString:@"'" withString:@"''"],
-                                                @"isdownload" : @"1",
-                                                @"isfolder" : @"0",
-                                                @"parentfolder" : @"/"
-                                            }];
+                                            [[DBManager sharedInstance] save];
                                         }else{
                                             NSLog(@"No pathExtension.");
                                         }

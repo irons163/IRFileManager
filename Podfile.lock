@@ -1,31 +1,76 @@
 PODS:
-  - IRGallery (0.1.0)
+  - CocoaLumberjack (3.6.0):
+    - CocoaLumberjack/Core (= 3.6.0)
+  - CocoaLumberjack/Core (3.6.0)
+  - IRFFMpeg (4.2.19):
+    - IRFFMpeg/FFMpegLib (= 4.2.19)
+  - IRFFMpeg/FFMpegLib (4.2.19)
+  - IRGallery (0.1.1)
+  - IRMusicPlayer (0.1.1)
+  - IRPasscode (0.1.4):
+    - UICKeyChainStore
+  - IRPlayer (0.3.5):
+    - IRFFMpeg
+  - IRShareManager (0.1.0)
+  - MagicalRecord/CocoaLumberjack (2.4.0):
+    - CocoaLumberjack (~> 3.0)
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.4.0)
   - Masonry (1.1.0)
   - QBImagePickerController (3.4.0)
-  - SDWebImage (5.0.6):
-    - SDWebImage/Core (= 5.0.6)
-  - SDWebImage/Core (5.0.6)
+  - SDWebImage (3.8.3):
+    - SDWebImage/Core (= 3.8.3)
+  - SDWebImage/Core (3.8.3)
+  - UICKeyChainStore (2.1.2)
 
 DEPENDENCIES:
   - IRGallery
+  - IRMusicPlayer
+  - IRPasscode
+  - IRPlayer
+  - IRShareManager
+  - MagicalRecord/CocoaLumberjack (from `https://github.com/magicalpanda/MagicalRecord`)
   - Masonry
   - QBImagePickerController
-  - SDWebImage
+  - SDWebImage (~> 3.8)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
+    - CocoaLumberjack
+    - IRFFMpeg
+    - IRGallery
+    - IRMusicPlayer
+    - IRPasscode
+    - IRPlayer
+    - IRShareManager
     - Masonry
     - QBImagePickerController
     - SDWebImage
-  trunk:
-    - IRGallery
+    - UICKeyChainStore
+
+EXTERNAL SOURCES:
+  MagicalRecord:
+    :git: https://github.com/magicalpanda/MagicalRecord
+
+CHECKOUT OPTIONS:
+  MagicalRecord:
+    :commit: 6031f608b79c1d6802007aaed6efd100e11f59ba
+    :git: https://github.com/magicalpanda/MagicalRecord
 
 SPEC CHECKSUMS:
-  IRGallery: db71673bcd206baa5d5d9504f31b785d333de718
+  CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
+  IRFFMpeg: 50e159994f9c7c1136b19fc1dea96b4c903b1c9c
+  IRGallery: f735c72a80e9b78b2a772783bddbbe7d95be384e
+  IRMusicPlayer: d8f8092e34681bc8353c86923e6260337e95b7b9
+  IRPasscode: 2662639ab8d2e193751abd9fc858249424982ca5
+  IRPlayer: 1448253d7c87c9cbdd7bd288d8a0edbdd17494a6
+  IRShareManager: d41d1bc84120ec6aa3ac93cf65e5bb784f91ed63
+  MagicalRecord: 1f22a766156474d9f46a9b1e1ce59ca9e37830fc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
-  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
+  UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
 
-PODFILE CHECKSUM: 2ae72f6cd388f742ed2604879fdc1f035df78c57
+PODFILE CHECKSUM: 340fd2897586c24ac5e83fa15fcb9465b1e6f8d2
 
-COCOAPODS: 1.8.0.beta.2
+COCOAPODS: 1.8.4

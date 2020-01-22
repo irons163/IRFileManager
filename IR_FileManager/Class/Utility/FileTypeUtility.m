@@ -1,16 +1,14 @@
 //
 //  FileTypeUtility.m
-//  EnShare
 //
 //  Created by Phil on 2017/8/14.
-//  Copyright © 2017年 Senao. All rights reserved.
 //
 
 #import "FileTypeUtility.h"
 
 @implementation FileTypeUtility
 
-+ (NSString*)getType:(NSString*)ext {
++ (NSString*)getFileType:(NSString*)ext {
     if ( [[ext lowercaseString] isEqualToString:@"pdf"] || [[ext lowercaseString] isEqualToString:@"txt"] || [[ext lowercaseString] isEqualToString:@"rtf"] ||
         [[ext lowercaseString] isEqualToString:@"htm"] || [[ext lowercaseString] isEqualToString:@"html"] ||
         [[ext lowercaseString] isEqualToString:@"doc"] || [[ext lowercaseString] isEqualToString:@"docx"] ||
@@ -48,6 +46,28 @@
         return @"PICTURE";
     else
         return @"DOCUMENT";
+}
+
++ (NSNumber *)getFileSize:(NSString *)filepath {
+    NSError* error;
+    NSDictionary *fileDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:filepath error: &error];
+    NSNumber *fileSize = [fileDictionary objectForKey:NSFileSize];
+    return fileSize;
+}
+
++ (NSDate *)getFileCreationTimeFromPath:(NSString *)filePath {
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSDictionary* attrs = [fm attributesOfItemAtPath:filePath error:nil];
+    NSDate *date;
+    if (attrs != nil) {
+        date = (NSDate*)[attrs objectForKey: NSFileCreationDate];
+        NSLog(@"Date Created: %@", [date description]);
+    }
+    else {
+        NSLog(@"Not found");
+    }
+    
+    return date;
 }
 
 + (UIImage*)getImageWithType:(NSString*)type ext:(NSString*)ext {

@@ -1,88 +1,68 @@
 //
 //  Utilities.m
-//  iFrameExtractor
+//  IR_FileManager
 //
-//  Created by lajos on 1/10/10.
-//
-//  Copyright 2010 Lajos Kamocsay
-//
-//  lajos at codza dot com
-//
-//  iFrameExtractor is free software; you can redistribute it and/or
-//  modify it under the terms of the GNU Lesser General Public
-//  License as published by the Free Software Foundation; either
-//  version 2.1 of the License, or (at your option) any later version.
-// 
-//  iFrameExtractor is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//  Lesser General Public License for more details.
+//  Created by Phil on 2020/1/21.
+//  Copyright © 2020 Phil. All rights reserved.
 //
 
 #import "Utilities.h"
-#include "libavformat/avformat.h"
-#include "libswscale/swscale.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation Utilities
 
-+(NSString *)bundlePath:(NSString *)fileName {
-	return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
-}
-
-+(NSString *)documentsPath:(NSString *)fileName {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	return [documentsDirectory stringByAppendingPathComponent:fileName];
-}
-
-
-// Reference
-// http://stackoverflow.com/questions/9604633/reading-a-file-located-in-memory-with-libavformat
-
-int readFunction(void* opaque, uint8_t* buf, int buf_size)
-{
-    tFileX *vpFileX = (tFileX *) opaque;
-    if((vpFileX->FileSize - vpFileX->FilePosition) > buf_size)
-    {
-        fseek((FILE*) vpFileX->pBuffer, (int)vpFileX->FilePosition, SEEK_SET);
-        fread(buf, 1, buf_size, (FILE*) vpFileX->pBuffer);
-//        memcpy(buf, vpFileX->pBuffer + vpFileX->FilePosition, buf_size);
-        vpFileX->FilePosition += buf_size;
-        return buf_size;
++ (UIImage *)getMusicCover:(NSString *)urlString {
+//    NSString * s = [urlString substringFromIndex:1];
+    NSURL *url = [NSURL fileURLWithPath:urlString];
+    AVAsset *asset = [AVAsset assetWithURL:url];
+//    UIImage* defaultImage = [UIImage imageNamed:@"music"];
+    UIImage* defaultImage = nil;
+    for (AVMetadataItem *metadataItem in asset.commonMetadata) {
+        if ([metadataItem.keySpace isEqualToString:AVMetadataKeySpaceID3]){
+            if ([metadataItem.value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *imageDataDictionary = (NSDictionary *)metadataItem.value;
+                NSData *imageData = [imageDataDictionary objectForKey:@"data"];
+                UIImage *image = [UIImage imageWithData:imageData];
+                // Display this image on my UIImageView property imageView
+                if (image) {
+                    defaultImage = image;
+                    break;
+                }
+            }else if([metadataItem.value isKindOfClass:[NSData class]]){
+                UIImage *image = [UIImage imageWithData:(NSData*)metadataItem.value];
+                if (image) {
+                    defaultImage = image;
+                    break;
+                }
+            }
+        }else if ([metadataItem.keySpace isEqualToString:AVMetadataKeySpaceiTunes]){
+            if([[metadataItem.value copyWithZone:nil] isKindOfClass:[NSData class]]){
+                UIImage* image = [UIImage imageWithData:[metadataItem.value copyWithZone:nil]];
+                if (image) {
+                    defaultImage = image;
+                    break;
+                }
+            }
+        }
     }
-    else
-    {
-        fread(buf, 1, buf_size, (FILE*)vpFileX->pBuffer);
-        
-//        memcpy(buf, vpFileX->pBuffer + vpFileX->FilePosition,  (vpFileX->FileSize - vpFileX->FilePosition) );
-        vpFileX->FilePosition = vpFileX->FileSize;
-        return (vpFileX->FileSize - vpFileX->FilePosition);
-    }
-
     
-//    FILE *tmpFile = (FILE*) opaque;
-//    long iCurr = ftell(tmpFile);
-//    int iRtn = fread(buf, 1, buf_size, tmpFile);
-//    
-//    return iRtn;
+    return defaultImage;
 }
 
-int64_t seekFunction(void* opaque, int64_t offset, int whence)
-{
-    tFileX *vpFileX = (tFileX *) opaque;
-    //    if (whence == AVSEEK_SIZE)
-    //        return -1; // I don't know "size of my handle in bytes"
-    if (whence == AVSEEK_SIZE)
-        return vpFileX->FileSize;
-    else if (whence == SEEK_SET)
-        vpFileX->FilePosition = offset;
-    else if (whence == SEEK_CUR)
-        vpFileX->FilePosition += offset;
-    else if (whence == SEEK_END)
-        vpFileX->FilePosition = vpFileX->FileSize - offset;
++ (UIImage *)generateThumbImage:(NSString *)filepath {
+    NSURL *url = [NSURL fileURLWithPath:filepath];
     
-    return vpFileX->FilePosition;
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    CMTime time = [asset duration];
+    time.value = 0;
+    CGSize maxSize = CGSizeMake(320, 180);
+    imageGenerator.maximumSize = maxSize;
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return thumbnail;
 }
-
 
 @end

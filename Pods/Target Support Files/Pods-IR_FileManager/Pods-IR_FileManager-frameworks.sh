@@ -161,16 +161,32 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRGallery/IRGallery.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRMusicPlayer/IRMusicPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPasscode/IRPasscode.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPlayer/IRPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRShareManager/IRShareManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/QBImagePickerController/QBImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRGallery/IRGallery.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRMusicPlayer/IRMusicPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPasscode/IRPasscode.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPlayer/IRPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRShareManager/IRShareManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/QBImagePickerController/QBImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

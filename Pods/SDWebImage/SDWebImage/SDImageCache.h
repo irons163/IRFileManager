@@ -8,339 +8,273 @@
 
 #import <Foundation/Foundation.h>
 #import "SDWebImageCompat.h"
-#import "SDWebImageDefine.h"
-#import "SDImageCacheConfig.h"
-#import "SDImageCacheDefine.h"
 
-/// Image Cache Options
-typedef NS_OPTIONS(NSUInteger, SDImageCacheOptions) {
+typedef NS_ENUM(NSInteger, SDImageCacheType) {
     /**
-     * By default, we do not query image data when the image is already cached in memory. This mask can force to query image data at the same time. However, this query is asynchronously unless you specify `SDImageCacheQueryMemoryDataSync`
+     * The image wasn't available the SDWebImage caches, but was downloaded from the web.
      */
-    SDImageCacheQueryMemoryData = 1 << 0,
+    SDImageCacheTypeNone,
     /**
-     * By default, when you only specify `SDImageCacheQueryMemoryData`, we query the memory image data asynchronously. Combined this mask as well to query the memory image data synchronously.
+     * The image was obtained from the disk cache.
      */
-    SDImageCacheQueryMemoryDataSync = 1 << 1,
+    SDImageCacheTypeDisk,
     /**
-     * By default, when the memory cache miss, we query the disk cache asynchronously. This mask can force to query disk cache (when memory cache miss) synchronously.
-     @note These 3 query options can be combined together. For the full list about these masks combination, see wiki page.
+     * The image was obtained from the memory cache.
      */
-    SDImageCacheQueryDiskDataSync = 1 << 2,
-    /**
-     * By default, images are decoded respecting their original size. On iOS, this flag will scale down the
-     * images to a size compatible with the constrained memory of devices.
-     */
-    SDImageCacheScaleDownLargeImages = 1 << 3,
-    /**
-     * By default, we will decode the image in the background during cache query and download from the network. This can help to improve performance because when rendering image on the screen, it need to be firstly decoded. But this happen on the main queue by Core Animation.
-     * However, this process may increase the memory usage as well. If you are experiencing a issue due to excessive memory consumption, This flag can prevent decode the image.
-     */
-    SDImageCacheAvoidDecodeImage = 1 << 4,
-    /**
-     * By default, we decode the animated image. This flag can force decode the first frame only and produece the static image.
-     */
-    SDImageCacheDecodeFirstFrameOnly = 1 << 5,
-    /**
-     * By default, for `SDAnimatedImage`, we decode the animated image frame during rendering to reduce memory usage. This flag actually trigger `preloadAllAnimatedImageFrames = YES` after image load from disk cache
-     */
-    SDImageCachePreloadAllFrames = 1 << 6
+    SDImageCacheTypeMemory
 };
 
+typedef void(^SDWebImageQueryCompletedBlock)(UIImage *image, SDImageCacheType cacheType);
+
+typedef void(^SDWebImageCheckCacheCompletionBlock)(BOOL isInCache);
+
+typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger totalSize);
+
 /**
- * SDImageCache maintains a memory cache and a disk cache. Disk cache write operations are performed
+ * SDImageCache maintains a memory cache and an optional disk cache. Disk cache write operations are performed
  * asynchronous so it doesn’t add unnecessary latency to the UI.
  */
 @interface SDImageCache : NSObject
 
-#pragma mark - Properties
+/**
+ * Decompressing images that are downloaded and cached can improve performance but can consume lot of memory.
+ * Defaults to YES. Set this to NO if you are experiencing a crash due to excessive memory consumption.
+ */
+@property (assign, nonatomic) BOOL shouldDecompressImages;
 
 /**
- *  Cache Config object - storing all kind of settings.
- *  The property is copy so change of currrent config will not accidentally affect other cache's config.
+ *  disable iCloud backup [defaults to YES]
  */
-@property (nonatomic, copy, nonnull, readonly) SDImageCacheConfig *config;
+@property (assign, nonatomic) BOOL shouldDisableiCloud;
 
 /**
- *  The disk cache's root path
+ * use memory cache [defaults to YES]
  */
-@property (nonatomic, copy, nonnull, readonly) NSString *diskCachePath;
+@property (assign, nonatomic) BOOL shouldCacheImagesInMemory;
 
 /**
- *  The additional disk cache path to check if the query from disk cache not exist;
- *  The `key` param is the image cache key. The returned file path will be used to load the disk cache. If return nil, ignore it.
- *  Useful if you want to bundle pre-loaded images with your app
+ * The maximum "total cost" of the in-memory image cache. The cost function is the number of pixels held in memory.
  */
-@property (nonatomic, copy, nullable) SDImageCacheAdditionalCachePathBlock additionalCachePathBlock;
+@property (assign, nonatomic) NSUInteger maxMemoryCost;
 
-#pragma mark - Singleton and initialization
+/**
+ * The maximum number of objects the cache should hold.
+ */
+@property (assign, nonatomic) NSUInteger maxMemoryCountLimit;
+
+/**
+ * The maximum length of time to keep an image in the cache, in seconds
+ */
+@property (assign, nonatomic) NSInteger maxCacheAge;
+
+/**
+ * The maximum size of the cache, in bytes.
+ */
+@property (assign, nonatomic) NSUInteger maxCacheSize;
 
 /**
  * Returns global shared cache instance
+ *
+ * @return SDImageCache global instance
  */
-@property (nonatomic, class, readonly, nonnull) SDImageCache *sharedImageCache;
++ (SDImageCache *)sharedImageCache;
 
 /**
  * Init a new cache store with a specific namespace
  *
  * @param ns The namespace to use for this cache store
  */
-- (nonnull instancetype)initWithNamespace:(nonnull NSString *)ns;
+- (id)initWithNamespace:(NSString *)ns;
 
 /**
- * Init a new cache store with a specific namespace and directory.
- * If you don't provide the disk cache directory, we will use the User Cache directory with prefix (~/Library/Caches/com.hackemist.SDImageCache/).
+ * Init a new cache store with a specific namespace and directory
  *
  * @param ns        The namespace to use for this cache store
  * @param directory Directory to cache disk images in
  */
-- (nonnull instancetype)initWithNamespace:(nonnull NSString *)ns
-                       diskCacheDirectory:(nullable NSString *)directory;
+- (id)initWithNamespace:(NSString *)ns diskCacheDirectory:(NSString *)directory;
+
+-(NSString *)makeDiskCachePath:(NSString*)fullNamespace;
 
 /**
- * Init a new cache store with a specific namespace, directory and file manager
- * The final disk cache directory should looks like ($directory/$namespace). And the default config of shared cache, should result in (~/Library/Caches/com.hackemist.SDImageCache/default/)
+ * Add a read-only cache path to search for images pre-cached by SDImageCache
+ * Useful if you want to bundle pre-loaded images with your app
  *
- * @param ns          The namespace to use for this cache store
- * @param directory   Directory to cache disk images in
- * @param config      The cache config to be used to create the cache. You can provide custom memory cache or disk cache class in the cache config
+ * @param path The path to use for this read-only cache path
  */
-- (nonnull instancetype)initWithNamespace:(nonnull NSString *)ns
-                       diskCacheDirectory:(nullable NSString *)directory
-                                   config:(nullable SDImageCacheConfig *)config NS_DESIGNATED_INITIALIZER;
-
-#pragma mark - Cache paths
+- (void)addReadOnlyCachePath:(NSString *)path;
 
 /**
- Get the cache path for a certain key
- 
- @param key The unique image cache key
- @return The cache path. You can check `lastPathComponent` to grab the file name.
- */
-- (nullable NSString *)cachePathForKey:(nullable NSString *)key;
-
-#pragma mark - Store Ops
-
-/**
- * Asynchronously store an image into memory and disk cache at the given key.
+ * Store an image into memory and disk cache at the given key.
  *
- * @param image           The image to store
- * @param key             The unique image cache key, usually it's image absolute URL
- * @param completionBlock A block executed after the operation is finished
+ * @param image The image to store
+ * @param key   The unique image cache key, usually it's image absolute URL
  */
-- (void)storeImage:(nullable UIImage *)image
-            forKey:(nullable NSString *)key
-        completion:(nullable SDWebImageNoParamsBlock)completionBlock;
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key;
 
 /**
- * Asynchronously store an image into memory and disk cache at the given key.
- *
- * @param image           The image to store
- * @param key             The unique image cache key, usually it's image absolute URL
- * @param toDisk          Store the image to disk cache if YES. If NO, the completion block is called synchronously
- * @param completionBlock A block executed after the operation is finished
- */
-- (void)storeImage:(nullable UIImage *)image
-            forKey:(nullable NSString *)key
-            toDisk:(BOOL)toDisk
-        completion:(nullable SDWebImageNoParamsBlock)completionBlock;
-
-/**
- * Asynchronously store an image into memory and disk cache at the given key.
- *
- * @param image           The image to store
- * @param imageData       The image data as returned by the server, this representation will be used for disk storage
- *                        instead of converting the given image object into a storable/compressed image format in order
- *                        to save quality and CPU
- * @param key             The unique image cache key, usually it's image absolute URL
- * @param toDisk          Store the image to disk cache if YES. If NO, the completion block is called synchronously
- * @param completionBlock A block executed after the operation is finished
- */
-- (void)storeImage:(nullable UIImage *)image
-         imageData:(nullable NSData *)imageData
-            forKey:(nullable NSString *)key
-            toDisk:(BOOL)toDisk
-        completion:(nullable SDWebImageNoParamsBlock)completionBlock;
-
-/**
- * Synchronously store image into memory cache at the given key.
+ * Store an image into memory and optionally disk cache at the given key.
  *
  * @param image  The image to store
  * @param key    The unique image cache key, usually it's image absolute URL
+ * @param toDisk Store the image to disk cache if YES
  */
-- (void)storeImageToMemory:(nullable UIImage*)image
-                    forKey:(nullable NSString *)key;
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
 /**
- * Synchronously store image data into disk cache at the given key.
+ * Store an image into memory and optionally disk cache at the given key.
  *
- * @param imageData  The image data to store
- * @param key        The unique image cache key, usually it's image absolute URL
+ * @param image       The image to store
+ * @param recalculate BOOL indicates if imageData can be used or a new data should be constructed from the UIImage
+ * @param imageData   The image data as returned by the server, this representation will be used for disk storage
+ *                    instead of converting the given image object into a storable/compressed image format in order
+ *                    to save quality and CPU
+ * @param key         The unique image cache key, usually it's image absolute URL
+ * @param toDisk      Store the image to disk cache if YES
  */
-- (void)storeImageDataToDisk:(nullable NSData *)imageData
-                      forKey:(nullable NSString *)key;
-
-
-#pragma mark - Contains and Check Ops
+- (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
 /**
- *  Asynchronously check if image exists in disk cache already (does not load the image)
+ * Store image NSData into disk cache at the given key.
+ *
+ * @param imageData The image data to store
+ * @param key   The unique image cache key, usually it's image absolute URL
+ */
+- (void)storeImageDataToDisk:(NSData *)imageData forKey:(NSString *)key;
+
+/**
+ * Query the disk cache asynchronously.
+ *
+ * @param key The unique key used to store the wanted image
+ */
+- (NSOperation *)queryDiskCacheForKey:(NSString *)key done:(SDWebImageQueryCompletedBlock)doneBlock;
+
+/**
+ * Query the memory cache synchronously.
+ *
+ * @param key The unique key used to store the wanted image
+ */
+- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key;
+
+/**
+ * Query the disk cache synchronously after checking the memory cache.
+ *
+ * @param key The unique key used to store the wanted image
+ */
+- (UIImage *)imageFromDiskCacheForKey:(NSString *)key;
+
+/**
+ * Remove the image from memory and disk cache asynchronously
+ *
+ * @param key The unique image cache key
+ */
+- (void)removeImageForKey:(NSString *)key;
+
+
+/**
+ * Remove the image from memory and disk cache asynchronously
+ *
+ * @param key             The unique image cache key
+ * @param completion      An block that should be executed after the image has been removed (optional)
+ */
+- (void)removeImageForKey:(NSString *)key withCompletion:(SDWebImageNoParamsBlock)completion;
+
+/**
+ * Remove the image from memory and optionally disk cache asynchronously
+ *
+ * @param key      The unique image cache key
+ * @param fromDisk Also remove cache entry from disk if YES
+ */
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk;
+
+/**
+ * Remove the image from memory and optionally disk cache asynchronously
+ *
+ * @param key             The unique image cache key
+ * @param fromDisk        Also remove cache entry from disk if YES
+ * @param completion      An block that should be executed after the image has been removed (optional)
+ */
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(SDWebImageNoParamsBlock)completion;
+
+/**
+ * Clear all memory cached images
+ */
+- (void)clearMemory;
+
+/**
+ * Clear all disk cached images. Non-blocking method - returns immediately.
+ * @param completion    An block that should be executed after cache expiration completes (optional)
+ */
+- (void)clearDiskOnCompletion:(SDWebImageNoParamsBlock)completion;
+
+/**
+ * Clear all disk cached images
+ * @see clearDiskOnCompletion:
+ */
+- (void)clearDisk;
+
+/**
+ * Remove all expired cached image from disk. Non-blocking method - returns immediately.
+ * @param completionBlock An block that should be executed after cache expiration completes (optional)
+ */
+- (void)cleanDiskWithCompletionBlock:(SDWebImageNoParamsBlock)completionBlock;
+
+/**
+ * Remove all expired cached image from disk
+ * @see cleanDiskWithCompletionBlock:
+ */
+- (void)cleanDisk;
+
+/**
+ * Get the size used by the disk cache
+ */
+- (NSUInteger)getSize;
+
+/**
+ * Get the number of images in the disk cache
+ */
+- (NSUInteger)getDiskCount;
+
+/**
+ * Asynchronously calculate the disk cache's size.
+ */
+- (void)calculateSizeWithCompletionBlock:(SDWebImageCalculateSizeBlock)completionBlock;
+
+/**
+ *  Async check if image exists in disk cache already (does not load the image)
  *
  *  @param key             the key describing the url
  *  @param completionBlock the block to be executed when the check is done.
  *  @note the completion block will be always executed on the main queue
  */
-- (void)diskImageExistsWithKey:(nullable NSString *)key completion:(nullable SDImageCacheCheckCompletionBlock)completionBlock;
+- (void)diskImageExistsWithKey:(NSString *)key completion:(SDWebImageCheckCacheCompletionBlock)completionBlock;
 
 /**
- *  Synchronously check if image data exists in disk cache already (does not load the image)
+ *  Check if image exists in disk cache already (does not load the image)
  *
- *  @param key             the key describing the url
- */
-- (BOOL)diskImageDataExistsWithKey:(nullable NSString *)key;
-
-#pragma mark - Query and Retrieve Ops
-
-/**
- * Asynchronously queries the cache with operation and call the completion when done.
- *  Query the image data for the given key synchronously.
+ *  @param key the key describing the url
  *
- *  @param key The unique key used to store the wanted image
- *  @return The image data for the given key, or nil if not found.
+ *  @return YES if an image exists for the given key
  */
-- (nullable NSData *)diskImageDataForKey:(nullable NSString *)key;
+- (BOOL)diskImageExistsWithKey:(NSString *)key;
 
 /**
- * Operation that queries the cache asynchronously and call the completion when done.
+ *  Get the cache path for a certain key (needs the cache path root folder)
  *
- * @param key       The unique key used to store the wanted image
- * @param doneBlock The completion block. Will not get called if the operation is cancelled
+ *  @param key  the key (can be obtained from url using cacheKeyForURL)
+ *  @param path the cache path root folder
  *
- * @return a NSOperation instance containing the cache op
+ *  @return the cache path
  */
-- (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key done:(nullable SDImageCacheQueryCompletionBlock)doneBlock;
+- (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path;
 
 /**
- * Asynchronously queries the cache with operation and call the completion when done.
+ *  Get the default cache path for a certain key
  *
- * @param key       The unique key used to store the wanted image
- * @param options   A mask to specify options to use for this cache query
- * @param doneBlock The completion block. Will not get called if the operation is cancelled
+ *  @param key the key (can be obtained from url using cacheKeyForURL)
  *
- * @return a NSOperation instance containing the cache op
+ *  @return the default cache path
  */
-- (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options done:(nullable SDImageCacheQueryCompletionBlock)doneBlock;
-
-/**
- * Asynchronously queries the cache with operation and call the completion when done.
- *
- * @param key       The unique key used to store the wanted image
- * @param options   A mask to specify options to use for this cache query
- * @param context   A context contains different options to perform specify changes or processes, see `SDWebImageContextOption`. This hold the extra objects which `options` enum can not hold.
- * @param doneBlock The completion block. Will not get called if the operation is cancelled
- *
- * @return a NSOperation instance containing the cache op
- */
-- (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key options:(SDImageCacheOptions)options context:(nullable SDWebImageContext *)context done:(nullable SDImageCacheQueryCompletionBlock)doneBlock;
-
-/**
- * Synchronously query the memory cache.
- *
- * @param key The unique key used to store the image
- * @return The image for the given key, or nil if not found.
- */
-- (nullable UIImage *)imageFromMemoryCacheForKey:(nullable NSString *)key;
-
-/**
- * Synchronously query the disk cache.
- *
- * @param key The unique key used to store the image
- * @return The image for the given key, or nil if not found.
- */
-- (nullable UIImage *)imageFromDiskCacheForKey:(nullable NSString *)key;
-
-/**
- * Synchronously query the cache (memory and or disk) after checking the memory cache.
- *
- * @param key The unique key used to store the image
- * @return The image for the given key, or nil if not found.
- */
-- (nullable UIImage *)imageFromCacheForKey:(nullable NSString *)key;
-
-#pragma mark - Remove Ops
-
-/**
- * Asynchronously remove the image from memory and disk cache
- *
- * @param key             The unique image cache key
- * @param completion      A block that should be executed after the image has been removed (optional)
- */
-- (void)removeImageForKey:(nullable NSString *)key withCompletion:(nullable SDWebImageNoParamsBlock)completion;
-
-/**
- * Asynchronously remove the image from memory and optionally disk cache
- *
- * @param key             The unique image cache key
- * @param fromDisk        Also remove cache entry from disk if YES. If NO, the completion block is called synchronously
- * @param completion      A block that should be executed after the image has been removed (optional)
- */
-- (void)removeImageForKey:(nullable NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(nullable SDWebImageNoParamsBlock)completion;
-
-/**
- Synchronously remove the image from memory cache.
- 
- @param key The unique image cache key
- */
-- (void)removeImageFromMemoryForKey:(nullable NSString *)key;
-
-/**
- Synchronously remove the image from disk cache.
- 
- @param key The unique image cache key
- */
-- (void)removeImageFromDiskForKey:(nullable NSString *)key;
-
-#pragma mark - Cache clean Ops
-
-/**
- * Synchronously Clear all memory cached images
- */
-- (void)clearMemory;
-
-/**
- * Asynchronously clear all disk cached images. Non-blocking method - returns immediately.
- * @param completion    A block that should be executed after cache expiration completes (optional)
- */
-- (void)clearDiskOnCompletion:(nullable SDWebImageNoParamsBlock)completion;
-
-/**
- * Asynchronously remove all expired cached image from disk. Non-blocking method - returns immediately.
- * @param completionBlock A block that should be executed after cache expiration completes (optional)
- */
-- (void)deleteOldFilesWithCompletionBlock:(nullable SDWebImageNoParamsBlock)completionBlock;
-
-#pragma mark - Cache Info
-
-/**
- * Get the total bytes size of images in the disk cache
- */
-- (NSUInteger)totalDiskSize;
-
-/**
- * Get the number of images in the disk cache
- */
-- (NSUInteger)totalDiskCount;
-
-/**
- * Asynchronously calculate the disk cache's size.
- */
-- (void)calculateSizeWithCompletionBlock:(nullable SDImageCacheCalculateSizeBlock)completionBlock;
-
-@end
-
-/**
- * SDImageCache is the built-in image cache implementation for web image manager. It adopts `SDImageCache` protocol to provide the function for web image manager to use for image loading process.
- */
-@interface SDImageCache (SDImageCache) <SDImageCache>
+- (NSString *)defaultCachePathForKey:(NSString *)key;
 
 @end

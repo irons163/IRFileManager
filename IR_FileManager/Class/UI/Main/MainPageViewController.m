@@ -1,25 +1,24 @@
 //
 //  MainPageViewController.m
-//  EnSmart
 //
 //  Created by Phil on 2015/8/17.
-//  Copyright (c) 2015年 Phil. All rights reserved.
 //
 
 #import "MainPageViewController.h"
-//#import "EnShareTools.h"
 #import "DocumentListViewController.h"
 #import "PhotoCollectionViewController.h"
 //#import "LoginViewController.h"
 #import "ColorDefine.h"
 #import "UIColor+Helper.h"
 #import "CommonTools.h"
-#import "IntroductionViewController.h"
+//#import "IntroductionViewController.h"
 #import "AppDelegate.h"
 //#import "dataDefine.h"
-#import "PasscodeLockSettingViewController.h"
-#import "SecurityPinManager.h"
-#import "StaticLanguage.h"
+//#import "PasscodeLockSettingViewController.h"
+//#import "SecurityPinManager.h"
+//#import "StaticLanguage.h"
+#import "IRLanguageManager.h"
+#import <IRPasscode/IRPasscode.h>
 
 @interface MainPageViewController ()
 {
@@ -33,7 +32,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
-    self.passcodeLockButton.selected = [SecurityPinManager sharedInstance].pinCode;
+    self.passcodeLockButton.selected = [IRSecurityPinManager sharedInstance].pinCode;
+    if (self.passcodeLockButton.selected) {
+        [[IRSecurityPinManager sharedInstance] presentSecurityPinViewControllerForUnlockWithAnimated:YES completion:nil result:nil];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -50,28 +52,10 @@
 #endif
     
     self.allButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.navigationItem.title = _(@"EnFile_TITLE");
+    self.navigationItem.title = _(@"IRFileManagerTitle");
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColorCodeString:NavigationBarBGColor]];
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-    UIButton* introdoctionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-    UIImage *image = [UIImage imageNamed:@"info_icon"];
-    image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(24, 24)];
-    [introdoctionButton setImage:image forState:UIControlStateNormal];
-    image = [UIImage imageNamed:@"info_icon"];
-    image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(24, 24)];
-    [introdoctionButton setImage:image forState:UIControlStateHighlighted];
-    [introdoctionButton addTarget:self action:@selector(introdoctionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:introdoctionButton];
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-    UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    [negativeSpacerRight setWidth:-8];
-    
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight, rightItem, nil];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -136,15 +120,9 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem.tintColor = UIColor.whiteColor;
     
-    PasscodeLockSettingViewController *passcodeLockSettingViewController = [PasscodeLockSettingViewController new];
-    [self.navigationController pushViewController:passcodeLockSettingViewController animated:YES];
-}
-
-- (void)introdoctionButtonDidClick{
-    IntroductionViewController *introductionViewController = [[IntroductionViewController alloc] initWithNibName:@"IntroductionViewController" bundle:nil];
-    [self.navigationController pushViewController:introductionViewController animated:YES];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    NSBundle *xibBundle = [NSBundle bundleForClass:[IRPasscodeLockSettingViewController class]];
+    IRPasscodeLockSettingViewController *vc = [[IRPasscodeLockSettingViewController alloc] initWithNibName:@"IRPasscodeLockSettingViewController" bundle:xibBundle];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)gotImportFileInfo{

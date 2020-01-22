@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CollectionDataFile.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import <CoreData/CoreData.h>
+#import "File+CoreDataClass.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong,nonatomic) CollectionDataFile* importFile;
+@property (strong,nonatomic) File* importFile;
 
 @end
 

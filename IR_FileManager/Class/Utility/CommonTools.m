@@ -377,66 +377,6 @@
     return [CommonTools regularCheck:@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}0" checkStr:[CommonTools fixIPFormate:subnetMask]];
 }
 
-+(BOOL)checkEnGeniusSubnetMaskValid:(NSString *)subnetMask{
-    if ([CommonTools checkHasFullWidthWord:subnetMask]) {
-        return NO;
-    }
-    
-    if ([subnetMask rangeOfString:@"."].location == NSNotFound) {
-        return NO;
-    }
-    
-    NSArray* strArray = [[CommonTools fixIPFormate:subnetMask] componentsSeparatedByString:@"."];
-    
-    if (![CommonTools checkSubnetMaskBinary:strArray]) {
-        return NO;
-    }
-    
-    if ([strArray count] != 4) {
-        return NO;
-    }
-    
-    if (![strArray[0] isEqualToString:@"255"]) {
-        return NO;
-    }
-    
-    if (!([strArray[1] isEqualToString:@"0"] ||
-          [strArray[1] isEqualToString:@"128"] ||
-          [strArray[1] isEqualToString:@"192"] ||
-          [strArray[1] isEqualToString:@"224"] ||
-          [strArray[1] isEqualToString:@"240"] ||
-          [strArray[1] isEqualToString:@"248"] ||
-          [strArray[1] isEqualToString:@"252"] ||
-          [strArray[1] isEqualToString:@"254"] ||
-          [strArray[1] isEqualToString:@"255"])) {
-        return NO;
-    }
-    
-    if (!([strArray[2] isEqualToString:@"0"] ||
-          [strArray[2] isEqualToString:@"128"] ||
-          [strArray[2] isEqualToString:@"192"] ||
-          [strArray[2] isEqualToString:@"224"] ||
-          [strArray[2] isEqualToString:@"240"] ||
-          [strArray[2] isEqualToString:@"248"] ||
-          [strArray[2] isEqualToString:@"252"] ||
-          [strArray[2] isEqualToString:@"254"] ||
-          [strArray[2] isEqualToString:@"255"])) {
-        return NO;
-    }
-    
-    if (!([strArray[3] isEqualToString:@"0"] ||
-          [strArray[3] isEqualToString:@"128"] ||
-          [strArray[3] isEqualToString:@"192"] ||
-          [strArray[3] isEqualToString:@"224"] ||
-          [strArray[3] isEqualToString:@"240"] ||
-          [strArray[3] isEqualToString:@"248"] ||
-          [strArray[3] isEqualToString:@"252"] )) {
-        return NO;
-    }
-    
-    return YES;
-}
-
 +(BOOL)checkPortValid:(NSInteger)port MinValue:(NSInteger)minValue MaxValue:(NSInteger)maxValue{
     if (port > maxValue || port < minValue) {
         return NO;

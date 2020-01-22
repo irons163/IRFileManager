@@ -1,6 +1,5 @@
 //
 //  Tools.m
-//  EnSmart
 //
 //  Created by Phil on 2015/8/28.
 //  Copyright (c) 2015年 Phil. All rights reserved.

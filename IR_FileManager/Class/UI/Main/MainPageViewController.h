@@ -1,9 +1,7 @@
 //
 //  MainPageViewController.h
-//  EnSmart
 //
 //  Created by Phil on 2015/8/17.
-//  Copyright (c) 2015年 Phil. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

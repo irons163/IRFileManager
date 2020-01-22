@@ -1,9 +1,7 @@
 //
 //  LoadingView.m
-//  EnShare
 //
 //  Created by ke on 6/28/13.
-//  Copyright (c) 2013 林永承. All rights reserved.
 //
 
 #import "LoadingView.h"

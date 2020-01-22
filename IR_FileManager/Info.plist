@@ -20,6 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Use to browser the Photos</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Passcode lock</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Use to browser the Photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,11 +47,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>Use to browser the Photos</string>
-    <key>NSFaceIDUsageDescription</key>
-    <string>Passcode lock</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Use to browser the Photos</string>
 </dict>
 </plist>

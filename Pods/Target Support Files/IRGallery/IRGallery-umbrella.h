@@ -10,12 +10,9 @@
 #endif
 #endif
 
-#import "IRGalleryPhoto.h"
-#import "IRGalleryPhotoView.h"
-#import "IRGalleryViewController.h"
-#import "UIImage+Bundle.h"
-#import "Utility.h"
 #import "IRGallery.h"
+#import "IRGalleryViewController.h"
+#import "IRGalleryPhoto.h"
 
 FOUNDATION_EXPORT double IRGalleryVersionNumber;
 FOUNDATION_EXPORT const unsigned char IRGalleryVersionString[];
