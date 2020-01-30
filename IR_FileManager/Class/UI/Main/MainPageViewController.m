@@ -46,11 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-#ifdef MESSHUDrive
-            [[UILabel appearanceWhenContainedIn:[DocumentListViewController class], nil] setTextColor:[UIColor colorWithColorCodeString:TextColor]];
-#endif
-    
+
     self.allButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationItem.title = _(@"IRFileManagerTitle");
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColorCodeString:NavigationBarBGColor]];

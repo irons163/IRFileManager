@@ -6,8 +6,7 @@
 //
 
 #import "PhotoCollectionViewController.h"
-//#import "AZAPreviewController.h"
-//#import "AZAPreviewItem.h"
+#import "PhotoCollectionViewModel.h"
 #import "IR_Tools.h"
 #import "PhotoCollectionReusableView.h"
 #import "PhotoCollectionViewCell.h"
@@ -21,19 +20,14 @@
 #import "DBManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-typedef NS_ENUM(NSUInteger, EditMode) {
-    NormalMode,
-    DeleteMode,
-    UploadMode
-};
-
 @interface PhotoCollectionViewController ()
 
 @end
 
-@implementation PhotoCollectionViewController{
+@implementation PhotoCollectionViewController {
+    PhotoCollectionViewModel *viewModel;
     CGFloat newCollectionViewY;
-    NSMutableArray* photos, *photosGroupByDate;
+    NSMutableArray* photos;
 //    BOOL editEnabled;
     NSMutableArray* selectedPhotos;
     
@@ -41,7 +35,7 @@ typedef NS_ENUM(NSUInteger, EditMode) {
     bool searchActived;
     bool isNeedToReloadData;
     
-    int editMode;
+    EditMode editMode;
     UIView* tooBar;
     UIBarButtonItem *leftItem, *rightItem, *dismissSearchBarRightItem, *leftButtonForCancelDeleteMode, *rightButtonForDoDelete, *leftButtonForCancelUploadMode;
     UIButton* uploadButton;
@@ -58,8 +52,6 @@ typedef NS_ENUM(NSUInteger, EditMode) {
     IRGalleryViewController *galleryVC;
     dispatch_queue_t queue;
 }
-
-static NSString * const reuseIdentifier = @"Cell";
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationItem.title = _(@"Photos List");
@@ -98,13 +90,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)changeCollectionViewY{
-#ifdef MESSHUDrive
-    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, newCollectionViewY, self.collectionView.frame.size.width, self.view.frame.size.height - newCollectionViewY);
-    self.collectionViewBottomLineImageView.hidden = YES;
-    self.syncAlbumBtn.hidden = YES;
-#else
     self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, newCollectionViewY, self.collectionView.frame.size.width, self.collectionViewBottomLineImageView.frame.origin.y - newCollectionViewY);
-#endif
     self.bgImageView.frame = self.collectionView.frame;
 }
 
@@ -122,15 +108,13 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     queue = dispatch_queue_create("loadImaged.queue", DISPATCH_QUEUE_SERIAL);
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PhotoCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"PhotoCollectionViewCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PhotoCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0);
     collectionViewLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40.f);
+    
+    viewModel = [[PhotoCollectionViewModel alloc] initWithCollectionView:_collectionView];
+    _collectionView.dataSource = viewModel;
     
     photos = [NSMutableArray array];
     
@@ -140,7 +124,8 @@ static NSString * const reuseIdentifier = @"Cell";
         appDelegate.importFile = nil;
         [photos addObject:file];
         
-        photosGroupByDate = [self groupByDate:photos];
+        viewModel.photos = photos;
+        [viewModel update];
         
         [self createGallery];
         
@@ -153,10 +138,10 @@ static NSString * const reuseIdentifier = @"Cell";
         dispatch_async(dispatch_get_main_queue(), ^{
             [self gotoGallery:[NSIndexPath indexPathForItem:0 inSection:0]];
             
-            isNeedToReloadData = YES;
+            self->isNeedToReloadData = YES;
             
-            if(isNeedToReloadData){
-                isNeedToReloadData = NO;
+            if(self->isNeedToReloadData){
+                self->isNeedToReloadData = NO;
                 [self loadData];
             }
         });
@@ -173,12 +158,15 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.syncAlbumBtn setTitle:_(@"SYNC_ALBUM_BUTTON_TITLE") forState:UIControlStateNormal];
     
     [self.navigationController.navigationBar setNeedsLayout];
-#ifdef MESSHUDrive
-    self.bgImageView.image = [UIImage imageNamed:@"bg_gray"];
-#endif
 }
 
--(void)createGallery{
+- (void)dealloc {
+    @synchronized (galleryVC) {
+        [galleryVC setPhotoSource:nil];
+    }
+}
+
+- (void)createGallery {
     __weak PhotoCollectionViewController *weakSelf = self;
     
     if(galleryVC){
@@ -193,13 +181,7 @@ static NSString * const reuseIdentifier = @"Cell";
     galleryVC.delegate = self;
 }
 
--(void)dealloc{
-    @synchronized (galleryVC) {
-        [galleryVC setPhotoSource:nil];
-    }
-}
-
--(void)setNavigatinItem{
+- (void)setNavigatinItem {
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -265,7 +247,7 @@ static NSString * const reuseIdentifier = @"Cell";
     leftButtonForCancelUploadMode = [[UIBarButtonItem alloc] initWithCustomView:cancelUploadModeButton];
 }
 
--(void)setNormalNavigatinItem{
+- (void)setNormalNavigatinItem {
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     [negativeSpacer setWidth:-10];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacer,leftItem,nil];
@@ -277,7 +259,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
--(void)setDeletingNavigatinItem{
+- (void)setDeletingNavigatinItem {
     self.navigationItem.leftBarButtonItems = nil;
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItem = leftButtonForCancelDeleteMode;
@@ -289,7 +271,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
--(void)setUploadingNavigatinItem{
+- (void)setUploadingNavigatinItem {
     self.navigationItem.leftBarButtonItems = nil;
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItem = leftButtonForCancelUploadMode;
@@ -301,13 +283,9 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
--(void)setToolBar{
+- (void)setToolBar {
     tooBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, self.view.bounds.size.width, 50)];
-#ifdef MESSHUDrive
-    [tooBar setBackgroundColor:[UIColor colorWithColorCodeString:ToolTitleBackgroundColor]];
-#else
     [tooBar setBackgroundColor:[UIColor colorWithColorCodeString:@"fff4f4f4"]];
-#endif
     [self.view addSubview:tooBar];
     
     deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
@@ -357,7 +335,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [selectAllButton addTarget:self action:@selector(selectAllItemButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)setNormalToobarItem{
+- (void)setNormalToobarItem {
     [[tooBar subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [tooBar addSubview:deleteButton];
@@ -369,21 +347,21 @@ static NSString * const reuseIdentifier = @"Cell";
     [self changeCollectionViewY];
 }
 
--(void)setDeletingToobarItem{
+- (void)setDeletingToobarItem {
     [[tooBar subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //    [tooBar addSubview:cancelDeleteModeButton];
     [tooBar addSubview:selectAllButton];
 }
 
--(void)setUploadingToobarItem{
+- (void)setUploadingToobarItem {
     [[tooBar subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //    [tooBar addSubview:cancelDeleteModeButton];
     [tooBar addSubview:selectAllButton];
 }
 
--(void)setSearchingToobarItem{
+- (void)setSearchingToobarItem {
     [[tooBar subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [tooBar addSubview:searchIcon];
@@ -396,7 +374,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self changeCollectionViewY];
 }
 
--(void)setDownloadingToobarItem{
+- (void)setDownloadingToobarItem {
     [[tooBar subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //    [tooBar addSubview:cancelDeleteModeButton];
@@ -406,7 +384,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self changeCollectionViewY];
 }
 
--(void)showSearchBar{
+- (void)showSearchBar {
     if(textField!=nil){
         textField.text = @"";
         [self searchBehaviorWithString:textField.text];
@@ -432,18 +410,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [textField becomeFirstResponder];
 
     searchBg = [[UIImageView alloc] initWithFrame:CGRectMake(textField.frame.origin.x, searchIcon.frame.origin.y + searchIcon.frame.size.height + 5, dismissSearchBarButton.frame.origin.x + 35 - textField.frame.origin.x, 1)];
-#ifdef MESSHUDrive
-    searchBg.backgroundColor = [UIColor whiteColor];
-    [textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:textField.placeholder attributes:@{NSForegroundColorAttributeName : [UIColor groupTableViewBackgroundColor]}]];
-    [textField setTintColor:[UIColor colorWithRGB:0xCC0000]];
-    [textField setTextColor:[UIColor whiteColor]];
-#else
     searchBg.backgroundColor = [UIColor colorWithColorCodeString:@"FF1ba48a"];
-#endif
     [self setSearchingToobarItem];
 }
 
--(void)searchBehaviorWithString:(NSString*)substring{
+- (void)searchBehaviorWithString:(NSString*)substring {
     if([substring isEqualToString:@""]){
         searchActived = false;
     }else{
@@ -452,7 +423,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self searchAutocompleteEntriesWithSubstring:substring];
 }
 
--(void)clearSearchBarContent{
+- (void)clearSearchBarContent {
     if(textField!=nil){
         if([textField.text isEqualToString:@""]){
             [self dismissSearchBar];
@@ -463,7 +434,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
--(void)dismissSearchBar{
+- (void)dismissSearchBar {
     if(textField!=nil){
         self.navigationController.navigationBar.translucent = YES;
         [searchBg removeFromSuperview];
@@ -480,11 +451,9 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
-- (void)showWarnning:(NSString*)info{
+#pragma mark - Private
 
-}
-
--(void)loadData{
+- (void)loadData {
     [self startAnimating];
     
     [self->photos removeAllObjects];
@@ -500,7 +469,8 @@ static NSString * const reuseIdentifier = @"Cell";
         NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:NO];
         [self->photos sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
         
-        self->photosGroupByDate = [self groupByDate:self->photos];
+        self->viewModel.photos = self->photos;
+        [self->viewModel update];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeSelectedItems];
@@ -521,60 +491,7 @@ static NSString * const reuseIdentifier = @"Cell";
     });
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//#warning Incomplete method implementation -- Return the number of sections
-    return photosGroupByDate.count;
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat cellsAcross = 4;
-    CGFloat spaceBetweenCells = 2;
-    CGFloat cellProperWidth = (collectionView.bounds.size.width - (cellsAcross - 1) * spaceBetweenCells) / cellsAcross;
-    return CGSizeMake(cellProperWidth, cellProperWidth);
-}
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *reusableview = nil;
-    
-    if (kind == UICollectionElementKindSectionHeader) {
-        PhotoCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        NSDictionary* dic = [photosGroupByDate objectAtIndex:indexPath.section];
-        NSString *title = [[NSString alloc]initWithFormat:@"%@", [[dic allKeys] firstObject]];
-        headerView.titleLabel.text = title;
-        [headerView.titleLabel sizeToFit];
-        
-        reusableview = headerView;
-    }
-    
-    return reusableview;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSDictionary* dic = [photosGroupByDate objectAtIndex:section];
-    NSMutableArray* photosByTheSameDate = [dic valueForKey:[[dic allKeys] firstObject]];
-    NSInteger itemsCount = photosByTheSameDate.count;
-    return itemsCount;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCollectionViewCell" forIndexPath:indexPath];
-    
-    cell.imageview.image = [UIImage imageNamed:@"img_photo.jpg"];
-    
-    if(editMode == NormalMode){
-        cell.checkboxImageView.hidden = YES;
-    }else{
-        cell.checkboxImageView.hidden = NO;
-    }
-    
-    File *item;
+- (void)gotoGallery:(NSIndexPath *)indexPath {
     int position = 0;
     for(int section = 0; section < indexPath.section; section++){
         position += [self.collectionView numberOfItemsInSection:section];
@@ -582,163 +499,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     position += indexPath.row;
     
-    if(searchActived){
-        item = autocompleteUrls[position];
-    }else{
-        item = photos[position];
-    }
-    
-    if([selectedPhotos containsObject:item]){
-        [cell setSelected:YES];
-        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        
-    }else{
-        [cell setSelected:NO];
-        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    }
-    
-    return cell;
-}
-
--(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)_cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)_cell;
-    File* file;
-    
-    NSDictionary* dic = [photosGroupByDate objectAtIndex:indexPath.section];
-    NSMutableArray* photosByTheSameDate = [dic valueForKey:[[dic allKeys] firstObject]];
-    
-    if(searchActived){
-        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
-    }else{
-        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
-    }
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
-
-    bool isFirstLoad = false;
-    if(cell.imageview.image == nil)
-        isFirstLoad = true;
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-            if(isFirstLoad || [[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                [cell.imageview sd_setImageWithURL:[NSURL fileURLWithPath:filepath] placeholderImage:[UIImage imageNamed:@"img_photo.jpg"]  options:0 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    if (image)
-                        return;
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                        //縮小photo
-                        @autoreleasepool {
-                            UIImage *tImage = [UIImage imageWithContentsOfFile:filepath];
-                            
-                            float w=60.f,h=50.f;
-                            if (tImage.size.width>=120 && tImage.size.height>=100) {
-                                if( tImage.size.width > tImage.size.height ){
-                                    w = ((float)(tImage.size.height/tImage.size.width))*100;
-                                    h = 100;
-                                }else{
-                                    w = 120;
-                                    h = ((float)(tImage.size.width/tImage.size.height))*120;;
-                                }
-                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
-                                [tImage drawInRect:CGRectMake(0,0,120,100)];
-                            }else{
-                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
-                                [tImage drawInRect:CGRectMake(0,0,tImage.size.width,tImage.size.height)];
-                            }
-                            
-                            
-                            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-                            UIGraphicsEndImageContext();
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if([[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
-                                    cell.imageview.image = newImage;
-                                    [cell setNeedsLayout];
-                                }
-                            });
-                        }
-                    });
-                }];
-                });
-            }
-        });
-    });
-}
-
--(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    File *item;
-    
-    int position = 0;
-    for(int section = 0; section < indexPath.section; section++){
-        position += [self.collectionView numberOfItemsInSection:section];
-    }
-    
-    position += indexPath.row;
-    
-    if(searchActived){
-        item = autocompleteUrls[position];
-    }else{
-        item = photos[position];
-    }
-    
-    if(editMode != NormalMode){
-        [selectedPhotos addObject:item];
-        self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
-        [self checkSelectAllItemButtonStatus];
-    }else{
-        [self gotoGallery:indexPath];
-    }
-}
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(editMode != NormalMode){
-        NSInteger rowNumber = 0;
-        
-        for (NSInteger i = 0; i < indexPath.section; i++) {
-            rowNumber += [self.collectionView numberOfItemsInSection:i];
-        }
-        
-        rowNumber += indexPath.row;
-        
-        File* item = ((File*)[photos objectAtIndex:rowNumber]);
-        [selectedPhotos removeObject:item];
-        self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
-        [self checkSelectAllItemButtonStatus];
-    }
-}
-
-- (UIImage*)loadFullsizeInThread:(NSString*)filename
-{
-    @autoreleasepool {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *str = [[paths objectAtIndex:0] stringByAppendingPathComponent:filename];
-     return [UIImage imageWithContentsOfFile:str];
-    }
-}
-
--(void)gotoGallery:(NSIndexPath *)indexPath{
-    int position = 0;
-    for(int section = 0; section < indexPath.section; section++){
-        position += [self.collectionView numberOfItemsInSection:section];
-    }
-    
-    position += indexPath.row;
-    
-    File* file;
-    
-    NSDictionary* dic = [photosGroupByDate objectAtIndex:indexPath.section];
-    NSMutableArray* photosByTheSameDate = [dic valueForKey:[[dic allKeys] firstObject]];
-    
-    if(searchActived){
-        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
-    }else{
-        file = ((File*)[photosByTheSameDate objectAtIndex:indexPath.row]);
-    }
+    File* file = [viewModel getFileWithIndexPath:indexPath];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *filepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
@@ -749,77 +510,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController pushViewController:galleryVC animated:YES];
     
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - IRGalleryViewControllerSourceDelegate Methods
-
-- (void)photoGallery:(IRGalleryViewController *)gallery deleteAtIndex:(NSUInteger)index {
-    File* file;
-    if(searchActived){
-        file = ((File*)autocompleteUrls[index]);
-    }else{
-        file = ((File*)photos[index]);
-    }
-    [self delete:@[file]];
-}
-
-#pragma mark - IRGalleryViewControllerSourceDelegate Methods
-
-- (int)numberOfPhotosForPhotoGallery:(IRGalleryViewController *)gallery {
-    if(searchActived){
-        return autocompleteUrls.count;
-    }else{
-        return photos.count;
-    }
-}
-
-- (IRGalleryPhotoSourceType)photoGallery:(IRGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
-    return IRGalleryPhotoSourceTypeLocal;
-}
-
-- (NSString*)photoGallery:(IRGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
-    File* file;
-    if(searchActived){
-        file = ((File*)autocompleteUrls[index]);
-    }else{
-        file = ((File*)photos[index]);
-    }
-    
-    NSString *filename = [NSString stringWithFormat:@"%@", file.name];
-    return [[filename pathComponents] lastObject];
-}
-
-- (NSString*)photoGallery:(IRGalleryViewController *)gallery urlForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    File* file;
-    if(searchActived){
-        file = ((File*)autocompleteUrls[index]);
-    }else{
-        file = ((File*)photos[index]);
-    }
-    
-    NSString *filename = [NSString stringWithFormat:@"%@", file];
-    return [[filename pathComponents] lastObject];
-}
-
-- (NSString*)photoGallery:(IRGalleryViewController *)gallery filePathForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
-    File *file;
-    if(searchActived){
-        file = ((File *)autocompleteUrls[index]);
-    }else{
-        file = ((File *)photos[index]);
-    }
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *str = [[paths objectAtIndex:0] stringByAppendingPathComponent:[file valueForKey:@"name"]];
-    return str;
-}
-
-- (bool)photoGallery:(IRGalleryViewController *)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index {
-    return NO;
-}
-
-- (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index {
-    
 }
 
 - (void)backBtnDidClick {
@@ -950,7 +640,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // TODO
 }
 
-- (void)showWarningView{
+- (void)showWarningView {
     // TODO
 }
 
@@ -1000,6 +690,191 @@ static NSString * const reuseIdentifier = @"Cell";
     self.loadingView.hidden = YES;
 }
 
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat cellsAcross = 4;
+    CGFloat spaceBetweenCells = 2;
+    CGFloat cellProperWidth = (collectionView.bounds.size.width - (cellsAcross - 1) * spaceBetweenCells) / cellsAcross;
+    return CGSizeMake(cellProperWidth, cellProperWidth);
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)_cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)_cell;
+    File* file = [viewModel getFileWithIndexPath:indexPath];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
+
+    bool isFirstLoad = false;
+    if(cell.imageview.image == nil)
+        isFirstLoad = true;
+    
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+            if(isFirstLoad || [[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [cell.imageview sd_setImageWithURL:[NSURL fileURLWithPath:filepath] placeholderImage:[UIImage imageNamed:@"img_photo.jpg"]  options:0 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    if (image)
+                        return;
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                        //縮小photo
+                        @autoreleasepool {
+                            UIImage *tImage = [UIImage imageWithContentsOfFile:filepath];
+                            
+                            float w=60.f,h=50.f;
+                            if (tImage.size.width>=120 && tImage.size.height>=100) {
+                                if( tImage.size.width > tImage.size.height ){
+                                    w = ((float)(tImage.size.height/tImage.size.width))*100;
+                                    h = 100;
+                                }else{
+                                    w = 120;
+                                    h = ((float)(tImage.size.width/tImage.size.height))*120;;
+                                }
+                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
+                                [tImage drawInRect:CGRectMake(0,0,120,100)];
+                            }else{
+                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
+                                [tImage drawInRect:CGRectMake(0,0,tImage.size.width,tImage.size.height)];
+                            }
+                            
+                            
+                            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                            UIGraphicsEndImageContext();
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                if([[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
+                                    cell.imageview.image = newImage;
+                                    [cell setNeedsLayout];
+                                }
+                            });
+                        }
+                    });
+                }];
+                });
+            }
+        });
+    });
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    File *item;
+    
+    int position = 0;
+    for(int section = 0; section < indexPath.section; section++){
+        position += [self.collectionView numberOfItemsInSection:section];
+    }
+    
+    position += indexPath.row;
+    
+    if(searchActived){
+        item = autocompleteUrls[position];
+    }else{
+        item = photos[position];
+    }
+    
+    if(editMode != NormalMode){
+        [selectedPhotos addObject:item];
+        self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
+        [self checkSelectAllItemButtonStatus];
+    }else{
+        [self gotoGallery:indexPath];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (editMode != NormalMode) {
+        NSInteger rowNumber = 0;
+        
+        for (NSInteger i = 0; i < indexPath.section; i++) {
+            rowNumber += [self.collectionView numberOfItemsInSection:i];
+        }
+        
+        rowNumber += indexPath.row;
+        
+        File* item = ((File*)[photos objectAtIndex:rowNumber]);
+        [selectedPhotos removeObject:item];
+        self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
+        [self checkSelectAllItemButtonStatus];
+    }
+}
+
+#pragma mark - IRGalleryViewControllerDelegate
+
+- (void)photoGallery:(IRGalleryViewController *)gallery deleteAtIndex:(NSUInteger)index {
+    File* file;
+    if(searchActived){
+        file = ((File*)autocompleteUrls[index]);
+    }else{
+        file = ((File*)photos[index]);
+    }
+    [self delete:@[file]];
+}
+
+#pragma mark - IRGalleryViewControllerSourceDelegate
+
+- (int)numberOfPhotosForPhotoGallery:(IRGalleryViewController *)gallery {
+    if(searchActived){
+        return autocompleteUrls.count;
+    }else{
+        return photos.count;
+    }
+}
+
+- (IRGalleryPhotoSourceType)photoGallery:(IRGalleryViewController *)gallery sourceTypeForPhotoAtIndex:(NSUInteger)index {
+    return IRGalleryPhotoSourceTypeLocal;
+}
+
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery captionForPhotoAtIndex:(NSUInteger)index {
+    File* file;
+    if(searchActived){
+        file = ((File*)autocompleteUrls[index]);
+    }else{
+        file = ((File*)photos[index]);
+    }
+    
+    NSString *filename = [NSString stringWithFormat:@"%@", file.name];
+    return [[filename pathComponents] lastObject];
+}
+
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery urlForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
+    File* file;
+    if(searchActived){
+        file = ((File*)autocompleteUrls[index]);
+    }else{
+        file = ((File*)photos[index]);
+    }
+    
+    NSString *filename = [NSString stringWithFormat:@"%@", file];
+    return [[filename pathComponents] lastObject];
+}
+
+- (NSString*)photoGallery:(IRGalleryViewController *)gallery filePathForPhotoSize:(IRGalleryPhotoSize)size atIndex:(NSUInteger)index {
+    File *file;
+    if(searchActived){
+        file = ((File *)autocompleteUrls[index]);
+    }else{
+        file = ((File *)photos[index]);
+    }
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *str = [[paths objectAtIndex:0] stringByAppendingPathComponent:[file valueForKey:@"name"]];
+    return str;
+}
+
+- (bool)photoGallery:(IRGalleryViewController *)gallery isFavoriteForPhotoAtIndex:(NSUInteger)index {
+    return NO;
+}
+
+- (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index {
+    
+}
+
 #pragma mark UITextFieldDelegate methods
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -1043,47 +918,16 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
 
-    photosGroupByDate = [self groupByDate:autocompleteUrls];
+    viewModel.photos = autocompleteUrls;
+    [viewModel update];
     [self.collectionView reloadData];
     
     [self createGallery];
 }
 
--(NSMutableArray*)groupByDate:(NSMutableArray*)itmes{
-    NSMutableArray* a, *b;
-    NSMutableDictionary* d;
-    NSString* previousDateString;
-    
-    a = [NSMutableArray array];
-    for(File* file in itmes){
-        BOOL hasNewDateGroup = NO;
-        NSString* dateString = [self getDateStringShowInPhotoAlbum:file.createTime];
-        if(previousDateString==nil){
-            b = [NSMutableArray array];
-            d = [NSMutableDictionary dictionary];
-            hasNewDateGroup = YES;
-        }else if(![previousDateString isEqualToString:dateString]){
-            b = [NSMutableArray array];
-            d = [NSMutableDictionary dictionary];
-            hasNewDateGroup = YES;
-        }
-        [b addObject:file];
-        previousDateString = dateString;
-        if(hasNewDateGroup){
-            [d setValue:b forKey:dateString];
-            [a addObject:d];
-        }
-    }
-    
-    return a;
-}
 
--(NSString*)getDateStringShowInPhotoAlbum:(NSDate*)date{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *datestring = [formatter stringFromDate:date];
-    return datestring;
-}
+
+
 
 - (IBAction)syncAlbumClick:(id)sender {
     [self doSyncPhotos];
@@ -1112,11 +956,11 @@ static NSString * const reuseIdentifier = @"Cell";
     return videoID;
 }
 
--(void)doSyncPhotos{
-    
+- (void)doSyncPhotos {
+    // TODO
 }
 
--(void)checkPermisstion{
+- (void)checkPermisstion {
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         
@@ -1135,8 +979,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark - KeyboardNotifications
 
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -1145,8 +988,7 @@ static NSString * const reuseIdentifier = @"Cell";
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     CGFloat tableViewBottom = self.collectionView.frame.origin.y + self.collectionView.frame.size.height;
@@ -1165,15 +1007,14 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.collectionView.contentInset = contentInsets;
     self.collectionView.scrollIndicatorInsets = contentInsets;
 }
 
 #pragma mark - AutoSyncPhotosDelegate
--(void)syncFinishCallback{
+- (void)syncFinishCallback {
     if(textField!=nil){ // search
         editMode = NormalMode;
         [self dismissSearchBar];
@@ -1182,7 +1023,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark - showPermisstionAlert
-- (void)showPermisstionAlert{
+- (void)showPermisstionAlert {
   
 }
 

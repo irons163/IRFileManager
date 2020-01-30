@@ -13,4 +13,8 @@
     // Initialization code
 }
 
++ (NSString *)identifier {
+    return [[self class] description];
+}
+
 @end

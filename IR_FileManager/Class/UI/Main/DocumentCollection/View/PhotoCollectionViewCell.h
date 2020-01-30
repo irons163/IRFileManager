@@ -10,4 +10,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageview;
 @property (strong, nonatomic) IBOutlet UIImageView *checkboxImageView;
+
++ (NSString *)identifier;
+
 @end

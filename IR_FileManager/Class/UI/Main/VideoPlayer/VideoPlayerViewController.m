@@ -348,13 +348,8 @@ BOOL      _hiddenHUD;
     _topHUD.backgroundColor = [UIColor colorWithRed:152.f/255.f green:198.f/255.f blue:19.f/255.f alpha:1.f];
     _bottomBar.barTintColor = [UIColor colorWithRed:152.f/255.f green:198.f/255.f blue:19.f/255.f alpha:1.f];
 
-#ifdef MESSHUDrive
-    _topHUD.backgroundColor = [UIColor colorWithColorCodeString:NavigationBarBGColor];
-    _bottomBar.barTintColor = [UIColor colorWithColorCodeString:NavigationBarBGColor];
-#else
     _topHUD.backgroundColor = [UIColor colorWithRGB:0x00b4f5];
     _bottomBar.barTintColor = [UIColor colorWithRGB:0x00b4f5];
-#endif
     
     [self.view addSubview:_topBar];
     [self.view addSubview:_topHUD];

@@ -17,4 +17,8 @@
     [super setSelected:selected];
 }
 
++ (NSString *)identifier {
+    return [[self class] description];
+}
+
 @end

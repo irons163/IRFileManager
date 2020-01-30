@@ -12,12 +12,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, ProfileRowType){
-    RowType_DemoRow
+typedef NS_ENUM(NSInteger, DocumentListRowType){
+    RowType_FileRow
 };
 
 @interface TableViewRowItem : RowBasicModelItem
-@property (readonly) ProfileRowType type;
+@property (readonly) DocumentListRowType type;
 @end
 
 @interface TableViewSectionItem : SectionBasicModelItem

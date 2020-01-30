@@ -44,7 +44,7 @@
 - (void)setupRows {
     NSMutableArray *rowItems = [NSMutableArray array];
     for (File *file in _files) {
-        [rowItems addObject:[[TableViewRowItem alloc] initWithType:RowType_DemoRow withTitle:@"Row"]];
+        [rowItems addObject:[[TableViewRowItem alloc] initWithType:RowType_FileRow withTitle:@"Row"]];
     }
     
     NSArray *demoRowItems = [NSArray arrayWithArray:rowItems];
@@ -72,7 +72,7 @@
         case FileSection:
         {
             switch (row.type) {
-                case RowType_DemoRow:
+                case RowType_FileRow:
                 {
                     DocumentTableViewCell *cell = (DocumentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DocumentTableViewCell.identifier forIndexPath:indexPath];
                     File* file;

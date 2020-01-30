@@ -9,4 +9,7 @@
 @interface PhotoCollectionReusableView : UICollectionReusableView
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
++ (NSString *)identifier;
+
 @end

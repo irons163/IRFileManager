@@ -10,7 +10,7 @@
 #import <IRGallery/IRGallery.h>
 #import <QBImagePickerController/QBImagePickerController.h>
 
-@interface PhotoCollectionViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, IRGalleryViewControllerSourceDelegate, IRGalleryViewControllerDelegate, QBImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout>
+@interface PhotoCollectionViewController : UIViewController<UICollectionViewDelegate, UITextFieldDelegate, IRGalleryViewControllerSourceDelegate, IRGalleryViewControllerDelegate, QBImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIImageView *collectionViewBottomLineImageView;
@@ -18,5 +18,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *syncAlbumBtn;
 
 - (IBAction)syncAlbumClick:(id)sender;
-- (IBAction)IBActiongotoOnlineModeClickidsender:(id)sender;
+
 @end
