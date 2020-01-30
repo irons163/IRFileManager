@@ -8,20 +8,14 @@
 #import "PhotoCollectionViewController.h"
 //#import "AZAPreviewController.h"
 //#import "AZAPreviewItem.h"
-#import "KGModal.h"
 #import "IR_Tools.h"
 #import "PhotoCollectionReusableView.h"
 #import "PhotoCollectionViewCell.h"
 #import "CommonTools.h"
 #import "ColorDefine.h"
 #import "UIColor+Helper.h"
-#import "StorageDeleteView.h"
 #import "LoadingView.h"
-//#import "StaticLanguage.h"
-//#import "UploadingViewController.h"
-//#import "RouterGlobal.h"
 #import "AppDelegate.h"
-//#import "DialogPermissionView.h"
 #import "UIImageView+WebCache.h"
 #import "FileTypeUtility.h"
 #import "DBManager.h"
@@ -138,12 +132,12 @@ static NSString * const reuseIdentifier = @"Cell";
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0);
     collectionViewLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40.f);
     
+    photos = [NSMutableArray array];
+    
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appDelegate.importFile) {
         File *file = appDelegate.importFile;
         appDelegate.importFile = nil;
-        
-        photos = [NSMutableArray array];
         [photos addObject:file];
         
         photosGroupByDate = [self groupByDate:photos];
@@ -493,26 +487,26 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)loadData{
     [self startAnimating];
     
+    [self->photos removeAllObjects];
+    
+    NSArray* readFromDB = nil;
+    readFromDB = [File MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"type=%@", @"PICTURE"]];
+    
     dispatch_async(queue, ^{
-        NSArray* readFromDB = nil;
-        readFromDB = [File MR_findAll];
-
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        
         for(File *file in readFromDB){
-            [photos addObject:file];
+            [self->photos addObject:file];
         }
         
         NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:NO];
-        [photos sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+        [self->photos sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
         
-        photosGroupByDate = [self groupByDate:photos];
+        self->photosGroupByDate = [self groupByDate:self->photos];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeSelectedItems];
             
-            if(editMode != NormalMode){
-                self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
+            if(self->editMode != NormalMode){
+                self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)self->selectedPhotos.count, _(@"SELECTED")];
             }else{
                 self.navigationItem.title = _(@"Photos List");
             }
@@ -525,9 +519,6 @@ static NSString * const reuseIdentifier = @"Cell";
             [self stopAnimating];
         });
     });
-
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -755,8 +746,8 @@ static NSString * const reuseIdentifier = @"Cell";
     galleryVC.startingIndex = position;
     galleryVC.preDisplayView.image = [UIImage imageWithContentsOfFile:filepath];
     [galleryVC gotoImageByIndex:position animated:NO];
-
     [self.navigationController pushViewController:galleryVC animated:YES];
+    
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
@@ -952,29 +943,15 @@ static NSString * const reuseIdentifier = @"Cell";
         return;
     }
     
-    NSString *info;
-    NSMutableArray *dfiles = [NSMutableArray array];
-
-    for (File* file in selectedPhotos){
-        [dfiles addObject:file];
-        info = NSLocalizedString(@"DELETE_FILE", nil);
-    }
-    
-    StorageDeleteView *sview = nil;
-    VIEW(sview, StorageDeleteView);
-    sview.delegate = self;
-    sview.files = dfiles;
-    sview.infoLabel.text = info;
-    [[KGModal sharedInstance] setShowCloseButton:FALSE];
-    [[KGModal sharedInstance] showWithContentView:sview andAnimated:YES];
+    // TODO
 }
 
 - (void)delete:(NSArray*)dfiles {
-    
+    // TODO
 }
 
 - (void)showWarningView{
-    
+    // TODO
 }
 
 - (void)selectAllItem:(BOOL)selectAll {
@@ -1211,6 +1188,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark - QBImagePickerControllerDelegate
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+//    LoadingView *loadingView;;
+//    VIEW(loadingView, LoadingView);
+//    loadingView.title.text = _(@"SYNCING");
+//    [[KGModal sharedInstance] setTapOutsideToDismiss:NO];
+//    [[KGModal sharedInstance] setShowCloseButton:FALSE];
+//    [[KGModal sharedInstance] showWithContentView:loadingView andAnimated:YES];
+    
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -1255,17 +1239,10 @@ static NSString * const reuseIdentifier = @"Cell";
                                     }];
             }
             
-            [[KGModal sharedInstance] hideAnimated:YES];
+//            [[KGModal sharedInstance] hideAnimated:YES];
             [self syncFinishCallback];
         });
     }];
-    
-    LoadingView *loadingView;;
-    VIEW(loadingView, LoadingView);
-    loadingView.title.text = _(@"SYNCING");
-    [[KGModal sharedInstance] setTapOutsideToDismiss:NO];
-    [[KGModal sharedInstance] setShowCloseButton:FALSE];
-    [[KGModal sharedInstance] showWithContentView:loadingView andAnimated:YES];
 }
 
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController {

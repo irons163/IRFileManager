@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) File *file;
 @property (strong, nonatomic) NSOperation *operation;
 
++ (NSString *)identifier;
+
 @end
 
 NS_ASSUME_NONNULL_END

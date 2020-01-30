@@ -15,6 +15,7 @@ target 'IR_FileManager' do
   pod 'IRMusicPlayer'
   pod 'IRPlayer'
   pod 'IRShareManager'
+  pod 'IRCollectionTableViewModel'
 end
 
 target 'ShareExtension' do

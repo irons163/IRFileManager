@@ -9,10 +9,15 @@
 
 @interface FileTypeUtility : NSObject
 
-+ (NSString*)getFileType:(NSString*)ext;
++ (NSString *)getFileType:(NSString *)ext;
 + (NSNumber *)getFileSize:(NSString *)filepath;
 + (NSDate *)getFileCreationTimeFromPath:(NSString *)filePath;
-+ (UIImage*)getImageWithType:(NSString*)type ext:(NSString*)ext;
-+ (UIImage*)getImageOfflineWithType:(NSString*)type ext:(NSString*)ext;
++ (UIImage *)getImageWithType:(NSString *)type ext:(NSString *)ext;
++ (UIImage *)getImageOfflineWithType:(NSString *)type ext:(NSString *)ext;
+
++ (NSString *)getDocumentFileType;
++ (NSString *)getPictureFileType;
++ (NSString *)getVideoFileType;
++ (NSString *)getMusicFileType;
 
 @end

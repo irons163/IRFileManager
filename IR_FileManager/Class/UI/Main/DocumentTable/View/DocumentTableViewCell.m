@@ -18,4 +18,8 @@
     [super setSelected:selected animated:animated];
 }
 
++ (NSString *)identifier {
+    return [[self class] description];
+}
+
 @end

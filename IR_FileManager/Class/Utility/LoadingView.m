@@ -5,7 +5,6 @@
 //
 
 #import "LoadingView.h"
-#import "KGModal.h"
 
 @implementation LoadingView
 

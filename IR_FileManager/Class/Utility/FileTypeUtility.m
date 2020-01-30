@@ -15,12 +15,12 @@
         [[ext lowercaseString] isEqualToString:@"xls"] || [[ext lowercaseString] isEqualToString:@"xlsx"] ||
         [[ext lowercaseString] isEqualToString:@"ppt"] || [[ext lowercaseString] isEqualToString:@"pptx"] ||
         [[ext lowercaseString] isEqualToString:@"key"] || [[ext lowercaseString] isEqualToString:@"numbers"] || [[ext lowercaseString] isEqualToString:@"pages"] )
-        return @"DOCUMENT";
+        return [FileTypeUtility getDocumentFileType];
     else if ([[ext lowercaseString] isEqualToString:@"mp3"] || [[ext lowercaseString] isEqualToString:@"m4a"]
              || [[ext lowercaseString] isEqualToString:@"aac"] || [[ext lowercaseString] isEqualToString:@"wav"]
              //             || [[ext lowercaseString] isEqualToString:@"ac3"] || [[ext lowercaseString] isEqualToString:@"aiff"] || [[ext lowercaseString] isEqualToString:@"mp2"] || [[ext lowercaseString] isEqualToString:@"ogg"] || [[ext lowercaseString] isEqualToString:@"wma"]
              )
-        return @"MUSIC";
+        return [FileTypeUtility getMusicFileType];
     else if ([[ext lowercaseString] isEqualToString:@"avi"] ||
              //             [[ext lowercaseString] isEqualToString:@"mpg"] ||
              [[ext lowercaseString] isEqualToString:@"mp4"] ||
@@ -34,7 +34,7 @@
              //             [[ext lowercaseString] isEqualToString:@"vob"] ||
              [[ext lowercaseString] isEqualToString:@"mpg"] ||
              [[ext lowercaseString] isEqualToString:@"mpeg"])
-        return @"VIDEO";
+        return [FileTypeUtility getVideoFileType];
     else if ([[ext lowercaseString] isEqualToString:@"jpeg"] ||
              [[ext lowercaseString] isEqualToString:@"jpg"] ||
              [[ext lowercaseString] isEqualToString:@"png"] ||
@@ -43,9 +43,9 @@
              [[ext lowercaseString] isEqualToString:@"gif"] ||
              [[ext lowercaseString] isEqualToString:@"bmp"] ||
              [[ext lowercaseString] isEqualToString:@"heic"])
-        return @"PICTURE";
+        return [FileTypeUtility getPictureFileType];
     else
-        return @"DOCUMENT";
+        return [FileTypeUtility getDocumentFileType];
 }
 
 + (NSNumber *)getFileSize:(NSString *)filepath {
@@ -200,6 +200,22 @@
         }
     }
     return [UIImage imageNamed:@"btn_list_doc.png"];
+}
+
++ (NSString *)getDocumentFileType {
+    return @"DOCUMENT";
+}
+
++ (NSString *)getPictureFileType {
+    return @"PICTURE";
+}
+
++ (NSString *)getVideoFileType {
+    return @"VIDEO";
+}
+
++ (NSString *)getMusicFileType {
+    return @"MUSIC";
 }
 
 @end

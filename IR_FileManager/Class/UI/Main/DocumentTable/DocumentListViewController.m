@@ -22,14 +22,15 @@
 //#import "UIColor+Helper.h"
 //#import "MyFavoritesCollectionViewCell.h"
 //#import "File.h"
-//#import "StorageDeleteView.h"
 #import "AppDelegate.h"
+#import "DocumentListViewModel.h"
 #import "UIImageView+WebCache.h"
 #import "Masonry.h"
 #import "FileTypeUtility.h"
 #import "Utilities.h"
 
 @implementation DocumentListViewController {
+    DocumentListViewModel *viewModel;
     NSMutableArray *items;
     NSMutableArray *photos;
     
@@ -37,14 +38,10 @@
     AZAPreviewItem *previewItem;
   
     NSString *titleStr;
-    NSOperationQueue *queue;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    queue = [[NSOperationQueue alloc]init];
-    queue.maxConcurrentOperationCount = 2;
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appDelegate.importFile) {
@@ -54,7 +51,8 @@
         [self openFile:file useArray:@[file]];
     }
     
-    self.fileType = ALL_TYPE;
+    viewModel = [[DocumentListViewModel alloc] initWithTableView:_tableView];
+    _tableView.dataSource = viewModel;
 }
 
 //-(void)createGallery{
@@ -101,20 +99,20 @@
     [self loadData];
 }
 
--(NSString*)getFileTypeString:(FILE_TYPE)type{
+- (NSString *)getFileTypeString:(FILE_TYPE)type {
     NSString* fileTypeString = nil;
     switch (type) {
         case DOCUMENT_TYPE:
-            fileTypeString = @"DOCUMENT";
+            fileTypeString = [FileTypeUtility getDocumentFileType];
             break;
         case MUSIC_TYPE:
-            fileTypeString = @"MUSIC";
+            fileTypeString = [FileTypeUtility getMusicFileType];
             break;
         case VIDEO_TYPE:
-            fileTypeString = @"VIDEO";
+            fileTypeString = [FileTypeUtility getVideoFileType];
             break;
         case PHOTO_TYPE:
-            fileTypeString = @"PICTURE";
+            fileTypeString = [FileTypeUtility getPictureFileType];
             break;
         default:
             break;
@@ -130,9 +128,8 @@
     photos = [NSMutableArray array];
     
     NSArray* readFromDB = nil;
-    readFromDB = [File MR_findAll];
+    readFromDB = [File MR_findAllWithPredicate:fileTypeString ? [NSPredicate predicateWithFormat:@"type=%@", fileTypeString] : nil];
 
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     for(File *file in readFromDB){
         [items addObject:file];
     }
@@ -141,94 +138,9 @@
         [photos addObject:file];
     }
     
+    viewModel.files = items;
+    [viewModel update];
     [self.tableView reloadData];
-}
-
-#pragma mark - UITableViewDataSource
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return items.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* simpleTableIdentifier = @"Simple";
-    DocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if(cell == nil){
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"DocumentTableViewCell" owner:self options:nil] objectAtIndex:0];
-    }
-    
-    File* file;
-    
-    file = ((File*)[items objectAtIndex:indexPath.row]);
-    
-    cell.titleLabel.text = file.name;
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
-    
-    if (self.fileType == VIDEO_TYPE) {
-        [self setThumbToCell:cell byVideoPath:filePath];
-    } else if(self.fileType == MUSIC_TYPE) {
-        cell.thumbnailImageView.image = [Utilities getMusicCover:filePath];
-        if(cell.thumbnailImageView.image==nil)
-            cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:@"MUSIC" ext:[cell.titleLabel.text pathExtension]];
-    } else if(self.fileType == DOCUMENT_TYPE) {
-        cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:@"DOCUMENT" ext:[cell.titleLabel.text pathExtension]];
-    } else if(self.fileType == PHOTO_TYPE) {
-        
-    } else if(self.fileType == ALL_TYPE) {
-        if ([file.type isEqualToString:@"VIDEO"]) {
-            [self setThumbToCell:cell byVideoPath:filePath];
-        } else if([file.type isEqualToString:@"MUSIC"]) {
-            if(cell.thumbnailImageView.image==nil)
-                cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:@"MUSIC" ext:[cell.titleLabel.text pathExtension]];
-        } else if([file.type isEqualToString:@"PICTURE"]) {
-            cell.thumbnailImageView.image = [UIImage imageNamed:@"img_photo.jpg"];
-            @autoreleasepool {
-                [cell.thumbnailImageView setImageWithURL:[NSURL fileURLWithPath:filePath] placeholderImage:[UIImage imageNamed:@"img_photo.jpg"]  options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                }];
-            }
-        } else {
-            cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:file.type ext:[cell.titleLabel.text pathExtension]];
-        }
-    }
-    
-    cell.fileSizeLabel.text = [[NSString stringWithFormat:@"%lld", file.size] stringByAppendingString:@", "];
-    [cell.fileSizeLabel setNumberOfLines:1];
-    [cell.fileSizeLabel sizeToFit];
-    CGRect newFrame = cell.createDateLabel.frame;
-    newFrame.origin.x = cell.fileSizeLabel.frame.origin.x + cell.fileSizeLabel.frame.size.width;
-    cell.createDateLabel.frame = newFrame;
-    cell.createDateLabel.text = file.createTime.description;
-    [cell.createDateLabel setNumberOfLines:1];
-    [cell.createDateLabel sizeToFit];
-    
-    cell.delegate = self;
-    cell.file = file;
-    
-    return cell;
-}
-
-- (void)setThumbToCell:(DocumentTableViewCell*)cell byVideoPath:(NSString*)filePath {
-    if(!cell.operation){
-        [cell.operation cancel];
-    }
-    
-    cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:@"VIDEO" ext:[cell.titleLabel.text pathExtension]];
-    
-    NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        UIImage *image = [Utilities generateThumbImage:filePath];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            cell.thumbnailImageView.image = image;
-            if(cell.thumbnailImageView.image==nil)
-                cell.thumbnailImageView.image = [FileTypeUtility getImageWithType:@"VIDEO" ext:[cell.titleLabel.text pathExtension]];
-        }];
-    }];
-    
-    cell.operation = operation;
-    
-    [queue addOperation:operation];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -239,8 +151,7 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *useArray = nil;
     File *item;
 
@@ -323,8 +234,7 @@
     }
 }
 
-- (BOOL)isTheStringDate: (NSString*) theString
-{
+- (BOOL)isTheStringDate:(NSString*)theString {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *dateFromString = [[NSDate alloc] init];

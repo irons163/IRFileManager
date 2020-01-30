@@ -7,23 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DocumentTableViewCell.h"
-//#import "OfflineFGalleryViewController.h"
-#import "CustomCollectionView.h"
 #import <IRGallery/IRGallery.h>
+#import "DocumentTableViewCell.h"
+#import "CustomCollectionView.h"
+#import "DocumentListFileType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DocumentListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, IRGalleryViewControllerDelegate,UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>{
 }
-
-typedef enum {
-    DOCUMENT_TYPE = 0,
-    MUSIC_TYPE,
-    VIDEO_TYPE,
-    PHOTO_TYPE,
-    ALL_TYPE
-} FILE_TYPE;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
