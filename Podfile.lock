@@ -2,11 +2,12 @@ PODS:
   - CocoaLumberjack (3.6.0):
     - CocoaLumberjack/Core (= 3.6.0)
   - CocoaLumberjack/Core (3.6.0)
+  - IRAlertManager (1.0.1)
   - IRCollectionTableViewModel (1.0.1)
   - IRFFMpeg (4.2.19):
     - IRFFMpeg/FFMpegLib (= 4.2.19)
   - IRFFMpeg/FFMpegLib (4.2.19)
-  - IRGallery (0.1.1)
+  - IRGallery (0.1.2)
   - IRMusicPlayer (0.1.1)
   - IRPasscode (0.1.4):
     - UICKeyChainStore
@@ -25,6 +26,7 @@ PODS:
   - UICKeyChainStore (2.1.2)
 
 DEPENDENCIES:
+  - IRAlertManager
   - IRCollectionTableViewModel
   - IRGallery
   - IRMusicPlayer
@@ -39,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CocoaLumberjack
+    - IRAlertManager
     - IRCollectionTableViewModel
     - IRFFMpeg
     - IRGallery
@@ -62,9 +65,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
+  IRAlertManager: acd4a2519be75863c90f43a71aa94337987f6c88
   IRCollectionTableViewModel: 46af7fe12b374b004f760125147e1ca0a5c9946a
   IRFFMpeg: 50e159994f9c7c1136b19fc1dea96b4c903b1c9c
-  IRGallery: f735c72a80e9b78b2a772783bddbbe7d95be384e
+  IRGallery: 5a94e2557fcaf6d69e5bfc96db5419ad737f2240
   IRMusicPlayer: d8f8092e34681bc8353c86923e6260337e95b7b9
   IRPasscode: 2662639ab8d2e193751abd9fc858249424982ca5
   IRPlayer: 1448253d7c87c9cbdd7bd288d8a0edbdd17494a6
@@ -75,6 +79,6 @@ SPEC CHECKSUMS:
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
 
-PODFILE CHECKSUM: 8e76e5d68d4b88086ffb79fbf16178c5dae66ece
+PODFILE CHECKSUM: fbddf2cad532602df37eba7052855404cb849eaf
 
 COCOAPODS: 1.8.4

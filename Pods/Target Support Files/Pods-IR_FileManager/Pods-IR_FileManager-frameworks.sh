@@ -162,6 +162,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRAlertManager/IRAlertManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRCollectionTableViewModel/IRCollectionTableViewModel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRGallery/IRGallery.framework"
@@ -177,6 +178,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRAlertManager/IRAlertManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRCollectionTableViewModel/IRCollectionTableViewModel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRGallery/IRGallery.framework"

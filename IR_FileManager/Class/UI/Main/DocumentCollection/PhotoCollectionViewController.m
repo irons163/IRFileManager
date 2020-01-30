@@ -19,6 +19,7 @@
 #import "FileTypeUtility.h"
 #import "DBManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <IRAlertManager/IRAlertManager.h>
 
 @interface PhotoCollectionViewController ()
 
@@ -633,15 +634,62 @@
         return;
     }
     
-    // TODO
+    [self showConfirmViewWithConfirmed:^{
+        [self delete:self->selectedPhotos];
+        [self loadData];
+    }];
 }
 
 - (void)delete:(NSArray*)dfiles {
-    // TODO
+    for (File *file in dfiles) {
+        [file MR_deleteEntity];
+    }
+    
+    [[DBManager sharedInstance] save];
 }
 
 - (void)showWarningView {
-    // TODO
+    IRAlertSystem *alert = [[IRAlertSystem alloc] initWithStyle:IRAlertControllerStyleAlert];
+    alert.title = @"Warning";
+    alert.message = @"No selected files.";
+    
+    __weak IRAlert *wAlert = alert;
+    IRAlertAction *commitAction = [[IRAlertAction alloc] init];
+    commitAction.title = @"OK";
+    commitAction.style = IRAlertActionStyleDefault;
+    commitAction.handler = ^(IRAlertAction * _Nonnull action) {
+        [[IRAlertManager sharedInstance] hideAlert:wAlert];
+    };
+    [alert addAction:commitAction];
+    
+    [[IRAlertManager sharedInstance] showAlert:alert];
+}
+
+- (void)showConfirmViewWithConfirmed:(nonnull void(^)(void))confirmed {
+    IRAlertSystem *alert = [[IRAlertSystem alloc] initWithStyle:IRAlertControllerStyleAlert];
+    alert.style = IRAlertControllerStyleAlert;
+    alert.title = @"Confirm";
+    alert.message = @"Are you sure to delete the files?";
+    
+    __weak IRAlert *wAlert = alert;
+    IRAlertAction *commitAction = [[IRAlertAction alloc] init];
+    commitAction.title = @"OK";
+    commitAction.style = IRAlertActionStyleDefault;
+    commitAction.handler = ^(IRAlertAction * _Nonnull action) {
+        [[IRAlertManager sharedInstance] hideAlert:wAlert];
+        confirmed();
+    };
+    [alert addAction:commitAction];
+
+    IRAlertAction *cancelAction = [[IRAlertAction alloc] init];
+    cancelAction.title = @"Cancel";
+    cancelAction.style = IRAlertActionStyleCancel;
+    cancelAction.handler = ^(IRAlertAction * _Nonnull action) {
+        
+    };
+    [alert addAction:cancelAction];
+    
+    [[IRAlertManager sharedInstance] showAlert:alert];
 }
 
 - (void)selectAllItem:(BOOL)selectAll {
