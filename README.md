@@ -6,4 +6,4 @@
 ## Screenshots
 |Main|Photo|VIdeo|
 |:---:|:---:|:---:|
-|![Demo](./ScreenShots/demo1.png)|![Demo](./ScreenShots/demo2.png)|![Demo](./ScreenShots/demo3.png)|
+|![Demo](./ScreenShots/demo1.PNG)|![Demo](./ScreenShots/demo2.PNG)|![Demo](./ScreenShots/demo3.PNG)|
