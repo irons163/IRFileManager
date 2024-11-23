@@ -17,7 +17,7 @@
 
 - (BOOL)isContentValid {
     // Do validation of contentText and/or NSExtensionContext attachments here
-    [IRShare sharedInstance].groupID = @"group.irons163.IRFileManager";
+    [IRShare sharedInstance].groupID = @"group.IRMusicPlayer-AppStore";
     return YES;
 }
 

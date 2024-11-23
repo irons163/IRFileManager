@@ -29,13 +29,13 @@
     PhotoCollectionViewModel *viewModel;
     CGFloat newCollectionViewY;
     NSMutableArray* photos;
-//    BOOL editEnabled;
+    //    BOOL editEnabled;
     NSMutableArray* selectedPhotos;
-    
+
     NSMutableArray *autocompleteUrls;
     bool searchActived;
     bool isNeedToReloadData;
-    
+
     EditMode editMode;
     UIView* tooBar;
     UIBarButtonItem *leftItem, *rightItem, *dismissSearchBarRightItem, *leftButtonForCancelDeleteMode, *rightButtonForDoDelete, *leftButtonForCancelUploadMode;
@@ -49,7 +49,7 @@
     UITextField* textField;
     UIImageView * searchBg;
     UIImageView* searchIcon;
-    
+
     IRGalleryViewController *galleryVC;
     dispatch_queue_t queue;
 }
@@ -58,16 +58,16 @@
     self.navigationItem.title = _(@"Photos List");
     [self.navigationController setNavigationBarHidden:NO];
     [self registerForKeyboardNotifications];
-    
+
     if(!tooBar){
         [self setNavigatinItem];
         [self setToolBar];
-        
+
         [self setNormalToobarItem];
     }
-    
 
-    
+
+
     //設定通知對應的函數
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(notificationHandle:)
@@ -76,17 +76,17 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    
+
     NSLog(@"remove-notificationHandle");
     //移除通知對應函數
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)viewDidLayoutSubviews{
-//    [self setNormalToobarItem];
+    //    [self setNormalToobarItem];
     [self changeCollectionViewY];
 }
 
@@ -104,60 +104,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     queue = dispatch_queue_create("loadImaged.queue", DISPATCH_QUEUE_SERIAL);
-    
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0);
     collectionViewLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40.f);
-    
+
     viewModel = [[PhotoCollectionViewModel alloc] initWithCollectionView:_collectionView];
     _collectionView.dataSource = viewModel;
-    
+
     photos = [NSMutableArray array];
-    
+
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appDelegate.importFile) {
         File *file = appDelegate.importFile;
         appDelegate.importFile = nil;
         [photos addObject:file];
-        
+
         viewModel.photos = photos;
         [viewModel update];
-        
+
         [self createGallery];
-        
+
         for(UIButton *button in galleryVC.toolBar.items){
             button.enabled = NO;
         }
-        
+
         [galleryVC setSlideEnable:NO];
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self gotoGallery:[NSIndexPath indexPathForItem:0 inSection:0]];
-            
+
             self->isNeedToReloadData = YES;
-            
+
             if(self->isNeedToReloadData){
                 self->isNeedToReloadData = NO;
                 [self loadData];
             }
         });
-        
+
 
     }else{
         [self loadData];
     }
-    
+
     selectedPhotos = [NSMutableArray array];
-    
+
     autocompleteUrls = [NSMutableArray array];
-    
+
     [self.syncAlbumBtn setTitle:_(@"SYNC_ALBUM_BUTTON_TITLE") forState:UIControlStateNormal];
-    
+
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
@@ -169,13 +169,13 @@
 
 - (void)createGallery {
     __weak PhotoCollectionViewController *weakSelf = self;
-    
+
     if(galleryVC){
         @synchronized (galleryVC) {
             [galleryVC setPhotoSource:nil];
         }
     }
-    
+
     galleryVC = [[IRGalleryViewController alloc] initWithPhotoSource:weakSelf];
     galleryVC.startingIndex = 0;
     galleryVC.useThumbnailView = FALSE;
@@ -186,7 +186,7 @@
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
+
     self.navigationItem.hidesBackButton = YES;
     UIView* leftview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
     UIImage* backImage = [UIImage imageNamed:@"btn_nav_back.png"];
@@ -207,11 +207,11 @@
     backButton.titleEdgeInsets = UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f);
     [backButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [backButton addTarget:self action:@selector(backBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-    
+
     [leftview addSubview:backButton];
-    
+
     leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftview];
-    
+
     downloadButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     UIImage* image = [UIImage imageNamed:@"btn_nav_import"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 30)];
@@ -220,17 +220,17 @@
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 30)];
     [downloadButton setImage:image forState:UIControlStateHighlighted];
     [downloadButton addTarget:self action:@selector(openSyncPhotosPageFormPhoneAlbum) forControlEvents:UIControlEventTouchUpInside];
-    
+
     rightItem = [[UIBarButtonItem alloc] initWithCustomView:downloadButton];
-    
+
     [self setNormalNavigatinItem];
-    
+
     cancelDeleteModeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
     cancelDeleteModeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [cancelDeleteModeButton setTitle:_(@"Cancel") forState:UIControlStateNormal];
     [cancelDeleteModeButton addTarget:self action:@selector(switchDeleteMode) forControlEvents:UIControlEventTouchUpInside];
     leftButtonForCancelDeleteMode = [[UIBarButtonItem alloc] initWithCustomView:cancelDeleteModeButton];
-    
+
     UIButton* doDeleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 50)];
     image = [UIImage imageNamed:@"btn_trash"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(20, 26.67)];
@@ -240,7 +240,7 @@
     [doDeleteButton setImage:image forState:UIControlStateHighlighted];
     [doDeleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
     rightButtonForDoDelete = [[UIBarButtonItem alloc] initWithCustomView:doDeleteButton];
-    
+
     cancelUploadModeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
     cancelUploadModeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [cancelUploadModeButton setTitle:_(@"Cancel") forState:UIControlStateNormal];
@@ -256,7 +256,7 @@
     negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     [negativeSpacer setWidth:-20];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacer,rightItem,nil];
-    
+
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
@@ -268,7 +268,7 @@
     [negativeSpacerRight setWidth:-10];
     //    self.navigationItem.rightBarButtonItem = rightButtonForDoDelete;
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight,rightButtonForDoDelete,nil];
-    
+
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
@@ -279,8 +279,8 @@
     UIBarButtonItem *negativeSpacerRight = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     [negativeSpacerRight setWidth:-10];
     //    self.navigationItem.rightBarButtonItem = rightButtonForDoDelete;
-//    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight,rightButtonForDoUpload,nil];
-    
+    //    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacerRight,rightButtonForDoUpload,nil];
+
     [self.navigationController.navigationBar setNeedsLayout];
 }
 
@@ -288,7 +288,7 @@
     tooBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, self.view.bounds.size.width, 50)];
     [tooBar setBackgroundColor:[UIColor colorWithColorCodeString:@"fff4f4f4"]];
     [self.view addSubview:tooBar];
-    
+
     deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     UIImage* image = [UIImage imageNamed:@"btn_trash"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(23, 30)];
@@ -296,7 +296,7 @@
     image = [UIImage imageNamed:@"btn_trash"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(23, 30)];
     [deleteButton setImage:image forState:UIControlStateHighlighted];
-    
+
     uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 50, 50)];
     image = [UIImage imageNamed:@"top_option_upload to storage_icon"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 25)];
@@ -304,7 +304,7 @@
     image = [UIImage imageNamed:@"top_option_upload to storage_icon"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 25)];
     [uploadButton setImage:image forState:UIControlStateHighlighted];
-    
+
     searchButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
     image = [UIImage imageNamed:@"btn_search"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 25)];
@@ -313,18 +313,18 @@
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(25, 25)];
     [searchButton setImage:image forState:UIControlStateHighlighted];
     [searchButton setContentMode:UIViewContentModeRight];
-    
+
     [deleteButton addTarget:self action:@selector(switchDeleteMode) forControlEvents:UIControlEventTouchUpInside];
     [uploadButton addTarget:self action:@selector(switchUploadMode) forControlEvents:UIControlEventTouchUpInside];
     [searchButton addTarget:self action:@selector(showSearchBar) forControlEvents:UIControlEventTouchUpInside];
-    
+
     dismissSearchBarButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 0, 50, 50)];
     image = [UIImage imageNamed:@"btn_search_cancle"];
     image = [CommonTools imageWithImage:image scaledToSize:CGSizeMake(15, 15)];
     [dismissSearchBarButton setImage:image forState:UIControlStateNormal];
     [dismissSearchBarButton setImage:image forState:UIControlStateHighlighted];
     [dismissSearchBarButton addTarget:self action:@selector(clearSearchBarContent) forControlEvents:UIControlEventTouchUpInside];
-    
+
     selectAllButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 30, 50)];
     //    deleteButton.backgroundColor = [UIColor redColor];
     image = [UIImage imageNamed:@"btn_list_uncheck.png"];
@@ -343,7 +343,7 @@
     [tooBar addSubview:uploadButton];
     [tooBar addSubview:searchButton];
     [tooBar setHidden:NO];
-    
+
     newCollectionViewY = tooBar.frame.origin.y + tooBar.frame.size.height;
     [self changeCollectionViewY];
 }
@@ -370,7 +370,7 @@
     [tooBar addSubview:textField];
     [tooBar addSubview:dismissSearchBarButton];
     [tooBar setHidden:NO];
-    
+
     newCollectionViewY = tooBar.frame.origin.y + tooBar.frame.size.height;
     [self changeCollectionViewY];
 }
@@ -380,7 +380,7 @@
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //    [tooBar addSubview:cancelDeleteModeButton];
     [tooBar setHidden:YES];
-    
+
     newCollectionViewY = tooBar.frame.origin.y;
     [self changeCollectionViewY];
 }
@@ -389,18 +389,18 @@
     if(textField!=nil){
         textField.text = @"";
         [self searchBehaviorWithString:textField.text];
-        
+
         [textField removeFromSuperview];
         textField = nil;
         return;
     }
-    
+
     searchActived = true;
     [self searchBehaviorWithString:@""];
-    
+
     searchIcon = [[UIImageView alloc] initWithFrame:CGRectMake(searchButton.frame.size.width/2 - 20/2, searchButton.frame.size.height/2 - 20/2, 25, 25)];
     searchIcon.image = [UIImage imageNamed:@"btn_search"];
-    
+
     CGFloat textFieldX = searchIcon.frame.origin.x + searchIcon.frame.size.width + 10;
     textField = [[UITextField alloc] initWithFrame:CGRectMake(textFieldX, 1, dismissSearchBarButton.frame.origin.x - textFieldX, tooBar.frame.size.height-2)];
     [textField setFont:[UIFont systemFontOfSize:14]];
@@ -439,14 +439,14 @@
     if(textField!=nil){
         self.navigationController.navigationBar.translucent = YES;
         [searchBg removeFromSuperview];
-        
+
         searchActived = false;
         textField.text = @"";
         [self searchBehaviorWithString:textField.text];
-        
+
         [textField removeFromSuperview];
         textField = nil;
-        
+
         [self setNormalToobarItem];
         return;
     }
@@ -456,37 +456,37 @@
 
 - (void)loadData {
     [self startAnimating];
-    
+
     [self->photos removeAllObjects];
-    
+
     NSArray* readFromDB = nil;
     readFromDB = [File MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"type=%@", @"PICTURE"]];
-    
+
     dispatch_async(queue, ^{
         for(File *file in readFromDB){
             [self->photos addObject:file];
         }
-        
+
         NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:NO];
         [self->photos sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
-        
+
         self->viewModel.photos = self->photos;
         [self->viewModel update];
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeSelectedItems];
-            
+
             if(self->editMode != NormalMode){
                 self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)self->selectedPhotos.count, _(@"SELECTED")];
             }else{
                 self.navigationItem.title = _(@"Photos List");
             }
-            
+
             [self.collectionView reloadData];
             //    galleryVC.startingIndex = 0;
             //    [galleryVC reloadGallery];
             [self createGallery];
-            
+
             [self stopAnimating];
         });
     });
@@ -497,19 +497,19 @@
     for(int section = 0; section < indexPath.section; section++){
         position += [self.collectionView numberOfItemsInSection:section];
     }
-    
+
     position += indexPath.row;
-    
+
     File* file = [viewModel getFileWithIndexPath:indexPath];
-    
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *filepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
-    
+
     galleryVC.startingIndex = position;
     galleryVC.preDisplayView.image = [UIImage imageWithContentsOfFile:filepath];
     [galleryVC gotoImageByIndex:position animated:NO];
     [self.navigationController pushViewController:galleryVC animated:YES];
-    
+
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
@@ -519,12 +519,12 @@
         [self dismissSearchBar];
     }else if(editMode != NormalMode){
         editMode = NormalMode;
-        
+
         for(NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems){
             [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
         }
         [self removeSelectedItems];
-        
+
         self.collectionView.allowsMultipleSelection = NO;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
@@ -535,20 +535,20 @@
 - (void)switchDeleteMode {
     if(editMode == NormalMode){
         editMode = DeleteMode;
-        
+
         [self setDeletingToobarItem];
         [self setDeletingNavigatinItem];
-        
+
         self.collectionView.allowsMultipleSelection = YES;
         [self.collectionView reloadData];
-        
+
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
     }else{
         editMode = NormalMode;
         self.collectionView.allowsMultipleSelection = NO;
         [self changeToNormalMode];
         [self.collectionView reloadData];
-        
+
         self.navigationItem.title = _(@"Photos List");
     }
 }
@@ -556,27 +556,27 @@
 - (void)switchUploadMode {
     if(editMode == NormalMode){
         editMode = UploadMode;
-        
+
         [self setUploadingToobarItem];
         [self setUploadingNavigatinItem];
-        
+
         self.collectionView.allowsMultipleSelection = YES;
         [self.collectionView reloadData];
-        
+
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
     }else{
         editMode = NormalMode;
         self.collectionView.allowsMultipleSelection = NO;
         [self changeToNormalMode];
         [self.collectionView reloadData];
-        
+
         self.navigationItem.title = _(@"Photos List");
     }
 }
 
 - (void)openSyncPhotosPageFormPhoneAlbum {
     [self checkPermisstion];
-    
+
     QBImagePickerController *imagePickerController = [QBImagePickerController new];
     imagePickerController.delegate = self;
     imagePickerController.allowsMultipleSelection = YES;
@@ -587,26 +587,26 @@
                                                       @(PHAssetCollectionSubtypeSmartAlbumFavorites),
                                                       @(PHAssetCollectionSubtypeAlbumMyPhotoStream),
                                                       @(PHAssetCollectionSubtypeSmartAlbumPanoramas),
-//                                                      @(PHAssetCollectionSubtypeSmartAlbumVideos),
-//                                                      @(PHAssetCollectionSubtypeSmartAlbumSlomoVideos),
-//                                                      @(PHAssetCollectionSubtypeSmartAlbumTimelapses),
-//                                                      @(PHAssetCollectionSubtypeSmartAlbumBursts),
-//                                                      @(PHAssetCollectionSubtypeSmartAlbumAllHidden),
+                                                      //                                                      @(PHAssetCollectionSubtypeSmartAlbumVideos),
+                                                      //                                                      @(PHAssetCollectionSubtypeSmartAlbumSlomoVideos),
+                                                      //                                                      @(PHAssetCollectionSubtypeSmartAlbumTimelapses),
+                                                      //                                                      @(PHAssetCollectionSubtypeSmartAlbumBursts),
+                                                      //                                                      @(PHAssetCollectionSubtypeSmartAlbumAllHidden),
                                                       @(PHAssetCollectionSubtypeSmartAlbumGeneric),
                                                       @(PHAssetCollectionSubtypeAlbumRegular),
                                                       @(PHAssetCollectionSubtypeAlbumSyncedAlbum),
                                                       @(PHAssetCollectionSubtypeAlbumSyncedEvent),
                                                       @(PHAssetCollectionSubtypeAlbumSyncedFaces),
                                                       @(PHAssetCollectionSubtypeAlbumImported),
-//                                                      @(PHAssetCollectionSubtypeAlbumCloudShared)
-                                                      ];
+                                                      //                                                      @(PHAssetCollectionSubtypeAlbumCloudShared)
+    ];
     if(imagePickerController.childViewControllers.count > 0){
         UINavigationController *nav = imagePickerController.childViewControllers[0];
         [nav.navigationBar setBarTintColor:[UIColor colorWithColorCodeString:NavigationBarBGColor]];
         [nav.navigationBar
          setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     }
-    
+
     [self.navigationController presentViewController:imagePickerController animated:YES completion:NULL];
 }
 
@@ -624,7 +624,7 @@
     }
     [self removeSelectedItems];
     self.navigationItem.title = _(@"Photos List");
-    
+
     self.collectionView.allowsMultipleSelection = NO;
 }
 
@@ -633,7 +633,7 @@
         [self showWarningView];
         return;
     }
-    
+
     [self showConfirmViewWithConfirmed:^{
         [self delete:self->selectedPhotos];
         [self loadData];
@@ -644,7 +644,7 @@
     for (File *file in dfiles) {
         [file MR_deleteEntity];
     }
-    
+
     [[DBManager sharedInstance] save];
 }
 
@@ -652,7 +652,7 @@
     IRAlertSystem *alert = [[IRAlertSystem alloc] initWithStyle:IRAlertControllerStyleAlert];
     alert.title = @"Warning";
     alert.message = @"No selected files.";
-    
+
     __weak IRAlert *wAlert = alert;
     IRAlertAction *commitAction = [[IRAlertAction alloc] init];
     commitAction.title = @"OK";
@@ -661,7 +661,7 @@
         [[IRAlertManager sharedInstance] hideAlert:wAlert];
     };
     [alert addAction:commitAction];
-    
+
     [[IRAlertManager sharedInstance] showAlert:alert];
 }
 
@@ -670,7 +670,7 @@
     alert.style = IRAlertControllerStyleAlert;
     alert.title = @"Confirm";
     alert.message = @"Are you sure to delete the files?";
-    
+
     __weak IRAlert *wAlert = alert;
     IRAlertAction *commitAction = [[IRAlertAction alloc] init];
     commitAction.title = @"OK";
@@ -685,10 +685,10 @@
     cancelAction.title = @"Cancel";
     cancelAction.style = IRAlertActionStyleCancel;
     cancelAction.handler = ^(IRAlertAction * _Nonnull action) {
-        
+
     };
     [alert addAction:cancelAction];
-    
+
     [[IRAlertManager sharedInstance] showAlert:alert];
 }
 
@@ -713,16 +713,16 @@
             selectedAll = ([selectedPhotos count] == [photos count]);
         }
     }
-    
+
     selectAllButton.selected = selectedAll;
 }
 
 - (void)selectAllItemButtonClick:(UIButton*)sender {
     sender.selected = !sender.isSelected;
-    
+
     [self selectAllItem:sender.isSelected];
     self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
-    
+
     [self.collectionView reloadData];
 }
 
@@ -752,54 +752,54 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)_cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell = (PhotoCollectionViewCell*)_cell;
     File* file = [viewModel getFileWithIndexPath:indexPath];
-    
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *filepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
 
     bool isFirstLoad = false;
     if(cell.imageview.image == nil)
         isFirstLoad = true;
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            dispatch_async(dispatch_get_main_queue(), ^{
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             if(isFirstLoad || [[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                [cell.imageview sd_setImageWithURL:[NSURL fileURLWithPath:filepath] placeholderImage:[UIImage imageNamed:@"img_photo.jpg"]  options:0 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    if (image)
-                        return;
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                        //縮小photo
-                        @autoreleasepool {
-                            UIImage *tImage = [UIImage imageWithContentsOfFile:filepath];
-                            
-                            float w=60.f,h=50.f;
-                            if (tImage.size.width>=120 && tImage.size.height>=100) {
-                                if( tImage.size.width > tImage.size.height ){
-                                    w = ((float)(tImage.size.height/tImage.size.width))*100;
-                                    h = 100;
+                    [cell.imageview sd_setImageWithURL:[NSURL fileURLWithPath:filepath] placeholderImage:[UIImage imageNamed:@"img_photo.jpg"]  options:0 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                        if (image)
+                            return;
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            //縮小photo
+                            @autoreleasepool {
+                                UIImage *tImage = [UIImage imageWithContentsOfFile:filepath];
+
+                                float w=60.f,h=50.f;
+                                if (tImage.size.width>=120 && tImage.size.height>=100) {
+                                    if( tImage.size.width > tImage.size.height ){
+                                        w = ((float)(tImage.size.height/tImage.size.width))*100;
+                                        h = 100;
+                                    }else{
+                                        w = 120;
+                                        h = ((float)(tImage.size.width/tImage.size.height))*120;;
+                                    }
+                                    UIGraphicsBeginImageContext(CGSizeMake(w, h));
+                                    [tImage drawInRect:CGRectMake(0,0,120,100)];
                                 }else{
-                                    w = 120;
-                                    h = ((float)(tImage.size.width/tImage.size.height))*120;;
+                                    UIGraphicsBeginImageContext(CGSizeMake(w, h));
+                                    [tImage drawInRect:CGRectMake(0,0,tImage.size.width,tImage.size.height)];
                                 }
-                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
-                                [tImage drawInRect:CGRectMake(0,0,120,100)];
-                            }else{
-                                UIGraphicsBeginImageContext(CGSizeMake(w, h));
-                                [tImage drawInRect:CGRectMake(0,0,tImage.size.width,tImage.size.height)];
+
+
+                                UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                                UIGraphicsEndImageContext();
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    if([[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
+                                        cell.imageview.image = newImage;
+                                        [cell setNeedsLayout];
+                                    }
+                                });
                             }
-                            
-                            
-                            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-                            UIGraphicsEndImageContext();
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if([[self.collectionView indexPathsForVisibleItems] containsObject:indexPath]){
-                                    cell.imageview.image = newImage;
-                                    [cell setNeedsLayout];
-                                }
-                            });
-                        }
-                    });
-                }];
+                        });
+                    }];
                 });
             }
         });
@@ -807,25 +807,25 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     File *item;
-    
+
     int position = 0;
     for(int section = 0; section < indexPath.section; section++){
         position += [self.collectionView numberOfItemsInSection:section];
     }
-    
+
     position += indexPath.row;
-    
+
     if(searchActived){
         item = autocompleteUrls[position];
     }else{
         item = photos[position];
     }
-    
+
     if(editMode != NormalMode){
         [selectedPhotos addObject:item];
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
@@ -838,13 +838,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (editMode != NormalMode) {
         NSInteger rowNumber = 0;
-        
+
         for (NSInteger i = 0; i < indexPath.section; i++) {
             rowNumber += [self.collectionView numberOfItemsInSection:i];
         }
-        
+
         rowNumber += indexPath.row;
-        
+
         File* item = ((File*)[photos objectAtIndex:rowNumber]);
         [selectedPhotos removeObject:item];
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
@@ -885,7 +885,7 @@
     }else{
         file = ((File*)photos[index]);
     }
-    
+
     NSString *filename = [NSString stringWithFormat:@"%@", file.name];
     return [[filename pathComponents] lastObject];
 }
@@ -897,7 +897,7 @@
     }else{
         file = ((File*)photos[index]);
     }
-    
+
     NSString *filename = [NSString stringWithFormat:@"%@", file];
     return [[filename pathComponents] lastObject];
 }
@@ -909,7 +909,7 @@
     }else{
         file = ((File *)photos[index]);
     }
-    
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *str = [[paths objectAtIndex:0] stringByAppendingPathComponent:[file valueForKey:@"name"]];
     return str;
@@ -920,7 +920,7 @@
 }
 
 - (void)photoGallery:(IRGalleryViewController *)gallery addFavorite:(bool)isAddToFavortieList atIndex:(NSUInteger)index {
-    
+
 }
 
 #pragma mark UITextFieldDelegate methods
@@ -948,10 +948,10 @@
     // The items in this array is what will show up in the table view
     [autocompleteUrls removeAllObjects];
     [self removeSelectedItems];
-    
+
     if(editMode != NormalMode)
         self.navigationItem.title = [NSString stringWithFormat:@"%lu %@", (unsigned long)selectedPhotos.count, _(@"SELECTED")];
-    
+
     if(!searchActived){
         for(File* f in photos) {
             [autocompleteUrls addObject:f];
@@ -969,7 +969,7 @@
     viewModel.photos = autocompleteUrls;
     [viewModel update];
     [self.collectionView reloadData];
-    
+
     [self createGallery];
 }
 
@@ -983,23 +983,23 @@
 
 - (NSString*)getVideoID:(NSString*)videoURL{
     NSString *videoID = nil, *videoExt = nil;
-    
+
     NSString *tVideoURL = videoURL;
-    
+
     NSRange po = [videoURL rangeOfString:@"?"];
     if(po.location>0){
         tVideoURL = [tVideoURL substringFromIndex:po.location];
     }
-    
+
     po = [tVideoURL rangeOfString:@"&"];
     if(po.location>0){
         videoID = [tVideoURL substringToIndex:po.location];
         videoID = [videoID stringByReplacingOccurrencesOfString:@"?id="withString:@""];
-        
+
         tVideoURL = [tVideoURL substringFromIndex:po.location];
         videoExt = [[tVideoURL stringByReplacingOccurrencesOfString:@"&ext="withString:@""] lowercaseString];
     }
-    
+
     videoID = [ NSString stringWithFormat:@"%@.%@", videoID , videoExt];
     return videoID;
 }
@@ -1011,7 +1011,7 @@
 - (void)checkPermisstion {
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        
+
     }failureBlock:^(NSError *error) {
         [self showPermisstionAlert];
     }];
@@ -1022,7 +1022,7 @@
     if([navController.presentedViewController isKindOfClass:[QBImagePickerController class]]){
         [navController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
     }
-    
+
 }
 
 #pragma mark - KeyboardNotifications
@@ -1044,7 +1044,7 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, offsetY, 0.0);
     self.collectionView.contentInset = contentInsets;
     self.collectionView.scrollIndicatorInsets = contentInsets;
-    
+
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your application might not need or want this behavior.
     CGRect aRect = self.view.frame;
@@ -1072,63 +1072,77 @@
 
 #pragma mark - showPermisstionAlert
 - (void)showPermisstionAlert {
-  
+
 }
 
 #pragma mark - QBImagePickerControllerDelegate
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
-//    LoadingView *loadingView;;
-//    VIEW(loadingView, LoadingView);
-//    loadingView.title.text = _(@"SYNCING");
-//    [[KGModal sharedInstance] setTapOutsideToDismiss:NO];
-//    [[KGModal sharedInstance] setShowCloseButton:FALSE];
-//    [[KGModal sharedInstance] showWithContentView:loadingView andAnimated:YES];
-    
+    //    LoadingView *loadingView;;
+    //    VIEW(loadingView, LoadingView);
+    //    loadingView.title.text = _(@"SYNCING");
+    //    [[KGModal sharedInstance] setTapOutsideToDismiss:NO];
+    //    [[KGModal sharedInstance] setShowCloseButton:FALSE];
+    //    [[KGModal sharedInstance] showWithContentView:loadingView andAnimated:YES];
+
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+
             PHImageManager *manager = [PHImageManager defaultManager];
             for (PHAsset *asset in assets) {
                 PHImageRequestOptions *option = [PHImageRequestOptions new];
                 option.synchronous = YES;
-                
-                [manager requestImageDataForAsset:asset
-                                          options:option
-                                    resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-                                        
-                                        NSString *fileName = nil;
-                                        NSArray *parts = [asset.localIdentifier componentsSeparatedByString:@"/"];
-                                        NSString *assetID = [parts objectAtIndex:0];
-                                        
-                                        NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
-                                        NSString *ext = path.pathExtension;
-                                        if(ext){
-                                            fileName = [NSString stringWithFormat:@"%@.%@", assetID, ext];
-                                            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                                            
-                                            fileName = [[DBManager sharedInstance] getNewFileNameIfExistsByFileName:fileName];
-                                            
-                                            NSString *resourceDocPath = [[NSString alloc] initWithString:[[NSTemporaryDirectory() stringByDeletingLastPathComponent]stringByAppendingPathComponent:@"Documents"]];
-                                            
-                                            NSString *filePath = [resourceDocPath stringByAppendingPathComponent:fileName];
-                                            
-                                            [imageData writeToFile:filePath atomically:YES];
 
-                                            NSString *fileTypeString = [FileTypeUtility getFileType:[fileName pathExtension]];
-                                            File *file = [File MR_createEntity];
-                                            file.name = fileName;
-                                            file.type = fileTypeString;
-                                            file.size = [[FileTypeUtility getFileSize:filePath] longLongValue];
-                                            file.createTime = [FileTypeUtility getFileCreationTimeFromPath:filePath];
-                                            
-                                            [[DBManager sharedInstance] save];
-                                        }else{
-                                            NSLog(@"No pathExtension.");
-                                        }
-                                    }];
+                [manager requestImageDataAndOrientationForAsset:asset
+                                                        options:option
+                                                  resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, CGImagePropertyOrientation orientation, NSDictionary * _Nullable info) {
+
+                    NSArray<PHAssetResource *> *resources = [PHAssetResource assetResourcesForAsset:asset];
+                    PHAssetResource *photoResource = nil;
+
+                    for (PHAssetResource *resource in resources) {
+                        if (resource.type == PHAssetResourceTypePhoto || resource.type == PHAssetResourceTypeVideo) {
+                            photoResource = resource;
+                            break;
+                        }
+                    }
+
+                    NSString *fileName = nil;
+                    NSArray *parts = [asset.localIdentifier componentsSeparatedByString:@"/"];
+                    NSString *assetID = [parts objectAtIndex:0];
+
+                    if (photoResource) {
+                        NSString *ext = photoResource.originalFilename.pathExtension;
+                        if (ext) {
+                            fileName = [NSString stringWithFormat:@"%@.%@", assetID, ext];
+                            fileName = [fileName stringByRemovingPercentEncoding];
+
+                            fileName = [[DBManager sharedInstance] getNewFileNameIfExistsByFileName:fileName];
+
+                            NSString *resourceDocPath = [[NSString alloc] initWithString:[[NSTemporaryDirectory() stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Documents"]];
+
+                            NSString *filePath = [resourceDocPath stringByAppendingPathComponent:fileName];
+
+                            // Write imageData to file
+                            [imageData writeToFile:filePath atomically:YES];
+
+                            NSString *fileTypeString = [FileTypeUtility getFileType:[fileName pathExtension]];
+                            File *file = [File MR_createEntity];
+                            file.name = fileName;
+                            file.type = fileTypeString;
+                            file.size = [[FileTypeUtility getFileSize:filePath] longLongValue];
+                            file.createTime = [FileTypeUtility getFileCreationTimeFromPath:filePath];
+
+                            [[DBManager sharedInstance] save];
+                        } else {
+                            NSLog(@"No file extension found for asset resource.");
+                        }
+                    } else {
+                        NSLog(@"No valid photo resource found for asset.");
+                    }
+                }];
             }
-            
-//            [[KGModal sharedInstance] hideAnimated:YES];
+
+            //            [[KGModal sharedInstance] hideAnimated:YES];
             [self syncFinishCallback];
         });
     }];

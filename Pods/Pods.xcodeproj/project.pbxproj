@@ -1114,7 +1114,7 @@
 		02B921FA56F5B4B477985B6421F4898B /* QBVideoIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QBVideoIndicatorView.m; path = QBImagePicker/QBVideoIndicatorView.m; sourceTree = "<group>"; };
 		02F11A01FE1894CA7E5A231F10AC9A48 /* QBAlbumsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QBAlbumsViewController.h; path = QBImagePicker/QBAlbumsViewController.h; sourceTree = "<group>"; };
 		03DAD1959120EC60C1809B5629C5BF82 /* IRGLRenderModeMulti4P.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLRenderModeMulti4P.h; path = IRPlayer/Class/Core/Display/OpenGL/Mode/IRGLRenderModeMulti4P.h; sourceTree = "<group>"; };
-		03EF2B112617ABEE47399592ED2DB261 /* IRAlertManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRAlertManager.framework; path = IRAlertManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03EF2B112617ABEE47399592ED2DB261 /* IRAlertManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRAlertManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C1D24B6B6FF4B5D83D67434C262649 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
 		04DD2D29F41ECF359F963793B67C947F /* IRGLFish2PerspShaderParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLFish2PerspShaderParams.m; path = IRPlayer/Class/Core/Display/OpenGL/Params/IRGLFish2PerspShaderParams.m; sourceTree = "<group>"; };
 		05A169805E67395A3D055105C0FAA4C6 /* Utilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = IRMusicPlayer/Class/Utility/Utilities.h; sourceTree = "<group>"; };
@@ -1133,7 +1133,7 @@
 		0C91DCE811A9D253280597D5E9BB2FBF /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = IRMusicPlayer/Assets.xcassets; sourceTree = "<group>"; };
 		0CA0EFFFBFB4472BEF1824E85A957AB5 /* IRCollectionTableViewModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IRCollectionTableViewModel-umbrella.h"; sourceTree = "<group>"; };
 		0CD107EAACBB975B522C1D7B741198DD /* UIImage+Bundle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Bundle.m"; path = "IRPasscode/Class/Utility/UIImage+Bundle.m"; sourceTree = "<group>"; };
-		0CD2844312C25D7629DD27CF74ED7DDB /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = QBImagePicker/de.lproj; sourceTree = "<group>"; };
+		0CD2844312C25D7629DD27CF74ED7DDB /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = de.lproj; path = QBImagePicker/de.lproj; sourceTree = "<group>"; };
 		0D83282E242DE914679C7DD04CE14B3A /* hwcontext_vdpau.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hwcontext_vdpau.h; path = include/libavutil/hwcontext_vdpau.h; sourceTree = "<group>"; };
 		0E2B5242BF85B47AEA81330B6B6FF54E /* NSManagedObject+MagicalAggregation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+MagicalAggregation.m"; path = "MagicalRecord/Categories/NSManagedObject/NSManagedObject+MagicalAggregation.m"; sourceTree = "<group>"; };
 		0F3914DFBE6547EDAE1DBBD4FA3C4D8D /* IRPlayerImp+DisplayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IRPlayerImp+DisplayView.m"; path = "IRPlayer/Class/Core/Tools/IRPlayerImp+DisplayView.m"; sourceTree = "<group>"; };
@@ -1141,7 +1141,7 @@
 		0F5A5B5778D18845B6699AD0B153D1C9 /* IRFFMpeg.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = IRFFMpeg.m; sourceTree = "<group>"; };
 		0F8B5DEA30EEA20BF7B93422B5A5BDC2 /* Pods-IR_FileManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-IR_FileManager.modulemap"; sourceTree = "<group>"; };
 		100F52A53E2CA3A30C02E91DE90342CC /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImagePrefetcher.h; path = SDWebImage/SDWebImagePrefetcher.h; sourceTree = "<group>"; };
-		101154812BF3AAAF50B8C9466DF4C6E4 /* IRPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRPasscode.framework; path = IRPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		101154812BF3AAAF50B8C9466DF4C6E4 /* IRPasscode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRPasscode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1069D840F4F057DAB272DAA816D9F8D2 /* IRFingerPrintVerify.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRFingerPrintVerify.m; path = IRPasscode/Class/SecurityView/IRFingerPrintVerify.m; sourceTree = "<group>"; };
 		10869E4EFFF24E5E67386241AF33C8ED /* StatusClass.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = StatusClass.m; path = IRMusicPlayer/Class/Utility/StatusClass.m; sourceTree = "<group>"; };
 		1148DAE9FBDB07301A2743DBC3777A5D /* NSNumber+MagicalDataImport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+MagicalDataImport.m"; path = "MagicalRecord/Categories/DataImport/NSNumber+MagicalDataImport.m"; sourceTree = "<group>"; };
@@ -1186,9 +1186,9 @@
 		1E35C47586C41FECD9107B18C890C0E6 /* IRAlertAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRAlertAction.h; path = IRAlertManager/Class/IRAlertAction.h; sourceTree = "<group>"; };
 		1FDC4FDA0A79BB774308286E1FEE6952 /* NSManagedObject+MagicalFinders.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+MagicalFinders.m"; path = "MagicalRecord/Categories/NSManagedObject/NSManagedObject+MagicalFinders.m"; sourceTree = "<group>"; };
 		1FDCFF12AA8043A76DF35494A08D7FAF /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDDispatchQueueLogFormatter.h; path = Sources/CocoaLumberjack/include/DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
-		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		203EB47F9736F84F29B49BA4F5BEBAFF /* IRFFVideoFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRFFVideoFrame.h; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/Frame/IRFFVideoFrame.h; sourceTree = "<group>"; };
-		20D73B80DBEDC9935666EB05B502A6E8 /* QBImagePickerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QBImagePickerController.framework; path = QBImagePickerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D73B80DBEDC9935666EB05B502A6E8 /* QBImagePickerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QBImagePickerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DFED9E682103B2EE6E165A4071603B /* IRGLRenderModeDistortion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLRenderModeDistortion.h; path = IRPlayer/Class/Core/Display/OpenGL/Mode/IRGLRenderModeDistortion.h; sourceTree = "<group>"; };
 		215FEEA4281301C592E1C60143A23BD2 /* NSManagedObject+MagicalDataImport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+MagicalDataImport.h"; path = "MagicalRecord/Categories/NSManagedObject/NSManagedObject+MagicalDataImport.h"; sourceTree = "<group>"; };
 		216F514746607A6B356408B6114CD9F8 /* IRYUVTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRYUVTools.m; path = IRPlayer/Class/Core/Tools/IRYUVTools.m; sourceTree = "<group>"; };
@@ -1231,7 +1231,7 @@
 		2EF23AE51E068A79FC341D2BD11CCBC7 /* IRPasscodeLockSettingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRPasscodeLockSettingViewController.m; path = IRPasscode/Class/IRPasscodeLockSettingViewController.m; sourceTree = "<group>"; };
 		2F81CC537EB32C8CA86A49C78696724A /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDContextFilterLogFormatter.m; path = Sources/CocoaLumberjack/Extensions/DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
 		2FBDBAC40434BA3723EE45A848BA30AD /* IRPasscodeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRPasscodeView.m; path = IRPasscode/Class/SecurityView/IRPasscodeView.m; sourceTree = "<group>"; };
-		2FE41B94EBB42018D653C7F80C663E3A /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "QBImagePicker/zh-Hans.lproj"; sourceTree = "<group>"; };
+		2FE41B94EBB42018D653C7F80C663E3A /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "QBImagePicker/zh-Hans.lproj"; sourceTree = "<group>"; };
 		2FF2DA8139E0828928D0C678C6906C61 /* IRGLProgramDistortion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLProgramDistortion.m; path = IRPlayer/Class/Core/Display/OpenGL/Program/Distortion/IRGLProgramDistortion.m; sourceTree = "<group>"; };
 		3044AE4EFEA1687F2D19A674CE696347 /* btn_video_heart.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = btn_video_heart.png; path = IRGallery/Class/btn_video_heart.png; sourceTree = "<group>"; };
 		307F27D675D5A4CD6BCEAECC24F2BF17 /* IRShareManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IRShareManager.xcconfig; sourceTree = "<group>"; };
@@ -1265,7 +1265,7 @@
 		3A42CD237C8CA1974EE03AB04D11D340 /* NSObject+MagicalDataImport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MagicalDataImport.m"; path = "MagicalRecord/Categories/DataImport/NSObject+MagicalDataImport.m"; sourceTree = "<group>"; };
 		3A6882E3D7AB643E01B1C7DDF5EAEA1A /* IRFFMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRFFMetadata.h; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/IRFFMetadata.h; sourceTree = "<group>"; };
 		3A93731AFC60F5D791B37E5307607286 /* DDOSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDOSLogger.h; path = Sources/CocoaLumberjack/include/DDOSLogger.h; sourceTree = "<group>"; };
-		3AB8E118A6311D58054C38F4EB6E7C5E /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = QBImagePicker/es.lproj; sourceTree = "<group>"; };
+		3AB8E118A6311D58054C38F4EB6E7C5E /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = es.lproj; path = QBImagePicker/es.lproj; sourceTree = "<group>"; };
 		3B0EE92A370A3797058096CFD99EDFBD /* IRShareManager-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IRShareManager-umbrella.h"; sourceTree = "<group>"; };
 		3B10D72942B020AB3FFA77CA86755B74 /* UIColor+Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+Helper.h"; path = "IRPasscode/Class/Utility/UIColor+Helper.h"; sourceTree = "<group>"; };
 		3B949B59E21B9ACBBF5ABF3FE05FAF67 /* Pods-IR_FileManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-IR_FileManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -1382,7 +1382,7 @@
 		65253937330136F2A07954EC4BBAE949 /* IRAlertManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRAlertManager.h; path = IRAlertManager/Class/IRAlertManager.h; sourceTree = "<group>"; };
 		65AE6F723229B24FB63D36AB2E6C1ED7 /* MagicalRecord-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MagicalRecord-Info.plist"; sourceTree = "<group>"; };
 		660AD35ECD25AB1D8A8A1F9A49CF4125 /* version.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = version.h; path = include/libavutil/version.h; sourceTree = "<group>"; };
-		666FEA2524B38982DA6FA3B36DE45A0B /* IRCollectionTableViewModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRCollectionTableViewModel.framework; path = IRCollectionTableViewModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		666FEA2524B38982DA6FA3B36DE45A0B /* IRCollectionTableViewModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRCollectionTableViewModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F2A5C7D27D074E174116420870C086 /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		6713AD9A8CF9631803DE4C99A610B568 /* IRAlert+Package.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IRAlert+Package.h"; path = "IRAlertManager/Class/IRAlert+Package.h"; sourceTree = "<group>"; };
 		6867791A5AD637A6FFC56ACDBE58F28C /* IRSecurityPinViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = IRSecurityPinViewController.xib; path = IRPasscode/Class/SecurityView/IRSecurityPinViewController.xib; sourceTree = "<group>"; };
@@ -1391,7 +1391,7 @@
 		69EFA6A39F66292B4EF23FD9017B0A25 /* MusicPlayerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MusicPlayerViewController.h; path = IRMusicPlayer/Class/UI/MusicPlayerViewController.h; sourceTree = "<group>"; };
 		6A1B203EACDC093D70322629415585A9 /* QBCheckmarkView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QBCheckmarkView.m; path = QBImagePicker/QBCheckmarkView.m; sourceTree = "<group>"; };
 		6A4B95D9F14814897DF673C9D6DCDFD0 /* QBAlbumCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QBAlbumCell.m; path = QBImagePicker/QBAlbumCell.m; sourceTree = "<group>"; };
-		6AAC91532BDA6F232227690BEDDB7F66 /* IRMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRMusicPlayer.framework; path = IRMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AAC91532BDA6F232227690BEDDB7F66 /* IRMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFF276EC8CBE6FA5867377643994B4C /* IRGLProgram2DFisheye2Persp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLProgram2DFisheye2Persp.m; path = IRPlayer/Class/Core/Display/OpenGL/Program/IRGLProgram2DFisheye2Persp.m; sourceTree = "<group>"; };
 		6B076951C53FBE929749D203553E1809 /* IRePTZShiftController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRePTZShiftController.m; path = IRPlayer/Class/Core/Controller/DeviceShiftController/IRePTZShiftController.m; sourceTree = "<group>"; };
 		6B942A40A3B188815E9827164A750DC1 /* DDLog+LOGV.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "DDLog+LOGV.h"; path = "Sources/CocoaLumberjack/include/DDLog+LOGV.h"; sourceTree = "<group>"; };
@@ -1403,10 +1403,10 @@
 		6E22E9AF5DE162DCB743D73682BF950D /* IRMusicPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IRMusicPlayer-prefix.pch"; sourceTree = "<group>"; };
 		6E2A5D97506C9373F23D410F070A215F /* hmac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = include/libavutil/hmac.h; sourceTree = "<group>"; };
 		6E7EBC50D6B51EAC28E3052E0D9E8619 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
-		6E989CC20BBDD5888F39254EC11F58E7 /* IRPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRPlayer.framework; path = IRPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E989CC20BBDD5888F39254EC11F58E7 /* IRPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB7CAD7DFDC2FD2160C41E8C15DBEDC /* IRFFFramePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRFFFramePool.m; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/Frame/IRFFFramePool.m; sourceTree = "<group>"; };
 		6F072C81946C6BD7404E7798142E61C2 /* IRGLRenderMode2D.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLRenderMode2D.m; path = IRPlayer/Class/Core/Display/OpenGL/Mode/IRGLRenderMode2D.m; sourceTree = "<group>"; };
-		7022C3B615EF357B5FA8921113048C1A /* Pods_ShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ShareExtension.framework; path = "Pods-ShareExtension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7022C3B615EF357B5FA8921113048C1A /* Pods_ShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7033AF44CB13D874B6E8659C4E91DC2A /* IRGLView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLView.m; path = IRPlayer/Class/Core/Display/OpenGL/IRGLView.m; sourceTree = "<group>"; };
 		703C60BA31AC8B492CA785C964AFD888 /* IRPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IRPlayer-prefix.pch"; sourceTree = "<group>"; };
 		70875411C495CB1890719F13045FA2B4 /* MagicalRecord+ErrorHandling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MagicalRecord+ErrorHandling.m"; path = "MagicalRecord/Core/MagicalRecord+ErrorHandling.m"; sourceTree = "<group>"; };
@@ -1461,7 +1461,7 @@
 		80E3819040AA6EA5A866D8A99654F27F /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		822AB91FA66EE114CA413A8877A3C025 /* IRGLProgram2D.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLProgram2D.h; path = IRPlayer/Class/Core/Display/OpenGL/Program/IRGLProgram2D.h; sourceTree = "<group>"; };
 		828F253ED8BF55FBE90221605640FA89 /* IRFisheyeParameter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRFisheyeParameter.h; path = IRPlayer/Class/Core/Config/IRFisheyeParameter.h; sourceTree = "<group>"; };
-		829ED50CD49668B47225C32274B78CCE /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = QBImagePicker/ja.lproj; sourceTree = "<group>"; };
+		829ED50CD49668B47225C32274B78CCE /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ja.lproj; path = QBImagePicker/ja.lproj; sourceTree = "<group>"; };
 		836DE76FEBD446925A6CACA94D71DCF9 /* MagicalRecord+Options.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MagicalRecord+Options.m"; path = "MagicalRecord/Core/MagicalRecord+Options.m"; sourceTree = "<group>"; };
 		84BFEEA35810A816E5EA0BD85745C8DE /* IRFFPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRFFPlayer.m; path = IRPlayer/Class/Core/FFPlayer/IRFFPlayer.m; sourceTree = "<group>"; };
 		84D3B793998D6B3EAE368E9AA46373F8 /* CocoaLumberjack-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaLumberjack-umbrella.h"; sourceTree = "<group>"; };
@@ -1498,7 +1498,7 @@
 		90E050886A17ED49EE3A7DEEBE95BBC0 /* avcodec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = avcodec.h; path = include/libavcodec/avcodec.h; sourceTree = "<group>"; };
 		90EA2EC1577262F386FD338F4E7C73AF /* ColorDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ColorDefine.h; path = IRPasscode/Class/Utility/ColorDefine.h; sourceTree = "<group>"; };
 		91120A02AF7A847580F8393332546976 /* IRFFFrameQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRFFFrameQueue.m; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/Frame/IRFFFrameQueue.m; sourceTree = "<group>"; };
-		91158786A98A068DBCED365915D87A8B /* IRFFMpeg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRFFMpeg.framework; path = IRFFMpeg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91158786A98A068DBCED365915D87A8B /* IRFFMpeg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRFFMpeg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91221A5C4A30854E25A0F2656B18552A /* IRGLSupportPixelFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLSupportPixelFormat.h; path = IRPlayer/Class/Core/Display/OpenGL/IRGLSupportPixelFormat.h; sourceTree = "<group>"; };
 		9145929310CA030E9EDCD84DF9435E5E /* MagicalRecord+ErrorHandling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MagicalRecord+ErrorHandling.h"; path = "MagicalRecord/Core/MagicalRecord+ErrorHandling.h"; sourceTree = "<group>"; };
 		919C45A561C82812E45B82DBADEF07DC /* NSManagedObjectContext+MagicalRecord.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+MagicalRecord.h"; path = "MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalRecord.h"; sourceTree = "<group>"; };
@@ -1527,7 +1527,7 @@
 		9B99FEFDAC55D47C6140129C9C3F604D /* rc4.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = rc4.h; path = include/libavutil/rc4.h; sourceTree = "<group>"; };
 		9CCAD87FAFA9FCDD5E16C8905DA115F4 /* random_seed.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = random_seed.h; path = include/libavutil/random_seed.h; sourceTree = "<group>"; };
 		9D2D7B66E463FB6ACC4CF5176D8B8AC8 /* bprint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = bprint.h; path = include/libavutil/bprint.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DBF08C9AD4DD3257943862124B17482 /* hdr_dynamic_metadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hdr_dynamic_metadata.h; path = include/libavutil/hdr_dynamic_metadata.h; sourceTree = "<group>"; };
 		9E383E98A15DA5701F4BA1A6BD8C54C2 /* IRFFVideoToolBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRFFVideoToolBox.m; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/IRFFVideoToolBox.m; sourceTree = "<group>"; };
 		9E3A2098C7D741BABA20AC4AA548E5F5 /* IRGLFragmentRGBShaderGLSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLFragmentRGBShaderGLSL.h; path = IRPlayer/Class/Core/Display/OpenGL/Fragment/IRGLFragmentRGBShaderGLSL.h; sourceTree = "<group>"; };
@@ -1535,7 +1535,7 @@
 		9F004904EE21C49B93154722DC12B20A /* IRGLProgramFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRGLProgramFactory.h; path = IRPlayer/Class/Core/Display/OpenGL/Program/Factory/IRGLProgramFactory.h; sourceTree = "<group>"; };
 		9F68A59EF95BD69AC06B291036A8C371 /* threadmessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = threadmessage.h; path = include/libavutil/threadmessage.h; sourceTree = "<group>"; };
 		A0797E1143710B4ABECD1B0B67376F4A /* libavcodec.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libavcodec.a; path = lib/libavcodec.a; sourceTree = "<group>"; };
-		A0A4D131DB063279AE8AF52001C682FE /* UICKeyChainStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UICKeyChainStore.framework; path = UICKeyChainStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A4D131DB063279AE8AF52001C682FE /* UICKeyChainStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICKeyChainStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1302D411D05B73F6AC26CF9988C7156 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MultiFormat.m"; path = "SDWebImage/UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		A2666A9D74CAE819AAED8E5A6FC71F2A /* sha.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = sha.h; path = include/libavutil/sha.h; sourceTree = "<group>"; };
 		A2DBA649985B76F2FDAC5079D7E738DC /* avstring.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = avstring.h; path = include/libavutil/avstring.h; sourceTree = "<group>"; };
@@ -1574,7 +1574,7 @@
 		A9C5389B8D30970FCF359F4FCBC63472 /* lzo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = lzo.h; path = include/libavutil/lzo.h; sourceTree = "<group>"; };
 		AAA1DFE329B1E1593E787CC63D298C79 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		AB385693FB7D7EBE7A47136585934A0D /* IRSmoothScrollController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRSmoothScrollController.h; path = IRPlayer/Class/Core/Controller/ScrollController/IRSmoothScrollController.h; sourceTree = "<group>"; };
-		ABB43848547A86B3409581A1C5B55960 /* MagicalRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MagicalRecord.framework; path = MagicalRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABB43848547A86B3409581A1C5B55960 /* MagicalRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MagicalRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBC7B320CC5824A788F84D59B8D55DE /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/SDImageCache.m; sourceTree = "<group>"; };
 		AC866CB82C053D69B93D0A85C97C93C2 /* IRAlertManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IRAlertManager.xcconfig; sourceTree = "<group>"; };
 		ACAEF9B3A513BF8F404FAA1DB9FDF17F /* IRPasscodeLockSettingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRPasscodeLockSettingViewController.h; path = IRPasscode/Class/IRPasscodeLockSettingViewController.h; sourceTree = "<group>"; };
@@ -1586,7 +1586,7 @@
 		AFC8DE2766A5B55AC4BB84687736E1B4 /* log.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = log.h; path = include/libavutil/log.h; sourceTree = "<group>"; };
 		B0223443548DED8B7BD885C6466EC092 /* NSManagedObjectModel+MagicalRecord.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectModel+MagicalRecord.m"; path = "MagicalRecord/Categories/NSManagedObjectModel+MagicalRecord.m"; sourceTree = "<group>"; };
 		B0A62E173576ACC0603392CD7210408C /* swresample.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = swresample.h; path = include/libswresample/swresample.h; sourceTree = "<group>"; };
-		B0B214D775196BA7CA8E17E53048A493 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0B214D775196BA7CA8E17E53048A493 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1370384C0FB47F8FCA2215FCE4C3756 /* IRGLRenderMode3DFisheye.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLRenderMode3DFisheye.m; path = IRPlayer/Class/Core/Display/OpenGL/Mode/IRGLRenderMode3DFisheye.m; sourceTree = "<group>"; };
 		B1A6F677CB9346FA75D3BEEEBC239142 /* QBAssetCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QBAssetCell.h; path = QBImagePicker/QBAssetCell.h; sourceTree = "<group>"; };
 		B237A67838B3584F63C38E6D2A7AC514 /* IRPlayerImp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRPlayerImp.h; path = IRPlayer/Class/IRPlayerImp.h; sourceTree = "<group>"; };
@@ -1637,10 +1637,10 @@
 		C075F055497DCF5625343ECFE80FE486 /* UICKeyChainStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Lib/UICKeyChainStore/UICKeyChainStore.m; sourceTree = "<group>"; };
 		C1521EFAC6FA0B3F17BD58ACB45C7175 /* IRFFMpeg-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IRFFMpeg-prefix.pch"; sourceTree = "<group>"; };
 		C21C1B3029E0295CB12351563C67E2A8 /* DDFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = Sources/CocoaLumberjack/DDFileLogger.m; sourceTree = "<group>"; };
-		C261436D14052AE3C35F240BCD155CAC /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaLumberjack.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C289E51A1A6AAF5AEDC791089B925E07 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = QBImagePicker/en.lproj; sourceTree = "<group>"; };
+		C261436D14052AE3C35F240BCD155CAC /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C289E51A1A6AAF5AEDC791089B925E07 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = QBImagePicker/en.lproj; sourceTree = "<group>"; };
 		C30318374023D26EF45128E922DD055B /* NSString+MagicalDataImport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MagicalDataImport.m"; path = "MagicalRecord/Categories/DataImport/NSString+MagicalDataImport.m"; sourceTree = "<group>"; };
-		C355CF6F3C334E8C60CED2FD39DE8B8E /* IRGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRGallery.framework; path = IRGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C355CF6F3C334E8C60CED2FD39DE8B8E /* IRGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B01CC2CA99B05C9B50001C4CF0FF7B /* IRFFCVYUVVideoFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRFFCVYUVVideoFrame.h; path = IRPlayer/Class/Core/FFPlayer/FFmpeg/Frame/IRFFCVYUVVideoFrame.h; sourceTree = "<group>"; };
 		C41E5B87A477EDD781529653C7554EAE /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
 		C43902615B0035EBBC5DC6CF4D649A41 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
@@ -1655,7 +1655,7 @@
 		C7EE3BF7BE6AD5495C14A5C476D56AA2 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = SDWebImage/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
 		C8F42A3900194BA2041AA447AEC18E53 /* IRGLFragmentFish2PerspShaderGLSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLFragmentFish2PerspShaderGLSL.m; path = IRPlayer/Class/Core/Display/OpenGL/Fragment/IRGLFragmentFish2PerspShaderGLSL.m; sourceTree = "<group>"; };
 		C90F57DF4AE2E4E4DAF5605875C33375 /* IRCustomIconButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRCustomIconButton.h; path = IRPasscode/Class/CustomView/IRCustomIconButton.h; sourceTree = "<group>"; };
-		C9708630F9D9C8C32EF0B3C91B9E469D /* QBImagePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = QBImagePicker.bundle; path = "QBImagePickerController-QBImagePicker.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9708630F9D9C8C32EF0B3C91B9E469D /* QBImagePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QBImagePicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB44D07246BC4370FB8B64BECE04BC7 /* DDFileLogger+Buffering.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "DDFileLogger+Buffering.h"; path = "Sources/CocoaLumberjack/include/DDFileLogger+Buffering.h"; sourceTree = "<group>"; };
 		CB3012ACF55659B0B898591FB6D12388 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
 		CBB8F647699715C84296CE2599CFDB0B /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
@@ -1664,7 +1664,7 @@
 		CC76B95466A7FCBD01716EBA1E45DE18 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
 		CD47B52A6DF159BF1B50D7F305F83C00 /* IRFFMpeg-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IRFFMpeg-dummy.m"; sourceTree = "<group>"; };
 		CD7D6634CA48029E5F790E0E3D6537A1 /* SDWebImage-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SDWebImage-Info.plist"; sourceTree = "<group>"; };
-		CDCBFF730AEE7B71DED727D2A90E30FA /* Pods_IR_FileManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_IR_FileManager.framework; path = "Pods-IR_FileManager.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDCBFF730AEE7B71DED727D2A90E30FA /* Pods_IR_FileManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IR_FileManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFFC06DAD031134A98F68413468F4AC /* IRGLFragmentNV12ShaderGLSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IRGLFragmentNV12ShaderGLSL.m; path = IRPlayer/Class/Core/Display/OpenGL/Fragment/IRGLFragmentNV12ShaderGLSL.m; sourceTree = "<group>"; };
 		CE47480DABBB78B90C379AABE43C21A6 /* IRAudioManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRAudioManager.h; path = IRPlayer/Class/Core/Audio/IRAudioManager.h; sourceTree = "<group>"; };
 		CE8061324DCDADBB5516187C56E35629 /* downmix_info.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = downmix_info.h; path = include/libavutil/downmix_info.h; sourceTree = "<group>"; };
@@ -1714,7 +1714,7 @@
 		DF722497DE550C857DBD25D579072E0E /* ffversion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffversion.h; path = include/libavutil/ffversion.h; sourceTree = "<group>"; };
 		DFCB989FF0F8AB046D151A105FF3D3C4 /* btn_nav_back.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = btn_nav_back.png; path = IRGallery/Class/btn_nav_back.png; sourceTree = "<group>"; };
 		E04FFFDEE7407F52147BE1398A00F36D /* btn_heart_h.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = btn_heart_h.png; path = IRGallery/Class/btn_heart_h.png; sourceTree = "<group>"; };
-		E183A786021AB7DF961D555E115F9491 /* IRShareManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IRShareManager.framework; path = IRShareManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E183A786021AB7DF961D555E115F9491 /* IRShareManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRShareManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1C442F387BC61AE26D4BE18AEAB5509 /* NSManagedObjectContext+MagicalSaves.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+MagicalSaves.h"; path = "MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalSaves.h"; sourceTree = "<group>"; };
 		E24E29AA9F5449BBDBB461EE2063ADDF /* version.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = version.h; path = include/libswresample/version.h; sourceTree = "<group>"; };
 		E30B0D2FFBE8E011B60680B5E6089C88 /* IRSensor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IRSensor.h; path = IRPlayer/Class/Core/Matrix/IRSensor.h; sourceTree = "<group>"; };
@@ -1991,7 +1991,6 @@
 				B0C267528AE90E13014C640E6A57588D /* Resources */,
 				E5464307FF3F04601EFC63297BC20734 /* Support Files */,
 			);
-			name = IRMusicPlayer;
 			path = IRMusicPlayer;
 			sourceTree = "<group>";
 		};
@@ -2016,7 +2015,6 @@
 				70CC18DFF635DEA33A2330CA65B69003 /* Utilities.m */,
 				6E2CA14848C06B758860CE1DA8B9EDA5 /* Support Files */,
 			);
-			name = IRAlertManager;
 			path = IRAlertManager;
 			sourceTree = "<group>";
 		};
@@ -2068,7 +2066,6 @@
 				A82B7131C12A2DDA0A4C458E808F9187 /* Core */,
 				A479C4F8DA7643C80986FF530BFEE2A1 /* Support Files */,
 			);
-			name = CocoaLumberjack;
 			path = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
@@ -2089,7 +2086,6 @@
 				C8C5AB2C0570B839D2193C62A0197669 /* Resources */,
 				14BEDF1A7CDBF0D25C9CF33845ED3E6E /* Support Files */,
 			);
-			name = IRGallery;
 			path = IRGallery;
 			sourceTree = "<group>";
 		};
@@ -2099,7 +2095,6 @@
 				A0FD935D1726FC827E0DDD5FB1C17360 /* Core */,
 				11BC3B33DE9195C482A8465F447FA825 /* Support Files */,
 			);
-			name = MagicalRecord;
 			path = MagicalRecord;
 			sourceTree = "<group>";
 		};
@@ -2109,7 +2104,6 @@
 				4160450ED99F3A34B947A1B16F48E3B9 /* Core */,
 				B19D150C2DF3044260331985E3E1D9EC /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -2158,7 +2152,6 @@
 				ED8CC8375B15849D8BED38A05DB947C3 /* Resources */,
 				00CA7C88FDFDE7E8948B0DD3A9557452 /* Support Files */,
 			);
-			name = QBImagePickerController;
 			path = QBImagePickerController;
 			sourceTree = "<group>";
 		};
@@ -2220,7 +2213,6 @@
 				898945A4E79671DD7B2CE9811E0565CB /* FFMpegLib */,
 				601AA9B5DC3BB6C53C1DA740D871423D /* Support Files */,
 			);
-			name = IRFFMpeg;
 			path = IRFFMpeg;
 			sourceTree = "<group>";
 		};
@@ -2299,7 +2291,6 @@
 				EB78C8DA2C83C8B4C1E2840E47AF24A1 /* IRShareManager.h */,
 				7812E29D52F8040A9CD8CC62BEFADEBA /* Support Files */,
 			);
-			name = IRShareManager;
 			path = IRShareManager;
 			sourceTree = "<group>";
 		};
@@ -2364,7 +2355,6 @@
 				CC3CA8DCA191AA1CD221C97E3EABAF0D /* TableViewBasicViewModel.m */,
 				941228815EFEF40C52420D8E30E3EFB5 /* Support Files */,
 			);
-			name = IRCollectionTableViewModel;
 			path = IRCollectionTableViewModel;
 			sourceTree = "<group>";
 		};
@@ -2736,7 +2726,6 @@
 				C075F055497DCF5625343ECFE80FE486 /* UICKeyChainStore.m */,
 				B6B822FAA76356510D9CD4C0DAB5C70B /* Support Files */,
 			);
-			name = UICKeyChainStore;
 			path = UICKeyChainStore;
 			sourceTree = "<group>";
 		};
@@ -2932,7 +2921,6 @@
 				216F514746607A6B356408B6114CD9F8 /* IRYUVTools.m */,
 				4C8FE36A15A214CA17C9E75493C8963E /* Support Files */,
 			);
-			name = IRPlayer;
 			path = IRPlayer;
 			sourceTree = "<group>";
 		};
@@ -2966,7 +2954,6 @@
 				553D63A2C48E7EB73245F2553E01A977 /* ViewController+MASAdditions.m */,
 				E188BE317934EA4FA0F3CAB0818E40AD /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -3043,7 +3030,6 @@
 				ACC86B7B3E323153F9F4A0EC7CA99428 /* Resources */,
 				7DE656C7D983B6A39CDD38F262EE373E /* Support Files */,
 			);
-			name = IRPasscode;
 			path = IRPasscode;
 			sourceTree = "<group>";
 		};
@@ -4514,7 +4500,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRFFMpeg/IRFFMpeg-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRFFMpeg/IRFFMpeg-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4549,7 +4535,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRCollectionTableViewModel/IRCollectionTableViewModel-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRCollectionTableViewModel/IRCollectionTableViewModel-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4583,7 +4569,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/QBImagePickerController/QBImagePickerController-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/QBImagePickerController/QBImagePickerController-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4619,7 +4605,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRMusicPlayer/IRMusicPlayer-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRMusicPlayer/IRMusicPlayer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4686,7 +4672,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4714,7 +4700,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRPasscode/IRPasscode-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRPasscode/IRPasscode-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4748,7 +4734,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/QBImagePickerController/QBImagePickerController-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/QBImagePickerController/QBImagePickerController-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4782,7 +4768,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRAlertManager/IRAlertManager-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRAlertManager/IRAlertManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4817,7 +4803,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRAlertManager/IRAlertManager-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRAlertManager/IRAlertManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4851,7 +4837,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CocoaLumberjack/CocoaLumberjack-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CocoaLumberjack/CocoaLumberjack-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4886,7 +4872,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRGallery/IRGallery-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRGallery/IRGallery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4920,7 +4906,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Masonry-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4955,7 +4941,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRPlayer/IRPlayer-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRPlayer/IRPlayer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4989,7 +4975,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/UICKeyChainStore/UICKeyChainStore-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/UICKeyChainStore/UICKeyChainStore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5023,7 +5009,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRFFMpeg/IRFFMpeg-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRFFMpeg/IRFFMpeg-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5057,7 +5043,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRShareManager/IRShareManager-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRShareManager/IRShareManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5082,9 +5068,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/QBImagePickerController";
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				IBSC_MODULE = QBImagePickerController;
 				INFOPLIST_FILE = "Target Support Files/QBImagePickerController/ResourceBundle-QBImagePicker-QBImagePickerController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				PRODUCT_NAME = QBImagePicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -5109,7 +5096,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/SDWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5144,7 +5131,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/UICKeyChainStore/UICKeyChainStore-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/UICKeyChainStore/UICKeyChainStore-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5179,7 +5166,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MagicalRecord/MagicalRecord-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MagicalRecord/MagicalRecord-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5214,7 +5201,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Masonry-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5364,7 +5351,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRShareManager/IRShareManager-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRShareManager/IRShareManager-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5388,9 +5375,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/QBImagePickerController";
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				IBSC_MODULE = QBImagePickerController;
 				INFOPLIST_FILE = "Target Support Files/QBImagePickerController/ResourceBundle-QBImagePicker-QBImagePickerController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				PRODUCT_NAME = QBImagePicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -5415,7 +5403,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRCollectionTableViewModel/IRCollectionTableViewModel-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRCollectionTableViewModel/IRCollectionTableViewModel-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5450,7 +5438,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRGallery/IRGallery-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRGallery/IRGallery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5485,7 +5473,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRPasscode/IRPasscode-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRPasscode/IRPasscode-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5521,7 +5509,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRMusicPlayer/IRMusicPlayer-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRMusicPlayer/IRMusicPlayer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5555,7 +5543,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/CocoaLumberjack/CocoaLumberjack-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/CocoaLumberjack/CocoaLumberjack-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5626,7 +5614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -5655,7 +5643,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/MagicalRecord/MagicalRecord-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MagicalRecord/MagicalRecord-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5729,7 +5717,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/IRPlayer/IRPlayer-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/IRPlayer/IRPlayer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5764,7 +5752,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/SDWebImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -71,6 +71,7 @@
 		8ACED95723D18EB7007F8230 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACED95623D18EB7007F8230 /* ShareViewController.m */; };
 		8ACED95A23D18EB7007F8230 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACED95823D18EB7007F8230 /* MainInterface.storyboard */; };
 		8ACED95E23D18EB7007F8230 /* IRFileManager.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8ACED95323D18EB7007F8230 /* IRFileManager.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B5D35C972CF0F08D00C1AC08 /* giphy.webp in Resources */ = {isa = PBXBuildFile; fileRef = B5D35C962CF0F08D00C1AC08 /* giphy.webp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 		8ACED96523D1A013007F8230 /* IRFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IRFileManager.entitlements; sourceTree = "<group>"; };
 		8ACED96623D1A16F007F8230 /* IR_FileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IR_FileManager.entitlements; sourceTree = "<group>"; };
 		8ACED96923D1A7A3007F8230 /* IRFileManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IRFileManager.xcdatamodel; sourceTree = "<group>"; };
+		B5D35C962CF0F08D00C1AC08 /* giphy.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = giphy.webp; sourceTree = "<group>"; };
 		BE6B6F77A7C9AE8BE2F292E2 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C09CEF0AB479E9F03F05A225 /* Pods_ShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1DEDE52B84789D6A4E9B170 /* Pods-IR_FileManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IR_FileManager.release.xcconfig"; path = "Target Support Files/Pods-IR_FileManager/Pods-IR_FileManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				8A3802BA22C99ECE00299EAD /* ViewController.m */,
 				8A3802BC22C99ECE00299EAD /* Main.storyboard */,
 				8A3802BF22C99EDE00299EAD /* Assets.xcassets */,
+				B5D35C962CF0F08D00C1AC08 /* giphy.webp */,
 				8A3802C122C99EDE00299EAD /* LaunchScreen.storyboard */,
 				8A3802C422C99EDE00299EAD /* Info.plist */,
 				8A3802C522C99EDE00299EAD /* main.m */,
@@ -666,6 +669,7 @@
 				8A2C220622C9EB2A00CCBD34 /* PhotoCollectionViewController.xib in Resources */,
 				8A8F35B923D6FD2400FF8AC4 /* DocumentListViewController.xib in Resources */,
 				8A38031C22C9D00E00299EAD /* WelcomeViewController.xib in Resources */,
+				B5D35C972CF0F08D00C1AC08 /* giphy.webp in Resources */,
 				8ACED94423CF03FD007F8230 /* BJRangeSlider.bundle in Resources */,
 				8A3802C022C99EDE00299EAD /* Assets.xcassets in Resources */,
 				8A2C373C22CB3F7500CCBD34 /* PhotoCollectionReusableView.xib in Resources */,
@@ -964,7 +968,7 @@
 				CODE_SIGN_ENTITLEMENTS = IR_FileManager/IR_FileManager.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7AP32ZTM5;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -981,7 +985,7 @@
 					"$(SRCROOT)/IR_FileManager/ThirdParty/FFmpeg/include",
 				);
 				INFOPLIST_FILE = IR_FileManager/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1009,7 +1013,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager2";
+				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1025,7 +1029,7 @@
 				CODE_SIGN_ENTITLEMENTS = IR_FileManager/IR_FileManager.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7AP32ZTM5;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1042,7 +1046,7 @@
 					"$(SRCROOT)/IR_FileManager/ThirdParty/FFmpeg/include",
 				);
 				INFOPLIST_FILE = IR_FileManager/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,7 +1074,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager2";
+				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1085,15 +1089,15 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/IRFileManager.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7AP32ZTM5;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager2.ShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager3.ShareExtension";
 				PRODUCT_NAME = IRFileManager;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1108,15 +1112,15 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/IRFileManager.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7AP32ZTM5;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager2.ShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "irons163.IR-FileManager3.ShareExtension";
 				PRODUCT_NAME = IRFileManager;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

@@ -24,8 +24,8 @@
     welecomeWebView.scrollView.scrollEnabled = NO;
     welecomeWebView.scrollView.bounces = NO;
     
-    NSData *data = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"enwifi" ofType:@"gif"]];
-    [welecomeWebView loadData:data MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
+    NSData *data = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"giphy" ofType:@"webp"]];
+    [welecomeWebView loadData:data MIMEType:@"image/webp" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
     welecomeWebView.scalesPageToFit = YES;
     [welecomeWebView setOpaque:NO];
 }
@@ -34,20 +34,25 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MainPageViewController *mainPageViewController = [MainPageViewController new];
-        [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:mainPageViewController] animated:YES completion:nil];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainPageViewController];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
+        nav.navigationBarHidden = NO;
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
     });
 }
 
 #pragma mark - IBAction
 - (IBAction)doWelcome:(id)sender {
+    self.navigationController.navigationBarHidden = NO;
     MainPageViewController *mainPageViewController = [MainPageViewController new];
+    mainPageViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:mainPageViewController animated:YES completion:nil];
 }
 
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [NSTimer scheduledTimerWithTimeInterval:3.0
+    [NSTimer scheduledTimerWithTimeInterval:2.0
                                      target:self
                                    selector:@selector(timeToRedirect:)
                                    userInfo:nil

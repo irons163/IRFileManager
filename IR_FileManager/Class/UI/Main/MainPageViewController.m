@@ -47,6 +47,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+    [appearance configureWithTransparentBackground]; // 或者 configureWithOpaqueBackground
+    appearance.backgroundColor = [UIColor redColor]; // 設置背景為透明
+    appearance.shadowColor = nil; // 移除陰影
+
+    self.navigationController.navigationBar.standardAppearance = appearance;
+    self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+
     self.allButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationItem.title = _(@"IRFileManagerTitle");
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColorCodeString:NavigationBarBGColor]];

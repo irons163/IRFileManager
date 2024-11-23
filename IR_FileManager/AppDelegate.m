@@ -69,7 +69,7 @@
 }
 
 - (void)saveImageIfExistInActionExtention {
-    [IRShare sharedInstance].groupID = @"group.irons163.IRFileManager";
+    [IRShare sharedInstance].groupID = @"group.IRMusicPlayer-AppStore";
     NSURL *directoryURL = [IRShare sharedInstance].directoryURL;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
