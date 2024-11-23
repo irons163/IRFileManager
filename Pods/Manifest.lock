@@ -8,8 +8,8 @@ PODS:
     - IRFFMpeg/FFMpegLib (= 4.2.19)
   - IRFFMpeg/FFMpegLib (4.2.19)
   - IRGallery (0.1.2)
-  - IRMusicPlayer (0.1.1)
-  - IRPasscode (0.1.4):
+  - IRMusicPlayer (0.2.0)
+  - IRPasscode (0.2.0):
     - UICKeyChainStore
   - IRPlayer (0.3.5):
     - IRFFMpeg
@@ -23,7 +23,7 @@ PODS:
   - SDWebImage (3.8.3):
     - SDWebImage/Core (= 3.8.3)
   - SDWebImage/Core (3.8.3)
-  - UICKeyChainStore (2.1.2)
+  - UICKeyChainStore (2.2.1)
 
 DEPENDENCIES:
   - IRAlertManager
@@ -69,16 +69,16 @@ SPEC CHECKSUMS:
   IRCollectionTableViewModel: 46af7fe12b374b004f760125147e1ca0a5c9946a
   IRFFMpeg: 50e159994f9c7c1136b19fc1dea96b4c903b1c9c
   IRGallery: 5a94e2557fcaf6d69e5bfc96db5419ad737f2240
-  IRMusicPlayer: d8f8092e34681bc8353c86923e6260337e95b7b9
-  IRPasscode: 2662639ab8d2e193751abd9fc858249424982ca5
+  IRMusicPlayer: c98fa09a138d4f2efffc0eb3c38d8dd306e64378
+  IRPasscode: 02d65d8632bf462fc9dab4e38b1a2a4fcdef6ef1
   IRPlayer: 1448253d7c87c9cbdd7bd288d8a0edbdd17494a6
   IRShareManager: d41d1bc84120ec6aa3ac93cf65e5bb784f91ed63
   MagicalRecord: 1f22a766156474d9f46a9b1e1ce59ca9e37830fc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
-  UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
+  UICKeyChainStore: ba3bff2c762b12db1e516f395c837dd25298b05e
 
 PODFILE CHECKSUM: fbddf2cad532602df37eba7052855404cb849eaf
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.16.2

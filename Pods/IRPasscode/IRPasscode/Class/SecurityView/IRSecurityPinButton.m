@@ -7,6 +7,8 @@
 //
 
 #import "IRSecurityPinButton.h"
+#import "IRLanguageManager.h"
+#import "ColorDefine.h"
 #import "UIColor+Helper.h"
 
 @implementation IRSecurityPinButton

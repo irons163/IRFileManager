@@ -114,36 +114,6 @@
             endingLineNumber = "54"
             landmarkName = "-didSelectPostWith:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "27239576-2809-40F2-BACD-89E2A1C6B5FC - 233be9be35ea8e51"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[IRShare didSelectPostWith:]"
-                  moduleName = "IRShareManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/irons/github/IRFileManager/Pods/IRShareManager/IRShareManager/Class/Share/IRShare.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-               <Location
-                  uuid = "27239576-2809-40F2-BACD-89E2A1C6B5FC - 233be9be35ea8e51"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[IRShare didSelectPostWith:]"
-                  moduleName = "IRShareManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/irons/github/IRFileManager/Pods/IRShareManager/IRShareManager/Class/Share/IRShare.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,36 +146,6 @@
             endingLineNumber = "82"
             landmarkName = "-loadFileBy:item:type:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9B383D45-422A-4C71-9E5F-BF3126684394 - 9f012b4a33ce385a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[IRShare loadFileBy:item:type:]"
-                  moduleName = "IRShareManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/irons/github/IRFileManager/Pods/IRShareManager/IRShareManager/Class/Share/IRShare.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82">
-               </Location>
-               <Location
-                  uuid = "9B383D45-422A-4C71-9E5F-BF3126684394 - 489cb734fe242d19"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[IRShare loadFileBy:item:type:]_block_invoke"
-                  moduleName = "IRShareManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/irons/github/IRFileManager/Pods/IRShareManager/IRShareManager/Class/Share/IRShare.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -410,8 +350,8 @@
             filePath = "Pods/IRMusicPlayer/IRMusicPlayer/Class/UI/MusicPlayerViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-getMusicLength"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,8 +366,8 @@
             filePath = "Pods/IRMusicPlayer/IRMusicPlayer/Class/UI/MusicPlayerViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-setControlMedia:artist:length:rate:seekTime:"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,8 +382,8 @@
             filePath = "Pods/IRMusicPlayer/IRMusicPlayer/Class/UI/MusicPlayerViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-goProgress:"
             landmarkType = "7">
          </BreakpointContent>

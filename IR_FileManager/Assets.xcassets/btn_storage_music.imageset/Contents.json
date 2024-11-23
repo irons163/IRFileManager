@@ -1,8 +1,8 @@
 {
   "images" : [
     {
+      "filename" : "music-video_118893.png",
       "idiom" : "universal",
-      "filename" : "btn_storage_music.png",
       "scale" : "1x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

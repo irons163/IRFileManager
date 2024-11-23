@@ -10,8 +10,13 @@
 #endif
 #endif
 
-#import "IRMusicPlayer.h"
 #import "MusicPlayerViewController.h"
+#import "KeysDefine.h"
+#import "StatusClass.h"
+#import "UIColor+Helper.h"
+#import "UIImage+Bundle.h"
+#import "Utilities.h"
+#import "IRMusicPlayer.h"
 
 FOUNDATION_EXPORT double IRMusicPlayerVersionNumber;
 FOUNDATION_EXPORT const unsigned char IRMusicPlayerVersionString[];
